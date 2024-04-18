@@ -1,3 +1,4 @@
+const { ObjectId } = require("mongodb");
 const database = require("../config/config");
 
 class notificationModel {
@@ -6,7 +7,7 @@ class notificationModel {
   }
   static async createNotification(userId, message) {
     const notif = await this.notificationCollection().insertOne({ 
-      userId,
+      userId : new ObjectId(String(userId)),
       message
      });
     return notif;

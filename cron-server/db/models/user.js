@@ -8,15 +8,15 @@ class userModel {
   static vehicleCollection() {
     return database.collection("Vehicles");
   }
-  static async find(id) {
-    const vehicle = await this.vehicleCollection().findOne({ 
-        _id : new ObjectId(String(id))
-     });
-     const user = await this.userCollection().findOne({
-        _id: vehicle.userId
-     })
+  static async find(_id) {
+    const vehicle = await this.vehicleCollection().findOne({
+      _id,
+    });
+    const user = await this.userCollection().findOne({
+      _id: vehicle.UserId,
+    });
     return user;
   }
 }
 
-module.exports = userModel
+module.exports = userModel;

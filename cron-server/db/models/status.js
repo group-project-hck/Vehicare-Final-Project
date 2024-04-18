@@ -9,41 +9,28 @@ class statusModel {
     const status = await this.statusCollection().find().toArray()
     return status
   }
-  static async dailyHp (id){
-    const status = await this.statusCollection().findOne({
-      _id: new ObjectId(String(id))
-    })
-    if (status.dailyHp >= 25 ){
-      status.dailyHp = status.dailyHp - 25
+  static async dailyHP (status){
+    if (status.dailyHP >= 25 ){
+      status.dailyHP = status.dailyHP - 25
     }else{
-      status.dailyHp = 0
+      status.dailyHP = 0
     }
     const update = await this.statusCollection().updateOne({
-      _id: new ObjectId(String(id))
+      _id: new ObjectId(String(status._id))
     },{
       $set : {
-        dailyHp : status.dailyHp
+        dailyHP : status.dailyHP
       }
     })
     return update
   }
-  static async updateStatus(id, hp) {
-    let emoji;
-    if (hp < 100) {
-      emoji = "Happy";
-    } else if (hp < 75 && hp > 50) {
-      emoji = "Smile";
-    } else if (hp < 50 && hp > 25) {
-      emoji = "Sad";
-    } else if (hp < 25) {
-      emoji = "Very Sad";
-    }
+  static async updateStatus(id, HP) {
+    console.log(id, HP);
     const status = await this.statusCollection().updateOne(
-      { vehicleId: new ObjectId(String(id)) },
+      { VehicleId: id },
       {
         $set: {
-          HP: hp,
-          emoji,
+          HP: HP,
         },
       }
     );

@@ -25,7 +25,7 @@ const transporter = nodemailer.createTransport({
 cron.schedule("*/30 0-59 0-23 1-31 1-12 0-6", async () => {
 	const status = await statusModel.findStatus();
 	status.map(async (item) => {
-		await statusModel.dailyHp(item._id);
+		await statusModel.dailyHP(item);
 	});
 });
 cron.schedule("0-59 0-23 1-31 1-12 0-6", async () => {
@@ -35,32 +35,32 @@ cron.schedule("0-59 0-23 1-31 1-12 0-6", async () => {
 		const updatedTime = new Date(item.serviceDate);
 		const diff = currentTime - updatedTime;
 		const minutes = Math.floor((diff / 1000 / 60) << 0);
-		const user = userModel.find(item.vehicleId);
+		const user = await userModel.find(item.VehicleId);
 		let message = "";
-		let hp = 0;
+		let HP = 0;
 		if (minutes === 1) {
 			message =
 				"Halo, ini sudah 15 hari semenjak kamu terakhir kali service motor nih, jangan lupa untuk menjadwalkan service ya untuk tetap menjaga kesehatan motor kamu";
-			hp = 100;
+			HP = 100;
 		} else if (minutes === 2) {
 			message =
 				"Halo, ini sudah 30 hari semenjak kamu terakhir kali service motor nih, jangan lupa untuk menjadwalkan service ya untuk tetap menjaga kesehatan motor kamu";
-			hp = 75;
+			HP = 75;
 		} else if (minutes === 3) {
 			message =
 				"Halo, ini sudah 45 hari semenjak kamu terakhir kali service motor nih, segera jadwalkan service ya untuk tetap menjaga kesehatan motor kamu";
-			hp = 50;
+			HP = 50;
 		} else if (minutes === 4) {
 			message =
 				"Halo, ini sudah 60 hari semenjak kamu terakhir kali service motor nih, kamu harus menjadwalkan service ya untuk tetap menjaga kesehatan motor kamu";
-			hp = 25;
+			HP = 25;
 		} else if (minutes >= 5) {
 			message =
 				"Halo, ini sudah lebih dari 60 hari semenjak kamu terakhir kali service motor nih, apakah kamu memiliki kendala untuk melakukan service? segera lakukan service ya agar kesehatan motor kamu tetap terjaga";
-			hp = 0;
+			HP = 0;
 		}
-		await statusModel.updateStatus(item.vehicleId, 0);
-		await notificationModel.createNotification(item.vehicleId, message);
+		await statusModel.updateStatus(item.VehicleId, HP);
+		await notificationModel.createNotification(item.VehicleId, message);
 		transporter.sendMail({
 			from: "vehicarejkt@gmail.com",
 			to: user.email,
