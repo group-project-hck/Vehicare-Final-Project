@@ -13,7 +13,8 @@ export type NewUser = Omit<User, "_id">
 export interface Payload {
   _id: string;
   username: string;
-  email: string
+  email: string;
+  role: string;
 }
 
 export interface Vehicle {
@@ -33,6 +34,15 @@ export interface Sparepart {
   type: string,
   description: string,
   price: number
+}
+
+export interface ServiceBooks {
+  _id: ObjectId,
+  serviceName: string,
+  servicePrice: number,
+  SparepartId: ObjectId,
+  VehicleId: ObjectId,
+  serviceDate: string
 }
 
 export interface Status {

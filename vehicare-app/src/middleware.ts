@@ -5,7 +5,12 @@ import { readPayloadJose } from "./databases/helpers/jwt";
 
 export async function middleware(request: NextRequest) {
   let login = cookies().get("Authorization");
-  if (request.nextUrl.pathname.startsWith("/api/wishlist")) {
+  if (
+    request.nextUrl.pathname.startsWith("/api/servicebook") ||
+    request.nextUrl.pathname.startsWith("/api/vehicle/:path*") ||
+    request.nextUrl.pathname.startsWith("/api/spareparts") ||
+    request.nextUrl.pathname.startsWith("/api/status")
+  ) {
     if (!login) {
       return NextResponse.json(
         {
@@ -25,22 +30,21 @@ export async function middleware(request: NextRequest) {
     newHeaders.set("x-user-id", result._id);
     newHeaders.set("x-user-email", result.email);
     newHeaders.set("x-user-username", result.username);
+    newHeaders.set("x-user-role", result.role);
     return NextResponse.next({
       request: {
         headers: newHeaders,
       },
     });
-  } else if (request.nextUrl.pathname.startsWith("/wishlist")) {
+  } else if (request.nextUrl.pathname.startsWith("/")) {
     if (!login) {
       request.nextUrl.pathname = "/login";
       return NextResponse.redirect(request.nextUrl);
     }
-  } else if (request.nextUrl.pathname.startsWith("/login")) {
-    if (login) {
-      request.nextUrl.pathname = "/";
-      return NextResponse.redirect(request.nextUrl);
-    }
-  } else if (request.nextUrl.pathname.startsWith("/register")) {
+  } else if (
+    request.nextUrl.pathname.startsWith("/login") ||
+    request.nextUrl.pathname.startsWith("/register")
+  ) {
     if (login) {
       request.nextUrl.pathname = "/";
       return NextResponse.redirect(request.nextUrl);
@@ -50,9 +54,10 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/api/wishlist",
-    "/api/wishlist/:path*",
-    "/wishlist",
+    "/api/servicebook",
+    "/api/vehicle/:path*",
+    "/api/spareparts",
+    "/api/status",
     "/login",
     "/register",
   ],
