@@ -2,7 +2,6 @@ import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 import { Payload } from "./databases/models/types";
 import { readPayloadJose } from "./databases/helpers/jwt";
-import { redirect } from "next/navigation";
 
 export async function middleware(request: NextRequest) {
   let login = cookies().get("Authorization");

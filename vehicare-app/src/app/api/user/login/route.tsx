@@ -22,9 +22,7 @@ export async function POST(request: Request) {
     });
     cookies().set("Authorization", `Bearer ${token}`);
     return Response.json(
-      {
-        data: { token: token },
-      },
+      { data: { token: token } },
       { status: 201 }
     );
   } catch (error) {

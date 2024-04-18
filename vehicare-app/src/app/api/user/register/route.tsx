@@ -12,9 +12,7 @@ export async function POST(request: Request) {
     const newUser = await UserModel.createUser(body);
 
     return Response.json(
-      {
-        data: newUser,
-      },
+      { data: newUser },
       { status: 201 }
     );
   } catch (error) {
