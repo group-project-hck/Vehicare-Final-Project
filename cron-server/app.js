@@ -23,11 +23,12 @@ const transporter = nodemailer.createTransport({
 });
 
 cron.schedule("30 0-59 0-23 1-31 1-12 0-6", async () => {
-  // console.log("masuk1");
-  // setiap 30 detik -35
+  const status = await statusModel.findStatus() 
+  status.map(async (item) => {
+    await statusModel.dailyHp(item._id)
+  })
 })
 cron.schedule("0-59 0-23 1-31 1-12 0-6", async () => {
-  // console.log("masuk");
   const serviceBooks = await serviceBookModel.findAll()
   serviceBooks.map(async (item) => {
     const currentTime = Date.now();
