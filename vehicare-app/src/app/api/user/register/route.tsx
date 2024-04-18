@@ -1,4 +1,4 @@
-import UserModel, { UserValidation } from "@/db/models/users";
+import UserModel, { UserValidation } from "@/databases/models/users";
 import { z } from "zod";
 
 export async function POST(request: Request) {

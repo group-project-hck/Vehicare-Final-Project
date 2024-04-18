@@ -1,7 +1,7 @@
-import { User } from "@/db/types";
-import { database } from "../config/config";
+import { User } from "@/databases/models/types";
 import { z } from "zod";
-import bcryptPass from "@/db/helpers/bcrypt";
+import bcryptPass from "@/databases/helpers/bcrypt";
+import { db } from '@/databases/config/monggoDB'
 
 export const UserValidation = z.object({
   username: z
@@ -32,16 +32,19 @@ export const UserValidation = z.object({
 
 export default class UserModel {
   static userCollection() {
-    return database.collection<User>("Users");
+    return db.collection<User>("Users");
   }
+
   static async findUserByUsername(username: string) {
     const user = await this.userCollection().findOne({ username });
     return user;
   }
+
   static async findUserByEmail(email: string) {
     const user = await this.userCollection().findOne({ email });
     return user;
   }
+
   static async createUser(userData: User): Promise<User> {
     try {
       const checkUsername = await this.findUserByUsername(userData.username);

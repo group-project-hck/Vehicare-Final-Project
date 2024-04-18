@@ -1,20 +1,13 @@
 import { db } from '@/databases/config/monggoDB'
-import { ObjectId } from 'mongodb'
-
-export type Sparepart = {
-    _id: ObjectId,
-    name: string,
-    type: string,
-    price: number
-}
+import { Sparepart } from './types'
 
 class ModelSparepart {
     static dbSparepart() {
-        return db.collection("Spareparts")
+        return db.collection<Sparepart>("Spareparts")
     }
 
     static async allSparepart() {
-        return await this.dbSparepart().find().toArray() as Sparepart[]
+        return await this.dbSparepart().find().toArray()
     }
 }
 

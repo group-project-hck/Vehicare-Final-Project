@@ -1,13 +1,6 @@
 import { db } from '@/databases/config/monggoDB'
 import { ObjectId } from 'mongodb'
-
-export type Vehicle = {
-    _id: ObjectId,
-    name: string,
-    type: string,
-    image: string,
-    UserId: string
-}
+import { Vehicle } from './types'
 
 export type NewVehicle = Omit<Vehicle, "_id">
 
@@ -16,14 +9,14 @@ class ModelVehicle {
         return db.collection("Vehicles")
     }
 
-    static async addVehicle(payload: NewVehicle) {
+    static async addVehicle(payload: NewVehicle): Promise<NewVehicle> {
         return this.dbVehicle().insertOne({
             ...payload, UserId: new ObjectId(payload.UserId)
-        }) as NewVehicle
+        }).then()
     }
 
-    static async findVehicle(id: string) {
-        return this.dbVehicle().findOne({ _id: new ObjectId(id) }) as Vehicle
+    static async findVehicle(id: string): Promise<Vehicle> {
+        return this.dbVehicle().findOne({ _id: new ObjectId(id) }).then()
     }
 
 }

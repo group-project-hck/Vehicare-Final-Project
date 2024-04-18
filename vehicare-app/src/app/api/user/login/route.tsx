@@ -1,6 +1,6 @@
-import bcryptPass from "@/db/helpers/bcrypt";
-import { Tokenjwt } from "@/db/helpers/jwt";
-import UserModel from "@/db/models/users";
+import bcryptPass from "@/databases/helpers/bcrypt";
+import { Tokenjwt } from "@/databases/helpers/jwt";
+import UserModel from "@/databases/models/users";
 import { cookies } from "next/headers";
 
 export async function POST(request: Request) {
@@ -11,7 +11,7 @@ export async function POST(request: Request) {
     let user = await UserModel.findUserByUsername(body.username);
     if (!user) {
       user = await UserModel.findUserByEmail(body.username);
-      if(!user)throw new Error("Invalid username or password");
+      if (!user) throw new Error("Invalid username or password");
     }
     const isValid = bcryptPass.comparePassword(body.password, user.password);
     if (!isValid) throw new Error("Invalid username or password");

@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { Payload } from "../types";
+import { Payload } from "../models/types";
 import * as jose from "jose";
 
 const secret = process.env.JWT_SECRET as string;

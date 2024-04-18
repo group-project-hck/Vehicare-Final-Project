@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
-import { Payload } from "./db/types";
-import { readPayloadJose } from "./db/helpers/jwt";
+import { Payload } from "./databases/models/types";
+import { readPayloadJose } from "./databases/helpers/jwt";
 import { redirect } from "next/navigation";
 
 export async function middleware(request: NextRequest) {
