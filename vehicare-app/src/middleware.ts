@@ -8,6 +8,7 @@ export async function middleware(request: NextRequest) {
   if (
     request.nextUrl.pathname.startsWith("/api/servicebook") ||
     request.nextUrl.pathname.startsWith("/api/vehicle/:path*") ||
+    request.nextUrl.pathname.startsWith("/api/vehicle") ||
     request.nextUrl.pathname.startsWith("/api/spareparts") ||
     request.nextUrl.pathname.startsWith("/api/status")
   ) {
@@ -56,6 +57,7 @@ export const config = {
   matcher: [
     "/api/servicebook",
     "/api/vehicle/:path*",
+    "/api/vehicle",
     "/api/spareparts",
     "/api/status",
     "/login",
