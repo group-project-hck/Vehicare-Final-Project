@@ -1,9 +1,10 @@
+import { User } from "@/databases/models/types";
 import UserModel, { UserValidation } from "@/databases/models/users";
 import { z } from "zod";
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
+    const body : User = await request.json();
     body.role = "member"
     const parsedData = UserValidation.safeParse(body);
     if (parsedData.success === false) {

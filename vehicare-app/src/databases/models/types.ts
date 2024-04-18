@@ -11,7 +11,8 @@ export interface User {
 export interface Payload {
   _id: string;
   username: string;
-  email: string
+  email: string;
+  role: string;
 }
 
 export interface Vehicle {
@@ -27,4 +28,12 @@ export interface Sparepart {
   name: string,
   type: string,
   price: number
+}
+export interface ServiceBooks {
+  _id: ObjectId,
+  serviceName: string,
+  servicePrice: number,
+  SparepartId: ObjectId,
+  VehicleId: ObjectId,
+  serviceDate: string
 }

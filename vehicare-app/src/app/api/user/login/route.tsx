@@ -19,6 +19,7 @@ export async function POST(request: Request) {
       _id: user._id.toString(),
       email: user.email,
       username: user.username,
+      role: user.role
     });
     cookies().set("Authorization", `Bearer ${token}`);
     return Response.json(
