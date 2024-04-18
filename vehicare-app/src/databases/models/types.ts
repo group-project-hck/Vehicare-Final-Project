@@ -8,6 +8,8 @@ export interface User {
   password: string;
   role: string;
 }
+
+export type NewUser = Omit<User, "_id">
 export interface Payload {
   _id: string;
   username: string;
@@ -16,19 +18,24 @@ export interface Payload {
 }
 
 export interface Vehicle {
+  insertedId: any;
   _id: ObjectId,
   name: string,
   type: string,
   image: string,
-  UserId: string
+  UserId: ObjectId
 }
+
+export type NewVehicle = Omit<Vehicle, "_id">
 
 export interface Sparepart {
   _id: ObjectId,
   name: string,
   type: string,
+  description: string,
   price: number
 }
+
 export interface ServiceBooks {
   _id: ObjectId,
   serviceName: string,
@@ -37,3 +44,13 @@ export interface ServiceBooks {
   VehicleId: ObjectId,
   serviceDate: string
 }
+
+export interface Status {
+  _id: ObjectId,
+  HP: number,
+  dailyHP: number,
+  cointReward: number,
+  VehicleId: ObjectId
+}
+
+export type NewStatus = Omit<Status, "_id">

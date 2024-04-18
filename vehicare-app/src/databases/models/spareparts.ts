@@ -1,14 +1,12 @@
 import { db } from '@/databases/config/monggoDB'
 import { Sparepart } from './types'
 
-class ModelSparepart {
+export default class ModelSparepart {
     static dbSparepart() {
-        return db.collection<Sparepart>("Spareparts")
+        return db.collection("Spareparts")
     }
 
     static async allSparepart() {
-        return await this.dbSparepart().find().toArray()
+        return await this.dbSparepart().find().toArray() as Sparepart[]
     }
 }
-
-export default ModelSparepart
