@@ -1,4 +1,4 @@
-import { User } from "@/databases/models/types";
+import { NewUser, User } from "@/databases/models/types";
 import { z } from "zod";
 import bcryptPass from "@/databases/helpers/bcrypt";
 import { db } from '@/databases/config/monggoDB'
@@ -32,20 +32,20 @@ export const UserValidation = z.object({
 
 export default class UserModel {
   static userCollection() {
-    return db.collection<User>("Users");
+    return db.collection("Users");
   }
 
   static async findUserByUsername(username: string) {
-    const user = await this.userCollection().findOne({ username });
+    const user = await this.userCollection().findOne({ username }) as User
     return user;
   }
 
   static async findUserByEmail(email: string) {
-    const user = await this.userCollection().findOne({ email });
+    const user = await this.userCollection().findOne({ email }) as User
     return user;
   }
 
-  static async createUser(userData: User): Promise<User> {
+  static async createUser(userData: NewUser): Promise<User> {
     try {
       const checkUsername = await this.findUserByUsername(userData.username);
       if (checkUsername) throw new Error("Username already exists");
