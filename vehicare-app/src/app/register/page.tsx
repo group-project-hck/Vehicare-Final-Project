@@ -3,7 +3,7 @@ import React from 'react';
 import svg from "../../Assets/registerImage.svg";
 import machine from "../../Assets/machine.svg"
 import Image from "next/image";
-import Register from '@/actions/User';
+import { HandleRegister } from '@/actions/User';
 import { useSearchParams } from 'next/navigation';
 
 
@@ -59,7 +59,7 @@ export default function RegisterPage() {
                             </h1>
                         )}
                         <div className="mt-10">
-                            <form action={Register} id="register-form">
+                            <form action={HandleRegister} id="register-form">
                                 <div>
                                     <label className="mb-2 block font-bold" htmlFor="name" style={{ color: "#828282", fontSize: 14, fontFamily: "Nunito Sans", fontStyle: "Semibold" }}>
                                         Name
@@ -69,7 +69,7 @@ export default function RegisterPage() {
                                         name="name"
                                         id="name"
                                         className="inline-block w-full rounded-lg bg-white p-3.5 leading-none text-black placeholder-indigo-900 shadow placeholder:opacity-30 border border-solid border-#DED2D9"
-                                        placeholder="xxxxxxx"
+                                        placeholder="jhon khannedy"
                                         style={{ fontSize: 14 }}
                                     />
                                 </div>
@@ -82,7 +82,7 @@ export default function RegisterPage() {
                                         name="username"
                                         id="username"
                                         className="inline-block w-full rounded-lg bg-white p-3.5 leading-none text-black placeholder-indigo-900 shadow placeholder:opacity-30 border border-solid border-#DED2D9"
-                                        placeholder="xxxxxxx"
+                                        placeholder="jhon"
                                         style={{ fontSize: 14 }}
                                     />
                                 </div>
