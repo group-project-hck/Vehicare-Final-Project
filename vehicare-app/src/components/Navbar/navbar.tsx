@@ -1,7 +1,9 @@
+"use client"
 import Link from "next/link";
 import logo from "../../Assets/logo.svg"
 import Image from "next/image";
 import logout from "../../Assets/logout.svg"
+import handleLogOut from "@/actions/User";
 
 export default function Navbar() {
     return (
@@ -21,7 +23,7 @@ export default function Navbar() {
 
                     {/* Button logout */}
                     <div className="flex items-center pr-5">
-                        <button className="px-3 py-3 rounded-xl" style={{ backgroundColor: "#EB8D00" }}>
+                        <button className="px-3 py-3 rounded-xl" onClick={() => handleLogOut()} style={{ backgroundColor: "#EB8D00" }}>
                             <Image src={logout} alt="Logout" className="h-5 w-5" />
                         </button>
                     </div>
