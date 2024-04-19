@@ -6,6 +6,7 @@ import {
   HarmBlockThreshold,
   HarmCategory,
 } from "@google/generative-ai";
+import { timeStamp } from "console";
 import { KeyboardEvent, useEffect, useState } from "react";
 import showdown from "showdown";
 
@@ -77,19 +78,27 @@ export default function Chat() {
       };
       setMessages((prevMessages) => [...prevMessages, userMessage]);
       setUserInput("");
-      console.log(userInput);
-
-      if (chat) {
-        const result = await chat.sendMessage(userInput);
-        const markdownContent = result.response.text();
-        const resultchat = converter.makeHtml(markdownContent);
+      if(userInput !== "Lokasi Bengkel"){
+        if (chat) {
+          const result = await chat.sendMessage(userInput);
+          const markdownContent = result.response.text();
+          const resultchat = converter.makeHtml(markdownContent);
+          const botMessage = {
+            text: resultchat,
+            role: "bot",
+            timeStamp: new Date(),
+            parts: [{ text: result.response.text(), role: "bot" }],
+          };
+  
+          setMessages((prevMessages) => [...prevMessages, botMessage]);
+        }
+      }else {
         const botMessage = {
-          text: resultchat,
+          text: "Halo, Anda dapat mengunjuki link berikut untuk list dan alamat langsung lokasi bengkel yang sudah bekerja sama dengan kami : https://www.google.com/maps/search/Ahass+motor/@-6.2241668,106.7634056,12.79z?entry=ttu",
           role: "bot",
           timeStamp: new Date(),
-          parts: [{ text: result.response.text(), role: "bot" }],
-        };
-
+          parts: [{ text: "Halo, Anda dapat mengunjuki link berikut untuk list dan alamat langsung lokasi bengkel yang sudah bekerja sama dengan kami : https://www.google.com/maps/search/Ahass+motor/@-6.2241668,106.7634056,12.79z?entry=ttu", role : "bot" }]
+        }
         setMessages((prevMessages) => [...prevMessages, botMessage]);
       }
     } catch (error) {
