@@ -24,11 +24,7 @@ export const UserValidation = z.object({
     .string({
       required_error: "Password cant be empty",
     })
-    .min(5),
-  role: z
-    .string({
-      required_error: "Role cant be empty",
-    })
+    .min(5, { message: "Password must contain at least 5 character(s)" })
 });
 
 export default class UserModel {
