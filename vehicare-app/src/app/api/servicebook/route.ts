@@ -1,4 +1,3 @@
-import { db } from "@/databases/config/monggoDB";
 import serviceBooksModel from "@/databases/models/servicebook";
 import { ServiceBooks } from "@/databases/models/types";
 import { ObjectId } from "mongodb";
@@ -7,8 +6,8 @@ import { NextResponse } from "next/server";
 export async function POST(req: Request) {
     try {
         const body: ServiceBooks = await req.json()
-        body.SparepartId = new ObjectId(body.SparepartId)        
-        body.VehicleId = new ObjectId(body.VehicleId)        
+        body.SparepartId = new ObjectId(body.SparepartId)
+        body.VehicleId = new ObjectId(body.VehicleId)
         await serviceBooksModel.addServiceBooks(body)
         return NextResponse.json(
             { success: `Success add Service Book` },

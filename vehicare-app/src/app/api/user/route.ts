@@ -1,4 +1,3 @@
-import ModelSparepart from "@/databases/models/spareparts";
 import UserModel from "@/databases/models/users";
 import { NextResponse } from "next/server";
 

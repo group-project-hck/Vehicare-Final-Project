@@ -1,13 +1,12 @@
 import serviceBooksModel from "@/databases/models/servicebook";
-import { ServiceBooks } from "@/databases/models/types";
 import { NextResponse } from "next/server";
 
 type RequestParam = {
-    params: {
-      id: string;
-    };
+  params: {
+    id: string;
   };
-export async function GET(request: Request, { params }: RequestParam) {
+};
+export async function GET(req: Request, { params }: RequestParam) {
   try {
     const serviceBooks = await serviceBooksModel.detailServiceBook(params.id);
     return NextResponse.json({ data: serviceBooks }, { status: 200 });

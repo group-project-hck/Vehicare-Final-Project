@@ -45,6 +45,8 @@ export interface ServiceBooks {
   serviceDate: string
 }
 
+export type NewBooks = Omit<ServiceBooks, "_id">
+
 export interface Status {
   _id: ObjectId,
   HP: number,
