@@ -1,9 +1,9 @@
 import { db } from "@/databases/config/monggoDB";
-import { NewBooks, ServiceBooks } from "./types";
+import { ServiceBooks } from "./types";
 import { ObjectId } from "mongodb";
 
 class serviceBooksModel {
-  static dbService() {
+  static serviceBooksModel() {
     return db.collection<ServiceBooks | NewBooks>("ServiceBooks");
   }
 
