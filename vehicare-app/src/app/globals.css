@@ -1,12 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import url('https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100..900;1,100..900&display=swap');
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 }
+
+
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -30,4 +32,9 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.overpass-font {
+  font-family: "Overpass", sans-serif;
+  font-optical-sizing: auto;
 }
