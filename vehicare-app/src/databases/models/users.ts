@@ -69,7 +69,7 @@ export default class UserModel {
       }
     ]
     const cursor = this.userCollection().aggregate(agg);
-    const result = await cursor.toArray();
+    const result = await cursor.toArray()
     return result[0] as User
   }
 
