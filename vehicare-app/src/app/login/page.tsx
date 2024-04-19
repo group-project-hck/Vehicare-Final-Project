@@ -5,6 +5,7 @@ import machine from "../../Assets/machine.svg"
 import Image from "next/image";
 import localFont from 'next/font/local'
 import logo from "../../Assets/logo.svg"
+import { HandleLogin } from '@/actions/User';
 
 // Font files can be colocated inside of `pages`
 const myFont = localFont({ src: '../Overpass-VariableFont_wght.ttf' })
@@ -88,13 +89,13 @@ export default function LoginPage() {
                         </div>
 
                         <div>
-                            <form id="login-form">
+                            <form id="login-form" action={HandleLogin}>
                                 <div>
                                     <label className="mb-2 block font-bold" htmlFor="email" style={{ color: "#828282", fontSize: 14, fontFamily: "Nunito Sans", fontStyle: "Semibold" }}>
                                         Email
                                     </label>
                                     <input
-                                        type="email"
+                                        type="text"
                                         name="email"
                                         // onChange={handleInputLoginChange}
                                         id="email"
@@ -118,7 +119,7 @@ export default function LoginPage() {
                                     />
                                 </div>
                                 <div className="my-7">
-                                    <button className="w-full p-4 rounded-lg" style={{ backgroundColor: "#EB8D00", marginBottom: 25 }}>
+                                    <button type='submit' className="w-full p-4 rounded-lg" style={{ backgroundColor: "#EB8D00", marginBottom: 25 }}>
                                         Login
                                     </button>
                                 </div>
