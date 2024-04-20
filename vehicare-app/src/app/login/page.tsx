@@ -7,6 +7,8 @@ import localFont from 'next/font/local'
 import logo from "../../Assets/logo.svg"
 import { HandleLogin } from '@/actions/User';
 import { useSearchParams } from 'next/navigation';
+import { GoogleButton } from '@/components/Button/googleBtn';
+
 
 // Font files can be colocated inside of `pages`
 const myFont = localFont({ src: '../Overpass-VariableFont_wght.ttf' })
@@ -134,22 +136,13 @@ export default function LoginPage() {
                             <div>
                                 <fieldset className="border-t" style={{ borderColor: "#A1A1A1" }}>
                                     <legend className="mx-auto px-2 text-center text-sm" style={{ color: "#A1A1A1" }}>
-                                        Or Sign in with Email
+                                        OR
                                     </legend>
                                 </fieldset>
                             </div>
                             {/* LOGIN GOOGLE*/}
-                            <div className="my-6" style={{ marginTop: 45, marginBottom: 55 }}>
-                                <div
-                                    className="w-full flex justify-center items-center gap-2 bg-white text-sm text-gray-600 p-2 rounded-md hover:bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-200 transition-colors duration-300"
-                                    id="buttonDiv"
-                                >
-                                    <img
-                                        src="https://freesvg.org/img/1534129544.png"
-                                        className="mr-2 w-4 object-fill mt-2 mb-2"
-                                    />
-                                    Continue with Google
-                                </div>
+                            <div className='mt-7'>
+                                <GoogleButton />
                             </div>
 
                             <div className="mt-2 flex w-full justify-center sm:flex-row">

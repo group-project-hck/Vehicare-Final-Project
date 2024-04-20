@@ -52,5 +52,7 @@ export async function HandleLogin(formData: FormData): Promise<Response | void> 
 
 export default async function handleLogOut() {
   cookies().delete("Authorization");
+  cookies().delete("next-auth.session-token");
+  cookies().delete("next-auth.callback-url");
   redirect("/login");
 }

@@ -2,7 +2,7 @@ import { NewUser, User } from "@/databases/models/types";
 import { z } from "zod";
 import bcryptPass from "@/databases/helpers/bcrypt";
 import { db } from '@/databases/config/monggoDB'
-import { ObjectId } from "mongodb";
+import { Collection, ObjectId } from "mongodb";
 
 export const UserValidation = z.object({
   username: z
@@ -81,5 +81,13 @@ export default class UserModel {
     } catch (error: any) {
       throw new Error(error.message);
     }
+  }
+
+  static async googleLogin(data: any) {
+    const user = await this.userCollection().findOne({ email: data.email }) as User
+    if (!user) {
+      return await this.createUser(data)
+    }
+    return user
   }
 }
