@@ -6,7 +6,6 @@ import {
   HarmBlockThreshold,
   HarmCategory,
 } from "@google/generative-ai";
-import { timeStamp } from "console";
 import { KeyboardEvent, useEffect, useState } from "react";
 import showdown from "showdown";
 
@@ -18,7 +17,6 @@ export default function Chat() {
   >([]);
   const [userInput, setUserInput] = useState<string>("");
   const [chat, setChat] = useState<ChatSession | null>(null);
-  const [theme, setTheme] = useState<string>("light");
   const [error, setError] = useState<any>(null);
   const API_KEY = "AIzaSyBCJH01fHTDuwPTbECe4qhScg4cxdixvYQ";
   const MODEL_NAME = "gemini-pro";
@@ -78,7 +76,7 @@ export default function Chat() {
       };
       setMessages((prevMessages) => [...prevMessages, userMessage]);
       setUserInput("");
-      if(userInput !== "Lokasi Bengkel"){
+      if (userInput !== "Lokasi Bengkel") {
         if (chat) {
           const result = await chat.sendMessage(userInput);
           const markdownContent = result.response.text();
@@ -89,15 +87,15 @@ export default function Chat() {
             timeStamp: new Date(),
             parts: [{ text: result.response.text(), role: "bot" }],
           };
-  
+
           setMessages((prevMessages) => [...prevMessages, botMessage]);
         }
-      }else {
+      } else {
         const botMessage = {
           text: "Halo, Anda dapat mengunjuki link berikut untuk list dan alamat langsung lokasi bengkel yang sudah bekerja sama dengan kami : https://www.google.com/maps/search/Ahass+motor/@-6.2241668,106.7634056,12.79z?entry=ttu",
           role: "bot",
           timeStamp: new Date(),
-          parts: [{ text: "Halo, Anda dapat mengunjuki link berikut untuk list dan alamat langsung lokasi bengkel yang sudah bekerja sama dengan kami : https://www.google.com/maps/search/Ahass+motor/@-6.2241668,106.7634056,12.79z?entry=ttu", role : "bot" }]
+          parts: [{ text: "Halo, Anda dapat mengunjuki link berikut untuk list dan alamat langsung lokasi bengkel yang sudah bekerja sama dengan kami : https://www.google.com/maps/search/Ahass+motor/@-6.2241668,106.7634056,12.79z?entry=ttu", role: "bot" }]
         }
         setMessages((prevMessages) => [...prevMessages, botMessage]);
       }
@@ -124,50 +122,61 @@ export default function Chat() {
       <div className={`flex justify-between items-center mb-4`}>
         <h1 className={`text-2xl font-bold ${text}`}>Gemini Chat</h1>
       </div>
-      <div className={`flex-1 overflow-y-auto ${secondary} rounded-md p-2`}>
+      <div className={`flex-1 overflow-y-auto ${secondary} rounded-md p-4 mb-20`}>
         {messages.map(
           (
             msg: { text: string; role: string; timeStamp: Date },
             index: number
           ) => (
-            <div
-              key={index}
-              className={`mb-4 ${
-                msg.role === "user" ? "text-right" : "text-left"
-              }`}
-            >
+            <>
               <div
-                className={`p-2 rounded-lg ${
-                  msg.role === "user"
+                key={index}
+                className={`mb-4 ${msg.role === "user" ? "chat chat-start" : "chat chat-end"
+                  }`}
+              >
+                {/* AVATAR */}
+                <div className="chat-image avatar">
+                  <div className="w-10 rounded-full">
+                    <img alt="avatar" src={msg.role === "user" ? 'user_12641598.png' : 'profile_3135715.png'} />
+                  </div>
+                </div>
+                {/* BODY */}
+                <div
+                  className={`${msg.role === "user"
                     ? `${accent} text-white`
                     : `${primary} ${text}`
-                }`}
-              >
-                <span dangerouslySetInnerHTML={{ __html: msg.text }} />
+                    } chat-bubble`}
+                >
+                  <span dangerouslySetInnerHTML={{ __html: msg.text }} />
+                </div>
+                <p className={`text-xs ${text} mt-1`}>
+                </p>
+                <div className="chat-footer text-white">
+                  {msg.role === "bot" ? "Bot" : "You"} -{" "}
+                  <time className="text-xs opacity-50">{msg.timeStamp.toLocaleTimeString()}</time>
+                </div>
               </div>
-              <p className={`text-xs ${text} mt-1`}>
-                {msg.role === "bot" ? "Bot" : "You"} -{" "}
-                {msg.timeStamp.toLocaleTimeString()}
-              </p>
-            </div>
+            </>
           )
         )}
         {error && <div className="text-red-500 text-sm mb-4">{error}</div>}
-        <div className="flex items-center mt-4">
-          <input
-            type="text"
-            placeholder="Type a message..."
-            value={userInput}
-            onChange={(e) => setUserInput(e.target.value)}
-            onKeyDown={handleKeyPress}
-            className={`flex-1 p-2 rounded-l-md border-t border-b border-l focus:outline-none focus:border-${accent}`}
-          />
-          <button
-            onClick={handleSendMessages}
-            className={`p-2 ${accent} text-white rounded-r-md hover:bg-opacity-80 focus:outline-none`}
-          >
-            Send
-          </button>
+        <div className="flex justify-center">
+          <div className="absolute bottom-7 flex w-full px-10">
+            <input
+              type="text"
+              placeholder="Type a message..."
+              value={userInput}
+              onChange={(e) => setUserInput(e.target.value)}
+              onKeyDown={handleKeyPress}
+              className={`flex-1 p-2 rounded-l-md border-t border-b border-l focus:outline-none focus:border-${accent}`}
+            />
+            <button
+              onClick={handleSendMessages}
+              className={`p-2 ${accent} text-white rounded-r-md hover:bg-opacity-80 focus:outline-none`}
+            >
+              Send
+            </button>
+          </div>
         </div>
       </div>
     </div>
