@@ -6,9 +6,9 @@ import Image from "next/image";
 import localFont from 'next/font/local'
 import logo from "../../Assets/logo.svg"
 import { HandleLogin } from '@/actions/User';
+import { ErrorLogin } from '@/components/errorLogin';
 import { useSearchParams } from 'next/navigation';
 import { GoogleButton } from '@/components/Button/googleBtn';
-
 
 // Font files can be colocated inside of `pages`
 const myFont = localFont({ src: '../Overpass-VariableFont_wght.ttf' })
@@ -92,6 +92,7 @@ export default function LoginPage() {
                         <div className="mx-auto" style={{ color: "#525252", fontSize: 16, fontFamily: "Nunito Sans", fontStyle: "normal", marginBottom: 40 }}>
                             <h1>Login to your account!</h1>
                         </div>
+                        <ErrorLogin/>
 
                         {/* DISPLAY ERROR */}
                         {errorMessage && (

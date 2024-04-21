@@ -6,6 +6,7 @@ import {
   HarmBlockThreshold,
   HarmCategory,
 } from "@google/generative-ai";
+import { timeStamp } from "console";
 import { KeyboardEvent, useEffect, useState } from "react";
 import showdown from "showdown";
 
@@ -77,17 +78,27 @@ export default function Chat() {
       };
       setMessages((prevMessages) => [...prevMessages, userMessage]);
       setUserInput("");
-      if (chat) {
-        const result = await chat.sendMessage(userInput);
-        const markdownContent = result.response.text();
-        const resultchat = converter.makeHtml(markdownContent);
+      if(userInput !== "Lokasi Bengkel"){
+        if (chat) {
+          const result = await chat.sendMessage(userInput);
+          const markdownContent = result.response.text();
+          const resultchat = converter.makeHtml(markdownContent);
+          const botMessage = {
+            text: resultchat,
+            role: "bot",
+            timeStamp: new Date(),
+            parts: [{ text: result.response.text(), role: "bot" }],
+          };
+  
+          setMessages((prevMessages) => [...prevMessages, botMessage]);
+        }
+      }else {
         const botMessage = {
-          text: resultchat,
+          text: "Halo, Anda dapat mengunjuki link berikut untuk list dan alamat langsung lokasi bengkel yang sudah bekerja sama dengan kami : https://www.google.com/maps/search/Ahass+motor/@-6.2241668,106.7634056,12.79z?entry=ttu",
           role: "bot",
           timeStamp: new Date(),
-          parts: [{ text: result.response.text(), role: "bot" }],
-        };
-
+          parts: [{ text: "Halo, Anda dapat mengunjuki link berikut untuk list dan alamat langsung lokasi bengkel yang sudah bekerja sama dengan kami : https://www.google.com/maps/search/Ahass+motor/@-6.2241668,106.7634056,12.79z?entry=ttu", role : "bot" }]
+        }
         setMessages((prevMessages) => [...prevMessages, botMessage]);
       }
     } catch (error) {
@@ -95,33 +106,11 @@ export default function Chat() {
       window.location.href = "/";
     }
   };
-  const handleThemeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setTheme(e.target.value);
-  };
-  const getThemeColors = () => {
-    switch (theme) {
-      case "light":
-        return {
-          primary: "bg-white",
-          secondary: "bg-gray-100",
-          accent: "bg-blue-500",
-          text: "bg-gray-800",
-        };
-      case "dark":
-        return {
-          primary: "bg-gray-900",
-          secondary: "bg-gray-800",
-          accent: "bg-yellow-500",
-          text: "text-gray-100",
-        };
-      default:
-        return {
-          primary: "bg-white",
-          secondary: "bg-gray-100",
-          accent: "bg-blue-500",
-          text: "bg-gray-800",
-        };
-    }
+  const getThemeColors = {
+    primary: "bg-gray-900",
+    secondary: "bg-gray-800",
+    accent: "bg-yellow-500",
+    text: "text-gray-100",
   };
   const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
@@ -129,25 +118,11 @@ export default function Chat() {
       handleSendMessages();
     }
   };
-  const { primary, secondary, accent, text } = getThemeColors();
+  const { primary, secondary, accent, text } = getThemeColors
   return (
     <div className={`flex flex-col p-4 h-screen ${primary}`}>
       <div className={`flex justify-between items-center mb-4`}>
         <h1 className={`text-2xl font-bold ${text}`}>Gemini Chat</h1>
-        <div className="flex space-x-2">
-          <label htmlFor="theme" className={`text-sm ${text}`}>
-            Theme :
-          </label>
-          <select
-            defaultValue={theme}
-            id="theme"
-            onChange={handleThemeChange}
-            className={`p-1 rounded-md border ${text}`}
-          >
-            <option value="light">Light</option>
-            <option value="dark">Dark</option>
-          </select>
-        </div>
       </div>
       <div className={`flex-1 overflow-y-auto ${secondary} rounded-md p-2`}>
         {messages.map(
@@ -168,7 +143,7 @@ export default function Chat() {
                     : `${primary} ${text}`
                 }`}
               >
-                <span dangerouslySetInnerHTML={{__html: msg.text}} />
+                <span dangerouslySetInnerHTML={{ __html: msg.text }} />
               </div>
               <p className={`text-xs ${text} mt-1`}>
                 {msg.role === "bot" ? "Bot" : "You"} -{" "}
