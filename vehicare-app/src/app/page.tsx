@@ -1,7 +1,6 @@
 import Navbar from "@/components/Navbar/navbar";
 import NavbarBottom from "@/components/Navbar/navbarBottom";
 import TamagochiMotor from "@/components/Tamagochi/tamagochiMotor";
-import Image from "next/image";
 import bgHome from "../Assets/backgroundHome.svg"
 
 export default function Home() {
