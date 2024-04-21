@@ -2,6 +2,7 @@ import React from 'react';
 import svg from "../../Assets/registerImage.svg";
 import machine from "../../Assets/machine.svg"
 import Image from "next/image";
+import logo from "../../Assets/logo.svg"
 
 export default function RegisterPage() {
     return (
@@ -14,14 +15,38 @@ export default function RegisterPage() {
                         className="h-full w-full object-cover"
                         alt="Login Image"
                     />
-                    <div className="absolute top-10 left-10 p-2">
-                        <p style={{ fontSize: 20, fontWeight: "bold" }}>VehiCare</p>
+                    <div className="absolute top-10 left-10">
+                        <div className="absolute w-full h-full rounded-xl shadow-xl px-10" style={{ backgroundColor: 'black', opacity: 0.2 }}></div>
+                        <div className='relative flex justiify-between w-full h-full px-4'>
+                            <p style={{ fontSize: 20, fontWeight: "bold" }}>Vehi</p>
+                            <p style={{ fontSize: 20, fontWeight: "bold", color: "#C15911" }}>Care</p>
+                        </div>
                     </div>
-                    <div className="absolute bottom-40 left-10 p-2">
-                        <p style={{ fontSize: 40, fontWeight: "bold", fontFamily: "Nurito Sans" }}>
-                            Daftar sekarang untuk mengakses
-                            layanan kami. Isi formulir di samping
-                            untuk membuat akun baru.</p>
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                        <Image
+                            src={logo}
+                            className="h-124 w-124 opacity-20"
+                            alt="Logo"
+                        />
+                    </div>
+                    <div className="absolute bottom-20 left-10">
+                        <div className="absolute w-full h-full shadow-xl px-10" style={{ backgroundColor: 'black', opacity: 0.2, borderTopRightRadius: "10px", borderTopLeftRadius: "10px", borderColor: "transparent" }}></div>
+                        <div className='relative flex justiify-between w-full h-full px-4'>
+                            <p style={{ fontSize: 36, fontWeight: "bold", fontFamily: "Nurito Sans", marginRight: 6 }}>
+                                Your
+                            </p>
+                            <p style={{ fontSize: 36, fontWeight: "bold", fontFamily: "Nurito Sans", color: "#C15911" }}>
+                                Vehicle Care
+                            </p>
+                        </div>
+                    </div>
+                    <div className="absolute bottom-12 left-10">
+                        <div className="absolute w-full h-full shadow-xl px-10" style={{ backgroundColor: 'black', opacity: 0.2, borderTopRightRadius: "10px", borderBottomLeftRadius: "10px", borderBottomRightRadius: "10px", borderColor: "transparent" }}></div>
+                        <div className='relative flex justiify-between w-full h-full px-4'>
+                            <p style={{ fontSize: 22, fontWeight: "bold", fontFamily: "Nurito Sans" }}>
+                                Join now to enjoy our services in caring for your favorite motorbike!
+                            </p>
+                        </div>
                     </div>
                 </div>
 
@@ -43,11 +68,17 @@ export default function RegisterPage() {
                         </div>
                     </div>
                     <div className="mx-auto flex h-full w-2/3 flex-col justify-center text-white xl:w-1/2">
-                        <div style={{ color: "#444B59", fontSize: 20, fontFamily: "Overpass", fontStyle: "Extrabold" }}>
-                            <h1>Register Now</h1>
-
+                        <div className='flex mx-auto'>
+                            <Image
+                                src={logo}
+                                className="h-24 w-24 mb-2"
+                                alt="Logo"
+                            />
                         </div>
-                        <div className="mt-10">
+                        <div className="mx-auto" style={{ color: "#525252", fontSize: 16, fontFamily: "Nunito Sans", fontStyle: "normal", marginBottom: 26 }}>
+                            <h1>Register Now!</h1>
+                        </div>
+                        <div>
                             <form id="login-form">
                                 <div>
                                     <label className="mb-2 block font-bold" htmlFor="username" style={{ color: "#828282", fontSize: 14, fontFamily: "Nunito Sans", fontStyle: "Semibold" }}>

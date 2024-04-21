@@ -83,7 +83,7 @@ export default function LoginPage() {
                             <h1 className={myFont.className}>WELCOME BACK!</h1>
 
                         </div>
-                        <div className="mx-auto" style={{ color: "#525252", fontSize: 16, fontFamily: "Nunito Sans", fontStyle: "normal", marginBottom: 40 }}>
+                        <div className="mx-auto" style={{ color: "#525252", fontSize: 16, fontFamily: "Nunito Sans", fontStyle: "normal", marginBottom: 20 }}>
                             <h1>Login to your account!</h1>
                         </div>
 
