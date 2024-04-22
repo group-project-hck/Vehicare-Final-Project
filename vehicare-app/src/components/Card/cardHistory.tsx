@@ -1,4 +1,14 @@
+'use client'
+
+import { useState } from "react";
+import DetailHistoryModal from "../Modal/detailHistory";
+
 export default function CardHistory() {
+    const [modal, setModal] = useState(false);
+
+    const toggleModal = () => {
+        setModal(!modal);
+    }
     return (
         <>
             {/* Tambahkan item list sesuai kebutuhan */}
@@ -7,7 +17,7 @@ export default function CardHistory() {
                     <div className="flex h-12 w-12 items-center rounded-lg bg-gray-200 text-black group-hover:bg-green-200">
                         <span className="tag w-full text-center text-2xl font-medium text-gray-700 group-hover:text-green-900">A</span>
                     </div>
-                    <div className="flex flex-col items-start justify-between font-light text-gray-600 w-full">
+                    <div className="flex flex-col items-start justify-between font-light text-gray-600 w-full " onClick={toggleModal}>
                         <div className="flex justify-between w-full">
                             <div className="flex flex-col items-start">
                                 <p className="text-[15px]">Name Service</p>
@@ -20,6 +30,7 @@ export default function CardHistory() {
                     </div>
                 </button>
             ))}
+            <DetailHistoryModal modal={modal} setModal={setModal} />
         </>
 
     );
