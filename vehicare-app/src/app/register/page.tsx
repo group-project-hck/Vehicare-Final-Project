@@ -50,7 +50,7 @@ export default function RegisterPage() {
                     </div>
                 </div>
 
-                <div className="h-screen w-full flex flex-col lg:w-1/2 lg:flex lg:justify-center lg:text-white">
+                <div className="h-screen fixed w-full flex flex-col lg:w-1/2 lg:flex lg:justify-center lg:text-white lg:right-0">
                     <div className="relative">
                         <div className="absolute -top-56 -right-40 m-10 opacity-20">
                             <Image
@@ -59,15 +59,8 @@ export default function RegisterPage() {
                                 alt="Machine Background"
                             />
                         </div>
-                        <div className="absolute -bottom-10 left-0 m-10 opacity-20">
-                            <Image
-                                src={machine}
-                                className="h-50 w-50"
-                                alt="Machine Background"
-                            />
-                        </div>
                     </div>
-                    <div className="mx-auto flex h-full w-2/3 flex-col justify-center text-white xl:w-1/2">
+                    <div className="mx-auto flex w-2/3 flex-col justify-center text-white xl:w-1/2">
                         <div className='flex mx-auto'>
                             <Image
                                 src={logo}
@@ -147,11 +140,11 @@ export default function RegisterPage() {
                                         id="password"
                                         className="inline-block w-full rounded-lg bg-white p-3.5 leading-none text-black placeholder-indigo-900 shadow placeholder:opacity-30 border border-solid border-#DED2D9"
                                         placeholder="********"
-                                        style={{ fontSize: 14, marginBottom: 30 }}
+                                        style={{ fontSize: 14, marginBottom: 20 }}
                                     />
                                 </div>
                                 <div className="my-7">
-                                    <button className="w-full p-4 rounded-lg" style={{ backgroundColor: "#EB8D00", marginBottom: 25 }}>
+                                    <button className="w-full p-4 rounded-lg" style={{ backgroundColor: "#EB8D00", marginBottom: 15 }}>
                                         Register
                                     </button>
                                 </div>

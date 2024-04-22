@@ -29,7 +29,7 @@ export default function InputModalChat({ modal, setModal }: InputModalChatProps)
                             </div>
                         </div>
                         {/* Isi Body Modal */}
-                        <div className="my-2">
+                        <div className="my-">
                             <div className="bg-white rounded-lg shadow-md p-4">
                                 {/* Chat Header */}
                                 <div className="flex items-center mb-4">
