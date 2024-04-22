@@ -60,16 +60,9 @@ export default function LoginPage() {
                     </div>
                 </div>
 
-                <div className="h-screen w-full flex flex-col lg:w-1/2 lg:flex lg:justify-center lg:text-white">
+                <div className="h-screen fixed w-full flex flex-col lg:w-1/2 lg:flex lg:justify-center lg:text-white lg:right-0">
                     <div className="relative">
                         <div className="absolute -top-56 -right-40 m-10 opacity-20">
-                            <Image
-                                src={machine}
-                                className="h-50 w-50"
-                                alt="Machine Background"
-                            />
-                        </div>
-                        <div className="absolute -bottom-10 left-0 m-10 opacity-20">
                             <Image
                                 src={machine}
                                 className="h-50 w-50"
@@ -89,7 +82,7 @@ export default function LoginPage() {
                             <h1 className={myFont.className}>WELCOME BACK!</h1>
 
                         </div>
-                        <div className="mx-auto" style={{ color: "#525252", fontSize: 16, fontFamily: "Nunito Sans", fontStyle: "normal", marginBottom: 40 }}>
+                        <div className="mx-auto" style={{ color: "#525252", fontSize: 16, fontFamily: "Nunito Sans", fontStyle: "normal", marginBottom: 20 }}>
                             <h1>Login to your account!</h1>
                         </div>
                         <ErrorLogin/>

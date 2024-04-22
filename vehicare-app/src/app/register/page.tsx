@@ -3,6 +3,7 @@ import React from 'react';
 import svg from "../../Assets/registerImage.svg";
 import machine from "../../Assets/machine.svg"
 import Image from "next/image";
+import logo from "../../Assets/logo.svg"
 import { HandleRegister } from '@/actions/User';
 import { useSearchParams } from 'next/navigation';
 
@@ -20,18 +21,42 @@ export default function RegisterPage() {
                         className="h-full w-full object-cover"
                         alt="Login Image"
                     />
-                    <div className="absolute top-10 left-10 p-2">
-                        <p style={{ fontSize: 20, fontWeight: "bold" }}>VehiCare</p>
+                    <div className="absolute top-10 left-10">
+                        <div className="absolute w-full h-full rounded-xl shadow-xl px-10" style={{ backgroundColor: 'black', opacity: 0.2 }}></div>
+                        <div className='relative flex justiify-between w-full h-full px-4'>
+                            <p style={{ fontSize: 20, fontWeight: "bold" }}>Vehi</p>
+                            <p style={{ fontSize: 20, fontWeight: "bold", color: "#C15911" }}>Care</p>
+                        </div>
                     </div>
-                    <div className="absolute bottom-40 left-10 p-2">
-                        <p style={{ fontSize: 40, fontWeight: "bold", fontFamily: "Nurito Sans" }}>
-                            Daftar sekarang untuk mengakses
-                            layanan kami. Isi formulir di samping
-                            untuk membuat akun baru.</p>
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                        <Image
+                            src={logo}
+                            className="h-124 w-124 opacity-20"
+                            alt="Logo"
+                        />
+                    </div>
+                    <div className="absolute bottom-20 left-10">
+                        <div className="absolute w-full h-full shadow-xl px-10" style={{ backgroundColor: 'black', opacity: 0.2, borderTopRightRadius: "10px", borderTopLeftRadius: "10px", borderColor: "transparent" }}></div>
+                        <div className='relative flex justiify-between w-full h-full px-4'>
+                            <p style={{ fontSize: 36, fontWeight: "bold", fontFamily: "Nurito Sans", marginRight: 6 }}>
+                                Your
+                            </p>
+                            <p style={{ fontSize: 36, fontWeight: "bold", fontFamily: "Nurito Sans", color: "#C15911" }}>
+                                Vehicle Care
+                            </p>
+                        </div>
+                    </div>
+                    <div className="absolute bottom-12 left-10">
+                        <div className="absolute w-full h-full shadow-xl px-10" style={{ backgroundColor: 'black', opacity: 0.2, borderTopRightRadius: "10px", borderBottomLeftRadius: "10px", borderBottomRightRadius: "10px", borderColor: "transparent" }}></div>
+                        <div className='relative flex justiify-between w-full h-full px-4'>
+                            <p style={{ fontSize: 22, fontWeight: "bold", fontFamily: "Nurito Sans" }}>
+                                Join now to enjoy our services in caring for your favorite motorbike!
+                            </p>
+                        </div>
                     </div>
                 </div>
 
-                <div className="h-screen w-full flex flex-col lg:w-1/2 lg:flex lg:justify-center lg:text-white">
+                <div className="h-screen fixed w-full flex flex-col lg:w-1/2 lg:flex lg:justify-center lg:text-white lg:right-0">
                     <div className="relative">
                         <div className="absolute -top-56 -right-40 m-10 opacity-20">
                             <Image
@@ -40,11 +65,13 @@ export default function RegisterPage() {
                                 alt="Machine Background"
                             />
                         </div>
-                        <div className="absolute -bottom-10 left-0 m-10 opacity-20">
+                    </div>
+                    <div className="mx-auto flex w-2/3 flex-col justify-center text-white xl:w-1/2">
+                        <div className='flex mx-auto'>
                             <Image
-                                src={machine}
-                                className="h-50 w-50"
-                                alt="Machine Background"
+                                src={logo}
+                                className="h-24 w-24 mb-2"
+                                alt="Logo"
                             />
                         </div>
                     </div>
@@ -122,7 +149,7 @@ export default function RegisterPage() {
                                         id="password"
                                         className="inline-block w-full rounded-lg bg-white p-3.5 leading-none text-black placeholder-indigo-900 shadow placeholder:opacity-30 border border-solid border-#DED2D9"
                                         placeholder="********"
-                                        style={{ fontSize: 14, marginBottom: 30 }}
+                                        style={{ fontSize: 14, marginBottom: 20 }}
                                     />
                                 </div>
                                 <div className="my-7">

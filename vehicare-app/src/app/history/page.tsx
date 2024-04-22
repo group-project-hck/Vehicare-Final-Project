@@ -1,18 +1,18 @@
 import Navbar from "@/components/Navbar/navbar";
 import NavbarBottom from "@/components/Navbar/navbarBottom";
-import bgSparepart from "../../Assets/backgroundSparepart.svg"
-import CardProduct from "@/components/Card/cardProduct";
+import bgHistory from "../../Assets/backgroundHistory.svg"
+import CardHistory from "@/components/Card/cardHistory";
 
-export default function Profile() {
+export default function History() {
     return (
         <>
             <div className="w-full h-screen fixed" style={{
-                backgroundImage: `url(${bgSparepart.src})`,
+                backgroundImage: `url(${bgHistory.src})`,
                 backgroundSize: 'cover', // Mengatur gambar agar sesuai dengan ukuran layar
                 backgroundPosition: 'center', // Mengatur posisi gambar di tengah
             }}>
                 <Navbar />
-                <CardProduct/>
+                <CardHistory/>
                 <NavbarBottom />
             </div>
         </>
