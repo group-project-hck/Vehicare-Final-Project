@@ -1,4 +1,3 @@
-import NavbarB from "@/components/navbarB";
 import Navbar from "@/components/Navbar/navbar";
 import bgProfile from "../../Assets/backgroundProfile.svg"
 import NavbarBottom from "@/components/Navbar/navbarBottom";

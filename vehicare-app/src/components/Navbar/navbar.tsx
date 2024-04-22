@@ -2,7 +2,7 @@
 import Link from "next/link";
 import logo from "../../Assets/logo.svg"
 import Image from "next/image";
-import logout from "../../Assets/logout.svg"
+import logout from "../../Assets/logoutGif.gif"
 import handleLogOut from "@/actions/User";
 
 export default function Navbar() {
@@ -10,7 +10,7 @@ export default function Navbar() {
         <>
             <div className="relative w-full h-24 px-10 -mt-4">
                 {/* Latar belakang hitam */}
-                <div className="relative w-full mb-2 h-full rounded-xl shadow-xl border border-white px-10" style={{ backgroundColor: 'white', opacity: 0.1 }}></div>
+                <div className="relative w-full mb-2 h-full rounded-xl shadow-xl border border-white px-10" style={{ backgroundColor: 'white', opacity: 0.2 }}></div>
 
                 {/* Konten Navbar */}
                 <div className="relative -mt-24 w-full z-10 flex justify-between items-center h-full px-5">
@@ -22,9 +22,9 @@ export default function Navbar() {
                     </div>
 
                     {/* Button logout */}
-                    <div className="flex items-center pr-5">
-                        <button className="px-3 py-3 rounded-xl" onClick={() => handleLogOut()} style={{ backgroundColor: "#EB8D00" }}>
-                            <Image src={logout} alt="Logout" className="h-5 w-5" />
+                    <div className="flex items-center pr-3">
+                        <button className="px-3 py-3 rounded-xl" onClick={() => handleLogOut()}>
+                            <Image src={logout} alt="Logout" className="h-12 w-12 rounded-xl"/>
                         </button>
                     </div>
                 </div>
