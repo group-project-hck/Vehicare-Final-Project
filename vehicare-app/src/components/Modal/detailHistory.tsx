@@ -10,7 +10,6 @@ interface InputModalChatProps {
 export default function DetailHistoryModal({ modal, setModal }: InputModalChatProps) {
     const toggleModal = () => {
         setModal(!modal);
-        console.log(setModal, "<<<<");
     };
 
     return (
