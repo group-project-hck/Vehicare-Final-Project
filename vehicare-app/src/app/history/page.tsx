@@ -1,5 +1,3 @@
-import Navbar from "@/components/Navbar/navbar";
-import NavbarBottom from "@/components/Navbar/navbarBottom";
 import bgHistory from "../../Assets/backgroundHistory.svg"
 import CardHistory from "@/components/Card/cardHistory";
 import GetServices from "@/actions/ServiceBooks";
@@ -15,7 +13,6 @@ export default async function History() {
                 backgroundSize: 'cover', // Mengatur gambar agar sesuai dengan ukuran layar
                 backgroundPosition: 'center', // Mengatur posisi gambar di tengah
             }}>
-                <Navbar />
                 <div className="flex w-full h-5/6 justify-center items-center rounded pt-5">
                     <div className="flex w-full h-full mx-10 shadow-xl rounded-lg border mb-2" style={{ borderColor: "transparent" }}>
                         <div className="flex flex-1 justify-center items-center pl-5" style={{ backgroundColor: 'transparent' }}></div>
@@ -32,7 +29,6 @@ export default async function History() {
                         <div className="flex flex-1 justify-center items-center pl-5" style={{ backgroundColor: "transparent" }}></div>
                     </div>
                 </div>
-                <NavbarBottom />
             </div>
         </>
     );
