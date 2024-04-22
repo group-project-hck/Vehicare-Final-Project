@@ -1,7 +1,7 @@
 export default function CardProfile() {
     return (
         <>
-            <div className="flex w-full h-5/6 justify-center items-center rounded pt-5">
+            <div className="flex w-full h-5/6 justify-center items-center rounded pt-2">
                 <div className="flex w-full h-full mx-10 shadow-xl rounded-lg border mb-2" style={{ borderColor: "transparent" }}>
 
 
