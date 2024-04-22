@@ -9,7 +9,6 @@ export interface User {
   role: string;
 }
 
-export type NewUser = Omit<User, "_id">
 export interface Payload {
   _id: string;
   username: string;
@@ -25,8 +24,6 @@ export interface Vehicle {
   image: string,
   UserId: ObjectId
 }
-
-export type NewVehicle = Omit<Vehicle, "_id">
 
 export interface Sparepart {
   _id: ObjectId,
@@ -53,4 +50,8 @@ export interface Status {
   VehicleId: ObjectId
 }
 
+// --------- ENTRY DATA TYPES ---------
+export type NewUser = Omit<User, "_id">
+export type NewVehicle = Omit<Vehicle, "_id">
 export type NewStatus = Omit<Status, "_id">
+export type NewBooks = Omit<ServiceBooks, "_id">

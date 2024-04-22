@@ -1,8 +1,8 @@
 
-export default function ProductDetail() {
-    return (
+export default function ProductDetail(){
+    return(
         <>
-            <h1>detail</h1>
+        <h1>detail</h1>
         </>
     )
 }

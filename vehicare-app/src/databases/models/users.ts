@@ -2,7 +2,7 @@ import { NewUser, User } from "@/databases/models/types";
 import { z } from "zod";
 import bcryptPass from "@/databases/helpers/bcrypt";
 import { db } from '@/databases/config/monggoDB'
-import { ObjectId } from "mongodb";
+import { Collection, ObjectId } from "mongodb";
 
 export const UserValidation = z.object({
   username: z
@@ -24,11 +24,7 @@ export const UserValidation = z.object({
     .string({
       required_error: "Password cant be empty",
     })
-    .min(5),
-  role: z
-    .string({
-      required_error: "Role cant be empty",
-    })
+    .min(5, { message: "Password must contain at least 5 character(s)" })
 });
 
 export default class UserModel {
@@ -85,5 +81,13 @@ export default class UserModel {
     } catch (error: any) {
       throw new Error(error.message);
     }
+  }
+
+  static async googleLogin(data: any) {
+    const user = await this.userCollection().findOne({ email: data.email }) as User
+    if (!user) {
+      return await this.createUser(data)
+    }
+    return user
   }
 }
