@@ -29,8 +29,9 @@ export interface Sparepart {
   _id: ObjectId,
   name: string,
   type: string,
+  price: number,
+  image: string,
   description: string,
-  price: number
 }
 
 export interface ServiceBooks {
