@@ -37,7 +37,7 @@ export interface ServiceBooks {
   _id: ObjectId,
   serviceName: string,
   servicePrice: number,
-  SparepartId: ObjectId,
+  SparepartId: [ObjectId],
   VehicleId: ObjectId,
   serviceDate: string
 }

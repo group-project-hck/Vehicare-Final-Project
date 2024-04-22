@@ -86,7 +86,7 @@ export default function InputModalChat({ modal, setModal }: InputModalChatProps)
                                     </div>
                                     {/* Sent Message */}
                                     <div className="flex items-end justify-end">
-                                        <div className="p-3 rounded-lg" style={{backgroundColor: "#EB8D00"}}>
+                                        <div className="p-3 rounded-lg" style={{ backgroundColor: "#EB8D00" }}>
                                             <p className="text-sm text-white">Sure, I have a question.</p>
                                         </div>
                                         <img
@@ -103,7 +103,7 @@ export default function InputModalChat({ modal, setModal }: InputModalChatProps)
                                         placeholder="Type your message..."
                                         className="flex-1 py-2 px-3 rounded-full focus:outline-none -pl-1"
                                     />
-                                    <button className="text-white px-4 py-2 rounded-full ml-3 hover:bg-black-200" style={{backgroundColor:"#EB8D00"}}>
+                                    <button className="text-white px-4 py-2 rounded-full ml-3 hover:bg-black-200" style={{ backgroundColor: "#EB8D00" }}>
                                         Send
                                     </button>
                                 </div>
