@@ -25,7 +25,7 @@ export default function CardHistory({ book }: { book: ServiceBooks }) {
                             </div>
                             <div className="flex items-center text-sm">
                                 <p className="font-bold me-2">Purchased Sparepart :</p>
-                                <p>{book.SparepartId.length}</p>
+                                <p>{book.SparepartId.length} items</p>
                             </div>
                             <div className="flex items-center text-sm mt-4">
                                 <p className="font-bold me-2">Total :</p>
@@ -44,7 +44,7 @@ export default function CardHistory({ book }: { book: ServiceBooks }) {
                         </div>
                     </div>
                 </div>
-                <DetailHistoryModal modal={modal} setModal={setModal} />
+                <DetailHistoryModal serviceId={String(book._id)} modal={modal} setModal={setModal} />
             </button>
         </>
     );

@@ -4,7 +4,8 @@ import GetServices from "@/actions/ServiceBooks";
 import { ServiceBooks } from "@/databases/models/types";
 
 export default async function History() {
-    const { Books } = await GetServices()
+    // FETCHING DARI ACTION SERVICE BOOK
+    const { Books }: { Books: ServiceBooks[] } = await GetServices()
 
     return (
         <>
@@ -20,7 +21,7 @@ export default async function History() {
                             <div className="w-full h-full">
                                 <div className="flex w-full flex-col items-center">
                                     {/* MAPING CARD HERE */}
-                                    {Books.map((book: ServiceBooks, i: string) => (
+                                    {Books.map((book, i) => (
                                         <CardHistory key={i} book={book} />
                                     ))}
                                 </div>
