@@ -1,16 +1,30 @@
-import React from "react";
+'use client'
 import closeBtn from "../../Assets/closeBtn.svg";
 import Image from "next/image";
+import { DetailService } from "@/actions/ServiceBooks";
+import { useEffect, useState } from "react";
+import { Sparepart } from "@/databases/models/types";
+import logo from "../../Assets/logo.svg"
 
-interface InputModalChatProps {
-    modal: boolean;
-    setModal: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-export default function DetailHistoryModal({ modal, setModal }: InputModalChatProps) {
+export default function DetailHistoryModal({ serviceId, modal, setModal }: { serviceId: string, modal: boolean, setModal: React.Dispatch<React.SetStateAction<boolean>> }) {
+    // OPEN MODAL
     const toggleModal = () => {
         setModal(!modal);
     };
+    // FETCH DATA DETAIL
+    const [detail, setDetail] = useState() as any | undefined
+    useEffect(() => {
+        (async () => {
+            const data = await DetailService(serviceId)
+            setDetail(data)
+        })()
+    }, [])
+
+    let SpareParts
+    if (detail) {
+        const { Spareparts }: { Spareparts: Sparepart[] | undefined } = detail
+        SpareParts = Spareparts
+    }
 
     return (
         <>
@@ -22,50 +36,64 @@ export default function DetailHistoryModal({ modal, setModal }: InputModalChatPr
                         {/* Isi Modal */}
                         <div className="py-6">
                             <div className="flex w-full bg-white shadow-lg rounded-lg overflow-hidden justify-end relative border">
-                                <div
-                                    className="w-1/3 bg-cover"
-                                    style={{
-                                        backgroundImage:
-                                            'url("https://images.unsplash.com/photo-1494726161322-5360d4d0eeae?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80")',
-                                    }}
-                                ></div>
-                                <div className="w-2/3 p-4">
-                                    <h1 className="text-gray-900 font-bold text-2xl">test detail service book</h1>
+                                <div className="w-full p-4">
+                                    <h1 className="text-gray-900 font-bold text-2xl">Service Book</h1>
+                                    <div className="divider">Details</div>
                                     {/* Tombol Close */}
                                     <div onClick={toggleModal} className="absolute top-0 right-0 m-2 cursor-pointer">
                                         <Image src={closeBtn} alt="Close" className="h-8 w-8 btn-ghost" />
                                     </div>
-                                    <p className="mt-2 text-gray-600 text-sm">
-                                        Vehicle :
-                                    </p>
-                                    <p className="mt-2 text-gray-600 text-sm">
-                                        Services Name :
-                                    </p>
-                                    <p className="mt-2 text-gray-600 text-sm">
-                                        Sparepart Name :
-                                    </p>
-                                    <table className=" w-full mt-2 border">
-                                        <thead>
-                                            <tr>
-                                                <th className="border">No</th>
-                                                <th className="border">Spareparts</th>
-                                                <th  className="border">Price</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody className="border">
-                                            <tr  className="border" >
-                                                <td  className="border">1</td>
-                                                <td className="border">30</td>
-                                                <td className="border">New York</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <h1 className="text-gray-900 font-bold text-xl mt-2">Service Price : Rp.</h1>
-                                    <p className="mt-2 text-gray-600 text-sm">
-                                        Service Date :
-                                    </p>
+                                    <div className="flex flex-col items-start">
+                                        <p className="mt-2 text-gray-600 text-sm">
+                                            Service ID : {detail?._id}
+                                        </p>
+                                        <p className="mt-2 text-gray-600 text-sm">
+                                            Vehicle : {detail?.Vehicle[0].name}
+                                        </p>
+                                        <p className="mt-2 text-gray-600 text-sm">
+                                            Services Name : {detail?.serviceName}
+                                        </p>
+                                        <table className="table w-full mt-2 border">
+                                            <thead className="bg-base-200">
+                                                <tr>
+                                                    <th className="border">No</th>
+                                                    <th className="border">Spareparts</th>
+                                                    <th className="border">Price</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody className="border">
+                                                {SpareParts?.map((item, i) => (
+                                                    <tr className="border text-sm" >
+                                                        <td className="border">{i + 1}</td>
+                                                        <td className="border">{item.name}</td>
+                                                        <td className="border">
+                                                            {item.price.toLocaleString("id-ID", { style: "currency", currency: "IDR" })}
+                                                        </td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                        <p className="text-gray-600 text-sm mt-6 font-bold">Total Price : {SpareParts?.reduce((acc, item) => {
+                                            return acc + item.price
+                                        }, 0).toLocaleString("id-ID", { style: "currency", currency: "IDR" })}</p>
 
-
+                                    </div>
+                                    <div className="flex justify-end">
+                                        <div className="w-fit px-10 text-sm">
+                                            <p className="text-gray-600 mt-2">
+                                                Jakarta, {new Date(detail?.serviceDate)
+                                                    .toLocaleString('id-ID', { dateStyle: 'long' })
+                                                }
+                                            </p>
+                                            <p className="mb-20">Hormat Kami</p>
+                                            <Image
+                                                src={logo}
+                                                className="h-28 w-28 absolute opacity-50 bottom-7"
+                                                alt="Logo"
+                                            />
+                                            <p>Vehicare</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
