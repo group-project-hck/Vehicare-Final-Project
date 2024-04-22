@@ -17,17 +17,17 @@ export default function CardProduct({
   };
   return (
     <>
-      <ul className="mx-6 sm:mx-6 mt-10 lg:mx-0 lg:grid lg:grid-cols-4 lg:gap-x-8 lg:space-x-0">
+      <ul className="gap-2 sm:mx-6 lg:mx-0 lg:grid lg:grid-cols-4 lg:gap-x-8 lg:space-x-0">
         {persparepart &&
           persparepart.map((item, index) => {
             return (
-              <div>
+              <div className="border rounded-lg">
                 <li
                   key={index}
-                  className="inline-flex w-64 flex-col text-center lg:w-auto mb-6 lg:mb-0"
+                  className="inline-flex w-64 flex-col text-center lg:w-auto lg:mb-0"
                 >
                   <div
-                    className="group relative mt-10 mx-auto"
+                    className="group relative mx-auto hover:cursor-pointer"
                     onClick={() => toggleModal(item._id)}
                   >
                     <div className="h-56 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200">
@@ -40,10 +40,8 @@ export default function CardProduct({
                     <div className="mt-6">
                       <p className="text-sm text-gray-500">{item.type}</p>
                       <h3 className="mt-1 font-semibold text-gray-900">
-                        <a href="#">
-                          <span className="absolute inset-0" />
-                          {item.name}
-                        </a>
+                        <span className="absolute inset-0" />
+                        {item.name}
                       </h3>
                       <p className="mt-1 text-gray-900">
                         {new Intl.NumberFormat("id-ID", {

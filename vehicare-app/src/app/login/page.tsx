@@ -85,14 +85,8 @@ export default function LoginPage() {
                         <div className="mx-auto" style={{ color: "#525252", fontSize: 16, fontFamily: "Nunito Sans", fontStyle: "normal", marginBottom: 20 }}>
                             <h1>Login to your account!</h1>
                         </div>
-                        <ErrorLogin/>
-
                         {/* DISPLAY ERROR */}
-                        {errorMessage && (
-                            <h1 className="animate-pulse rounded bg-red-500 px-4 py-2 text-center text-white ">
-                                {errorMessage}
-                            </h1>
-                        )}
+                        <ErrorLogin />
                         <div>
                             <form id="login-form" action={HandleLogin}>
                                 <div>

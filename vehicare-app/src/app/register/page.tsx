@@ -6,6 +6,7 @@ import Image from "next/image";
 import logo from "../../Assets/logo.svg"
 import { HandleRegister } from '@/actions/User';
 import { useSearchParams } from 'next/navigation';
+import { ErrorLogin } from '@/components/errorLogin';
 
 
 export default function RegisterPage() {
@@ -80,11 +81,7 @@ export default function RegisterPage() {
                             <h1>Register Now</h1>
                         </div>
                         {/* DISPLAY ERROR */}
-                        {errorMessage && (
-                            <h1 className="animate-pulse rounded bg-red-500 px-4 py-2 text-center text-white ">
-                                {errorMessage}
-                            </h1>
-                        )}
+                        <ErrorLogin />
                         <div className="mt-10">
                             <form action={HandleRegister} id="register-form">
                                 <div>

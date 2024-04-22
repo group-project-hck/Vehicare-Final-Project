@@ -62,7 +62,7 @@ export default function DetailHistoryModal({ serviceId, modal, setModal }: { ser
                                                 </tr>
                                             </thead>
                                             <tbody className="border">
-                                                {SpareParts?.map((item, i) => (
+                                                {SpareParts && SpareParts?.map((item, i) => (
                                                     <tr className="border text-sm" >
                                                         <td className="border">{i + 1}</td>
                                                         <td className="border">{item.name}</td>
@@ -73,7 +73,7 @@ export default function DetailHistoryModal({ serviceId, modal, setModal }: { ser
                                                 ))}
                                             </tbody>
                                         </table>
-                                        <p className="text-gray-600 text-sm mt-6 font-bold">Total Price : {SpareParts?.reduce((acc, item) => {
+                                        <p className="text-gray-600 text-sm mt-6 font-bold">Total Price : {SpareParts && SpareParts?.reduce((acc, item) => {
                                             return acc + item.price
                                         }, 0).toLocaleString("id-ID", { style: "currency", currency: "IDR" })}</p>
 

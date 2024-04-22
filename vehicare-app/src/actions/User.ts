@@ -2,6 +2,7 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation"
 
+// Register Action
 export async function HandleRegister(formData: FormData): Promise<Response | void> {
   const newUser = {
     name: formData.get("name"),
@@ -28,6 +29,7 @@ export async function HandleRegister(formData: FormData): Promise<Response | voi
   redirect("/login")
 }
 
+// Login Action
 export async function HandleLogin(formData: FormData): Promise<Response | void> {
   const rawFormData = {
     username: formData.get("email"),
@@ -50,6 +52,7 @@ export async function HandleLogin(formData: FormData): Promise<Response | void> 
   redirect("/");
 }
 
+// Logout Action
 export default async function handleLogOut() {
   cookies().delete("Authorization");
   cookies().delete("next-auth.session-token");

@@ -173,15 +173,8 @@ export default function InputModalChat({
             {/* Isi Body Modal */}
             <div className="my-">
               <div className="bg-white rounded-lg shadow-md p-4">
-                {/* Chat Header */}
-                <div className="flex items-center mb-4">
-                  <div className="ml-3">
-                    <p className="text-xl font-medium">Your AI Assistant</p>
-                    <p className="text-gray-500">Online</p>
-                  </div>
-                </div>
                 {/* Chat Messages */}
-                <div className="space-y-4  overflow-y-scroll h-96">
+                <div className="space-y-4 overflow-y-scroll h-96 text-sm">
                   {messages.map(
                     (
                       msg: { text: string; role: string; timeStamp: Date },
