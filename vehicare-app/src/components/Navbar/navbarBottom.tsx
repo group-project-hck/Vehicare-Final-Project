@@ -14,7 +14,6 @@ export default function NavbarBottom() {
 
     const toggleModal = () => {
         setModal(!modal);
-        console.log(setModal, "<<<<");
     }
 
     return (

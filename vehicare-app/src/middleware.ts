@@ -46,7 +46,10 @@ export async function middleware(request: NextRequest) {
       request.nextUrl.pathname = "/";
       return NextResponse.redirect(request.nextUrl);
     }
-  } else if (request.nextUrl.pathname.startsWith("/")) {
+  } else if (
+    request.nextUrl.pathname.startsWith("/") ||
+    request.nextUrl.pathname.startsWith("/history")
+  ) {
     if (!login) {
       request.nextUrl.pathname = "/login";
       return NextResponse.redirect(request.nextUrl);
@@ -64,5 +67,6 @@ export const config = {
     "/api/user",
     "/",
     "/login",
+    "/history"
   ],
 };

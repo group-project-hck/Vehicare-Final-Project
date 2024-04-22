@@ -1,9 +1,9 @@
 import { db } from "@/databases/config/monggoDB";
-import { ServiceBooks } from "./types";
+import { NewBooks, ServiceBooks } from "./types";
 import { ObjectId } from "mongodb";
 
 class serviceBooksModel {
-  static serviceBooksModel() {
+  static dbService() {
     return db.collection<ServiceBooks | NewBooks>("ServiceBooks");
   }
 
@@ -30,7 +30,7 @@ class serviceBooksModel {
           from: "Spareparts",
           localField: "SparepartId",
           foreignField: "_id",
-          as: "Sparepats",
+          as: "Spareparts",
         },
       },
       {

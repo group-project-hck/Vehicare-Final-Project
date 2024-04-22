@@ -29,15 +29,16 @@ export interface Sparepart {
   _id: ObjectId,
   name: string,
   type: string,
+  price: number,
+  image: string,
   description: string,
-  price: number
 }
 
 export interface ServiceBooks {
   _id: ObjectId,
   serviceName: string,
   servicePrice: number,
-  SparepartId: ObjectId,
+  SparepartId: [ObjectId],
   VehicleId: ObjectId,
   serviceDate: string
 }
