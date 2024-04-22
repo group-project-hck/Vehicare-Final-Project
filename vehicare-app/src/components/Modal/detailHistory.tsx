@@ -17,11 +17,11 @@ export default function DetailHistoryModal({ modal, setModal }: InputModalChatPr
             {/* Modal */}
             {modal && (
                 <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 z-50">
-                    <div className="bg-white w-full mx-4 px-4 rounded-xl md:w-1/2 lg:w-1/4 relative">
+                    <div className="bg-white w-full mx-4 px-4 rounded-xl md:w-1/2 lg:w-1/2 relative border border-black">
 
                         {/* Isi Modal */}
                         <div className="py-6">
-                            <div className="flex max-w-md bg-white shadow-lg rounded-lg overflow-hidden justify-end relative">
+                            <div className="flex w-full bg-white shadow-lg rounded-lg overflow-hidden justify-end relative border">
                                 <div
                                     className="w-1/3 bg-cover"
                                     style={{
@@ -30,23 +30,42 @@ export default function DetailHistoryModal({ modal, setModal }: InputModalChatPr
                                     }}
                                 ></div>
                                 <div className="w-2/3 p-4">
-                                    <h1 className="text-gray-900 font-bold text-2xl">Backpack</h1>
+                                    <h1 className="text-gray-900 font-bold text-2xl">test detail service book</h1>
                                     {/* Tombol Close */}
                                     <div onClick={toggleModal} className="absolute top-0 right-0 m-2 cursor-pointer">
                                         <Image src={closeBtn} alt="Close" className="h-8 w-8 btn-ghost" />
                                     </div>
                                     <p className="mt-2 text-gray-600 text-sm">
-                                        Type
+                                        Vehicle :
                                     </p>
                                     <p className="mt-2 text-gray-600 text-sm">
-                                        Description
+                                        Services Name :
                                     </p>
-                                    <div className="flex item-center justify-between mt-3">
-                                        <h1 className="text-gray-700 font-bold text-xl">Rp.</h1>
-                                        <button className="px-3 py-2 bg-gray-800 text-white text-xs font-bold uppercase rounded">
-                                            Add to Card
-                                        </button>
-                                    </div>
+                                    <p className="mt-2 text-gray-600 text-sm">
+                                        Sparepart Name :
+                                    </p>
+                                    <table className=" w-full mt-2 border">
+                                        <thead>
+                                            <tr>
+                                                <th className="border">No</th>
+                                                <th className="border">Spareparts</th>
+                                                <th  className="border">Price</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody className="border">
+                                            <tr  className="border" >
+                                                <td  className="border">1</td>
+                                                <td className="border">30</td>
+                                                <td className="border">New York</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <h1 className="text-gray-900 font-bold text-xl mt-2">Service Price : Rp.</h1>
+                                    <p className="mt-2 text-gray-600 text-sm">
+                                        Service Date :
+                                    </p>
+
+
                                 </div>
                             </div>
                         </div>
