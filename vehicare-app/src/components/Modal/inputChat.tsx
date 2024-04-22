@@ -186,78 +186,37 @@ export default function InputModalChat({
                     (
                       msg: { text: string; role: string; timeStamp: Date },
                       index: number
-                    ) =>
-                      msg.role === "user" ? (
-                        <div className="flex items-end justify-end">
+                    ) => (
+                      <>
+                        <div
+                          key={index}
+                          className={`mb-4 ${msg.role === "user" ? "chat chat-end" : "chat chat-start"
+                            }`}
+                        >
+                          {/* AVATAR */}
+                          <div className="chat-image avatar">
+                            <div className="w-10 rounded-full">
+                              <img alt="avatar" src={msg.role === "user" ? 'user_12641598.png' : 'profile_3135715.png'} />
+                            </div>
+                          </div>
+                          {/* BODY */}
                           <div
-                            className="p-3 rounded-lg"
-                            style={{ backgroundColor: "#EB8D00" }}
+                            className={`${msg.role === "user"
+                              ? `${accent} text-white`
+                              : `${primary} ${text}`
+                              } chat-bubble`}
                           >
-                            <p className="text-sm text-white">
-                              <span
-                                dangerouslySetInnerHTML={{ __html: msg.text }}
-                              />
-                            </p>
+                            <span dangerouslySetInnerHTML={{ __html: msg.text }} />
                           </div>
-                          <img
-                            src="https://pbs.twimg.com/profile_images/1707101905111990272/Z66vixO-_normal.jpg"
-                            alt="Other User Avatar"
-                            className="w-8 h-8 rounded-full ml-3"
-                          />
-                        </div>
-                      ) : (
-                        <div className="flex items-start">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 100 100"
-                            width={100}
-                            height={100}
-                            fill="#009688"
-                            className="w-8 h-8 rounded-full"
-                          >
-                            {/* Robot Face */}
-                            <circle cx={50} cy={50} r={20} fill="#009688" />
-                            <circle cx={50} cy={40} r={2} fill="#fff" />
-                            <rect
-                              x={47}
-                              y={45}
-                              width={6}
-                              height={10}
-                              fill="#fff"
-                            />
-                            <circle cx={50} cy={65} r={3} fill="#009688" />
-                            {/* Robot Eyes */}
-                            <circle cx={45} cy={45} r={3} fill="#fff" />
-                            <circle cx={55} cy={45} r={3} fill="#fff" />
-                            <circle cx={45} cy={45} r={1} fill="#000" />
-                            <circle cx={55} cy={45} r={1} fill="#000" />
-                            {/* Robot Antennas */}
-                            <line
-                              x1={50}
-                              y1={30}
-                              x2={40}
-                              y2={20}
-                              stroke="#009688"
-                              strokeWidth={2}
-                            />
-                            <line
-                              x1={50}
-                              y1={30}
-                              x2={60}
-                              y2={20}
-                              stroke="#009688"
-                              strokeWidth={2}
-                            />
-                          </svg>
-                          <div className="ml-3 bg-gray-100 p-3 rounded-lg">
-                            <p className="text-sm text-gray-800">
-                              <span
-                                dangerouslySetInnerHTML={{ __html: msg.text }}
-                              />
-                            </p>
+                          <p className={`text-xs ${text} mt-1`}>
+                          </p>
+                          <div className="chat-footer">
+                            {msg.role === "bot" ? "Bot" : "You"} -{" "}
+                            <time className="text-xs opacity-50">{msg.timeStamp.toLocaleTimeString()}</time>
                           </div>
                         </div>
-                      )
+                      </>
+                    )
                   )}
                 </div>
                 {/* Chat Input */}
@@ -268,11 +227,11 @@ export default function InputModalChat({
                     onChange={(e) => setUserInput(e.target.value)}
                     onKeyDown={handleKeyPress}
                     placeholder="Type your message..."
-                    className="flex-1 py-2 px-3 rounded-full focus:outline-none -pl-1"
+                    className="flex-1 py-2 px-3 rounded-full focus:outline-none border"
                   />
                   <button
                     onClick={handleSendMessages}
-                    className="text-white px-4 py-2 rounded-full ml-3 hover:bg-black-200"
+                    className="text-white px-4 py-2 rounded-full ml-3 hover:bg-black-200 hover:text-black"
                     style={{ backgroundColor: "#EB8D00" }}
                   >
                     Send
