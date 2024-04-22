@@ -33,7 +33,7 @@ export default function CardProduct() {
                                                     <h3 className="mt-1 font-semibold text-gray-900">
                                                         <a href="#">
                                                             <span className="absolute inset-0" />
-                                                            Name Sparepart
+                                                            Name Sparepartss
                                                         </a>
                                                     </h3>
                                                     {/* <span className="tracking-[0.03em] text-center text-xs">
