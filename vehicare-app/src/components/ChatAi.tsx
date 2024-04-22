@@ -131,7 +131,7 @@ export default function Chat() {
             <>
               <div
                 key={index}
-                className={`mb-4 ${msg.role === "user" ? "chat chat-start" : "chat chat-end"
+                className={`mb-4 ${msg.role === "user" ? "chat chat-end" : "chat chat-start"
                   }`}
               >
                 {/* AVATAR */}
@@ -155,7 +155,7 @@ export default function Chat() {
                   {msg.role === "bot" ? "Bot" : "You"} -{" "}
                   <time className="text-xs opacity-50">{msg.timeStamp.toLocaleTimeString()}</time>
                 </div>
-              </div>
+              </div>  
             </>
           )
         )}

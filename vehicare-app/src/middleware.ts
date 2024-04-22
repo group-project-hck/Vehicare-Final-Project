@@ -38,17 +38,17 @@ export async function middleware(request: NextRequest) {
         headers: newHeaders,
       },
     });
-  } else if (request.nextUrl.pathname.startsWith("/")) {
-    if (!login) {
-      request.nextUrl.pathname = "/login";
-      return NextResponse.redirect(request.nextUrl);
-    }
   } else if (
     request.nextUrl.pathname.startsWith("/login") ||
     request.nextUrl.pathname.startsWith("/register")
   ) {
     if (login) {
       request.nextUrl.pathname = "/";
+      return NextResponse.redirect(request.nextUrl);
+    }
+  } else if (request.nextUrl.pathname.startsWith("/")) {
+    if (!login) {
+      request.nextUrl.pathname = "/login";
       return NextResponse.redirect(request.nextUrl);
     }
   }
@@ -63,5 +63,6 @@ export const config = {
     "/api/status",
     "/api/user",
     "/",
+    "/login",
   ],
 };
