@@ -15,7 +15,9 @@
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "cloudinary": "^2.2.0",
+    "clsx": "^2.1.1",
     "duckduckgo-images-api": "^1.0.5",
+    "framer-motion": "^11.1.7",
     "jose": "^5.2.4",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.5.0",
@@ -26,6 +28,7 @@
     "react-number-format": "^5.3.4",
     "react-pixelify": "^0.2.2",
     "showdown": "^2.1.0",
+    "tailwind-merge": "^2.3.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {
