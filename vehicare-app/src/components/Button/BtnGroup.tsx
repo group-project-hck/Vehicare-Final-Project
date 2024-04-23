@@ -29,7 +29,7 @@ export default function BtnGroup() {
                         </button>
                     </span>
                     <span className="float-element">
-                        <button onClick={() => route.push('/')}>
+                        <button>
                             <div className="hover:scale-125 transition ease-in-out duration-300 hover:text-white text-transparent">
                                 <p className="absolute -ms-14 animate-pulse">Home</p>
                                 <Image src={home} alt="Logo Home" className="bg-orange-600 p-2 bg-opacity-80 rounded-full" />
