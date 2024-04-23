@@ -14,7 +14,7 @@ export default async function History() {
                 backgroundSize: 'cover', // Mengatur gambar agar sesuai dengan ukuran layar
                 backgroundPosition: 'center', // Mengatur posisi gambar di tengah
             }}>
-                <div className="flex justify-center w-full h-5/6 shadow-xl rounded-lg py-5">
+                <div className="flex justify-center w-full h-5/6 shadow-xl rounded-lg pt-5">
                     <div className="flex w-[60%] rounded-xl bg-white opacity-90 overflow-auto">
                         <div className="w-full overflow-x-auto flex flex-wrap lg:flex-col lg:max-h-full lg:overflow-y-auto px-5">
                             {/* MAPING CARD HERE */}
