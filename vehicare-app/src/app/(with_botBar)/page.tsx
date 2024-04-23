@@ -10,7 +10,7 @@ export default function Home() {
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);
   const [selectedVehicle, setSelectedVehicle] = useState<string>();
   const [loading, setLoading] = useState<boolean>(false);
-  function handleChange (e: React.ChangeEvent<HTMLSelectElement>) {
+  function handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
     const vehicleId = e.target.value;
     setSelectedVehicle(vehicleId.toString())
   }
@@ -21,16 +21,17 @@ export default function Home() {
       setVehicles(Vehicles);
       if (Vehicles.length > 0) {
         setSelectedVehicle(Vehicles[0]._id.toString());
-      }      
+      }
       setLoading(false);
     };
     getVehicles();
-  }, []);  
-  if(loading){
+  }, []);
+  if (loading) {
     return <LoadingComponent />
   }
   return (
     <>
+      {/* THEME */}
       <div
         className="w-full h-screen fixed"
         style={{
@@ -39,50 +40,21 @@ export default function Home() {
           backgroundPosition: "center",
         }}
       >
+        {/* SCREEN */}
         <div className="flex w-full h-5/6 justify-center items-center rounded pt-5">
-          <div
-            className="flex w-full h-full mx-10 shadow-xl rounded-lg border mb-2"
-            style={{ borderColor: "transparent" }}
-          >
-            <div
-              className="flex flex-1 justify-center items-center pl-5 border-r "
-              style={{
-                backgroundColor: "white",
-                opacity: 0.4,
-                borderTopLeftRadius: "10px",
-                borderBottomLeftRadius: "10px",
-              }}
-            >
-              <select
-                id="type"
-                name="name1"
-                autoComplete="type"
-                className="block w-full p-3 mt-2 text-gray-700 bg-white appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner rounded"
-                required
-                onChange={handleChange}
-              >
-                {vehicles &&
-                  vehicles.map((vehicle: Vehicle, i: number) => (
-                    <option key={i} value={vehicle._id.toString()}>
-                      {vehicle.name}
-                    </option>
-                  ))
-                }
-              </select>
-              <img src="" alt="Motor" className="h-10 btn-ghost" />
-            </div>
+          <div className="flex w-full h-full mx-10 shadow-xl rounded-lg mb-2 bg-black bg-opacity-50">
+            <select onChange={handleChange} id="type" name="name1" autoComplete="type" className="h-10 w-80 absolute" required>
+              {/* CHECK LIST VEHICLE */}
+              {vehicles &&
+                vehicles.map((vehicle: Vehicle, i: number) => (
+                  <option key={i} value={vehicle._id.toString()}>
+                    {vehicle.name}
+                  </option>
+                ))
+              }
+            </select>
+            {/* DETAIL VEHICLE */}
             <TamagochiMotor selectedVehicle={selectedVehicle} />
-            <div
-              className="flex flex-1 justify-center items-center pl-5 border-r"
-              style={{
-                backgroundColor: "white",
-                opacity: 0.4,
-                borderTopRightRadius: "10px",
-                borderBottomRightRadius: "10px",
-              }}
-            >
-              <h1>Desc Motor</h1>
-            </div>
           </div>
         </div>
       </div>

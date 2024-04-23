@@ -1,8 +1,8 @@
 "use client"
 import Image from "next/image";
 import history from "../../Assets/listGif.gif"
-import sparepart from "../../Assets/productGif.gif"
 import profile from "../../Assets/profileGif.gif"
+import home from "@/Assets/home.png"
 import { useRouter } from "next/navigation";
 import BtnGroup from "../Button/BtnGroup";
 
@@ -19,17 +19,17 @@ export default function NavbarBottom() {
                             border-t-2 border-white
                             ">
                             <div className="hover:scale-125 hover:-mt-3 transition ease-in-out duration-300 hover:text-white text-transparent">
-                                <p className="absolute -mt-5 animate-bounce text-sm">Servicebooks</p>
+                                <p className="absolute -mt-5 ms-3 animate-bounce text-sm">Books</p>
                                 <Image src={history} alt="Logo History Service" className="h-16 w-16" />
                             </div>
                         </button>
-                        <button onClick={() => route.push('/spareparts')}
+                        <button onClick={() => route.push('/')}
                             className="p-3 rounded-full bg-black bg-opacity-35 -mt-12
                             border-t-2 border-white
                             ">
                             <div className="hover:scale-125 hover:-mt-3 transition ease-in-out duration-300 hover:text-white text-transparent">
-                                <p className="absolute -mt-5 animate-bounce text-sm">Spareparts</p>
-                                <Image src={sparepart} alt="Logo Sparepart" className="h-16 w-16" />
+                                <p className="absolute -mt-5 ms-3 animate-bounce text-sm">Home</p>
+                                <Image src={home} alt="Logo Sparepart" className="h-16 w-16" />
                             </div>
                         </button>
                         <button onClick={() => route.push('/profile')}
@@ -37,7 +37,7 @@ export default function NavbarBottom() {
                             border-t-2 border-white
                             ">
                             <div className="hover:scale-125 hover:-mt-3 transition ease-in-out duration-300 hover:text-white text-transparent">
-                                <p className="absolute -mt-5 animate-bounce text-sm">Profile</p>
+                                <p className="absolute -mt-5 ms-3 animate-bounce text-sm">Profile</p>
                                 <Image src={profile} alt="Logo Profile" className="h-16 w-16" />
                             </div>
                         </button>
