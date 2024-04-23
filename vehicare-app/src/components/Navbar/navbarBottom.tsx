@@ -25,7 +25,7 @@ export default function NavbarBottom() {
                             <Image src={about} alt="Logo History Service" className="h-14 w-14 btn-ghost rounded-xl border border-black" />
                         </Link>
                     </div>
-                    <div className="flex flex-[3.5] justify-between items-center pl-5 rounded-full -mt-10 border py-10" style={{ backgroundColor: "white", opacity: 0.8 }}>
+                    <div className="flex flex-[3.5] justify-between items-center pl-5 rounded-full bg-opacity-10 bg-white">
                         <Link href={'/history'} className="ml-28 px-1 py-1 rounded-xl" style={{ backgroundColor: "white" }}>
                             <Image src={history} alt="Logo History Service" className="h-14 w-14 btn-ghost" />
                         </Link>
@@ -43,7 +43,7 @@ export default function NavbarBottom() {
                     </div>
                 </div>
             </div>
-            <InputModalChat modal={modal} setModal={setModal}/>
+            <InputModalChat modal={modal} setModal={setModal} />
         </>
     )
 }
