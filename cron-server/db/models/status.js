@@ -25,7 +25,6 @@ class statusModel {
     return update
   }
   static async updateStatus(id, HP) {
-    console.log(id, HP);
     const status = await this.statusCollection().updateOne(
       { VehicleId: id },
       {

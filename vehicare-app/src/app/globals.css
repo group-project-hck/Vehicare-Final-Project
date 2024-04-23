@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.haloo canvas{
+    max-width: 60%;
+}

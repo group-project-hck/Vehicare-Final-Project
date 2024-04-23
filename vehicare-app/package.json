@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "@google/generative-ai": "^0.7.1",
+    "@types/duckduckgo-images-api": "^1.0.3",
     "@types/showdown": "^2.0.6",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "cloudinary": "^2.2.0",
+    "duckduckgo-images-api": "^1.0.5",
     "jose": "^5.2.4",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.5.0",
@@ -22,6 +24,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-number-format": "^5.3.4",
+    "react-pixelify": "^0.2.2",
     "showdown": "^2.1.0",
     "zod": "^3.22.4"
   },

@@ -23,10 +23,10 @@ export default function AboutPage() {
                         backgroundPosition: 'center',
                     }}
                 >
-                    <div className="w-full h-screen flex justify-center items-center z-10" onClick={toggleModal}>
+                    <div className="w-full h-screen flex justify-center items-center z-10" >
                         <div className="text-white text-center" >
                             <h1 className="text-4xl font-bold mb-4">About Motor Refurbishment</h1>
-                            <p className="text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla pretium tincidunt est, id varius odio. Aliquam erat volutpat. Vivamus vehicula eros vitae convallis eleifend.</p>
+                            <p className="text-lg" onClick={toggleModal}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla pretium tincidunt est, id varius odio. Aliquam erat volutpat. Vivamus vehicula eros vitae convallis eleifend.</p>
                             <InputModalMotorcyle modal={modal} setModal={setModal} />
                         </div>
                     </div>
