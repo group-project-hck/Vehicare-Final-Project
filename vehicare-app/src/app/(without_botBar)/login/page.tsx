@@ -2,6 +2,8 @@
 import React from 'react';
 import svg from "@/Assets/LoginImage.svg";
 import machine from "@/Assets/machine.svg"
+import svg from "@/Assets/LoginImage.svg";
+import machine from "@/Assets/machine.svg"
 import Image from "next/image";
 import logo from "@/Assets/logo.svg"
 import { HandleLogin } from '@/actions/User';
