@@ -46,7 +46,7 @@ export default class UserModel {
     const agg = [
       {
         $match: {
-          _id: new ObjectId('6620ce5bcd762073a71e18ac')
+          _id: new ObjectId(id)
         }
       }, {
         $lookup: {
