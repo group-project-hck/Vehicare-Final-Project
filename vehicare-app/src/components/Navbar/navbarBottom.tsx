@@ -8,6 +8,7 @@ import chat from "../../Assets/chatGif.gif"
 import about from "../../Assets/aboutGif.gif"
 import { useState } from "react";
 import InputModalChat from "../Modal/inputChat";
+import { useRouter } from "next/navigation";
 
 export default function NavbarBottom() {
     const [modal, setModal] = useState(false);
@@ -16,31 +17,46 @@ export default function NavbarBottom() {
         setModal(!modal);
     }
 
+    const route = useRouter()
     return (
         <>
-            <div className="fixed bottom-0 flex w-full h-14 mb-2">
-                <div className="flex w-full h-full mx-10 rounded-md shadow-xl">
-                    <div className="flex flex-1 justify-start pl-5 -mt-5" style={{ backgroundColor: "transparent" }}>
-                        <Link href={'/about'} className="-ml-5 mt-1">
-                            <Image src={about} alt="Logo History Service" className="h-14 w-14 btn-ghost rounded-xl border border-black" />
-                        </Link>
-                    </div>
-                    <div className="flex flex-[3.5] justify-between items-center pl-5 rounded-full bg-opacity-10 bg-white">
-                        <Link href={'/history'} className="ml-28 px-1 py-1 rounded-xl" style={{ backgroundColor: "white" }}>
-                            <Image src={history} alt="Logo History Service" className="h-14 w-14 btn-ghost" />
-                        </Link>
-                        <Link href={'/spareparts'} className="px-1 py-1 rounded-xl" style={{ backgroundColor: "white" }}>
-                            <Image src={sparepart} alt="Logo Sparepart" className="h-14 w-14 btn-ghost" />
-                        </Link>
-                        <Link href={'/profile'} className="mr-36 px-1 py-1 rounded-xl" style={{ backgroundColor: "white" }}>
-                            <Image src={profile} alt="Logo Profile" className="h-14 w-14 btn-ghost" />
-                        </Link>
-                    </div>
-                    <div className="flex flex-1 justify-end pl-5 rounded-xl -mt-10">
-                        <button onClick={toggleModal} className="mt-1">
-                            <Image src={chat} alt="Logo Profile" className="h-14 w-14 btn-ghost rounded-xl" />
+            <div className="fixed bottom-0 flex w-full h-14 mb-4">
+                <div className="flex justify-between w-full h-full mx-10 shadow-xl">
+                    <Link href={'/about'} className="p-3 rounded-full">
+                        <Image src={about} alt="Logo History Service" className="h-16 w-16 btn-ghost" />
+                    </Link>
+                    <div className="flex w-[60%] px-5 justify-between items-center rounded-br-full rounded-bl-full bg-opacity-10 bg-white border-b-4 border-slate-500">
+                        <button onClick={() => route.push('/history')}
+                            className="p-3 rounded-full bg-black bg-opacity-20 -mt-12
+                            border-t-2 border-slate-500
+                            ">
+                            <div className="hover:scale-125 hover:-mt-3 transition ease-in-out duration-100 hover:text-white text-transparent">
+                                <p className="absolute -mt-5 animate-bounce">Servicebooks</p>
+                                <Image src={history} alt="Logo History Service" className="h-16 w-16" />
+                            </div>
+                        </button>
+                        <button onClick={() => route.push('/spareparts')}
+                            className="p-3 rounded-full bg-black bg-opacity-20 -mt-12
+                            border-t-2 border-slate-500
+                            ">
+                            <div className="hover:scale-125 hover:-mt-3 transition ease-in-out duration-100 hover:text-white text-transparent">
+                                <p className="absolute -mt-5 animate-bounce">Spareparts</p>
+                                <Image src={sparepart} alt="Logo Sparepart" className="h-16 w-16" />
+                            </div>
+                        </button>
+                        <button onClick={() => route.push('/profile')}
+                            className="p-3 rounded-full bg-black bg-opacity-20 -mt-12
+                            border-t-2 border-slate-500
+                            ">
+                            <div className="hover:scale-125 hover:-mt-3 transition ease-in-out duration-100 hover:text-white text-transparent">
+                                <p className="absolute -mt-5 animate-bounce">Profile</p>
+                                <Image src={profile} alt="Logo Profile" className="h-16 w-16" />
+                            </div>
                         </button>
                     </div>
+                    <button onClick={toggleModal} className="p-3 rounded-full">
+                        <Image src={chat} alt="Logo Profile" className="h-16 w-16" />
+                    </button>
                 </div>
             </div>
             <InputModalChat modal={modal} setModal={setModal} />
