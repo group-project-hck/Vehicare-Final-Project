@@ -17,30 +17,30 @@ export default function BtnGroup() {
         <>
             <div className="floating-container">
                 <div className="floating-button">
-                    <Image src={option} alt="Logo Servicebook" className="h-14 w-14" />
+                    <Image src={option} alt="Logo Servicebook" />
                 </div>
                 <div className="element-container">
                     <span className="float-element tooltip-left">
                         <button onClick={() => route.push('/about')}>
-                            <div className="hover:scale-110 transition ease-in-out duration-300 hover:text-white text-transparent">
+                            <div className="hover:scale-125 transition ease-in-out duration-300 hover:text-white text-transparent">
                                 <p className="absolute -ms-14 animate-pulse">About</p>
-                                <Image src={about} alt="Logo Servicebook" />
+                                <Image src={about} alt="Logo Servicebook" className="bg-orange-600 p-2 bg-opacity-80 rounded-full" />
                             </div>
                         </button>
                     </span>
                     <span className="float-element">
                         <button onClick={() => route.push('/')}>
-                            <div className="hover:scale-110 transition ease-in-out duration-300 hover:text-white text-transparent">
+                            <div className="hover:scale-125 transition ease-in-out duration-300 hover:text-white text-transparent">
                                 <p className="absolute -ms-14 animate-pulse">Home</p>
-                                <Image src={home} alt="Logo Home" />
+                                <Image src={home} alt="Logo Home" className="bg-orange-600 p-2 bg-opacity-80 rounded-full" />
                             </div>
                         </button>
                     </span>
                     <span className="float-element">
                         <button onClick={toggleModal}>
-                            <div className="hover:scale-110 transition ease-in-out duration-300 hover:text-white text-transparent">
+                            <div className="hover:scale-125 transition ease-in-out duration-300 hover:text-white text-transparent">
                                 <p className="absolute -ms-14 animate-pulse">Chats</p>
-                                <Image src={chat} alt="Logo Profile" />
+                                <Image src={chat} alt="Logo Profile" className="bg-orange-600 p-2 bg-opacity-80 rounded-full" />
                             </div>
                         </button>
                     </span>
