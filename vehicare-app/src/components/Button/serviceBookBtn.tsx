@@ -11,7 +11,12 @@ export default function ServiceBooksBtn({ getHistory }: { getHistory: any }) {
   };
   return (
     <>
-      <button className="w-10 h-10 mt-5" onClick={toggleModal}>
+      {/* <button className="w-10 h-10 mt-5" onClick={toggleModal}
+        style={{
+          backgroundSize: "cover", // Mengatur gambar agar sesuai dengan ukuran layar
+          backgroundPosition: "center", // Mengatur posisi gambar di tengah
+        }}
+      >
         <div className="hover:scale-125 transition ease-in-out duration-300 hover:text-white text-transparent">
           <Image
             src={add}
@@ -19,7 +24,7 @@ export default function ServiceBooksBtn({ getHistory }: { getHistory: any }) {
             className="bg-orange-600 p-2 bg-opacity-80 rounded-full"
           />
         </div>
-      </button>
+      </button> */}
       <InputModalServieBook getHistory={getHistory} modal={modal} setModal={setModal} />
     </>
   );

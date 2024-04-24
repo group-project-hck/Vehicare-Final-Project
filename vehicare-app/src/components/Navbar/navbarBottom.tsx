@@ -13,7 +13,7 @@ export default function NavbarBottom() {
             <div className="fixed bottom-0 flex w-full h-14 mb-4">
                 {/* ICON SIDE B */}
                 <div className="flex justify-center w-full h-full mx-10 shadow-xl">
-                    <div className="flex w-[60%] px-5 pb-2 justify-between items-center rounded-br-full rounded-bl-full bg-opacity-10 bg-white border-b-4 border-white">
+                    <div className="flex w-[75%] px-5 pb-2 justify-between items-center rounded-br-full rounded-bl-full bg-opacity-10 bg-white border-b-4 border-white">
                         <button onClick={() => route.push('/history')}
                             className="p-3 rounded-full bg-black bg-opacity-35 -mt-12
                             border-t-2 border-white

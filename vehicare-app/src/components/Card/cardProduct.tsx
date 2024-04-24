@@ -24,16 +24,16 @@ export default function CardProduct({
               <div className="shadow-xl rounded-lg hover:cursor-pointer transform transition-transform duration-300 border border-orange-200">
                 <li
                   key={index}
-                  className="inline-flex w-auto flex-col text-center lg:w-auto lg:mb-0"
+                  className="inline-flex w-full flex-col text-center"
                 >
                   <div
-                    className="group relative mx-auto hover:cursor-pointer"
+                    className="group hover:cursor-pointer"
                     onClick={() => toggleModal(item._id)}
                   >
                     <div className="h-56 aspect-w-1 w-full overflow-hidden rounded-md">
                       <img
                         src={item.image}
-                        alt="Black machined steel pen with hexagonal grip and small white logo at top."
+                        alt="sparepart logo"
                         className="h-full w-full object-cover object-center opacity-70 group-hover:opacity-100"
                       />
                     </div>

@@ -3,11 +3,12 @@ import React, { useEffect, useState } from "react";
 import { GetSpareparts } from "@/actions/Spareparts";
 import { Sparepart, Vehicle } from "@/databases/models/types";
 import bgSparepart from "@/Assets/backgroundSparepart.svg";
-// import { Checkbox } from "@nextui-org/react";
+import closeBtn from "../../Assets/closeBtn.svg";
 import AddSparepartServiceBook from "../Card/cardAddService";
 import { set } from "zod";
 import LoadingComponent from "../loading";
 import GetServices, { AddServiceBook } from "@/actions/ServiceBooks";
+import Image from "next/image";
 
 interface InputModalMotorcyleProps {
   modal: boolean;
@@ -95,53 +96,47 @@ export default function InputModalServieBook({
     <>
       {/* Modal */}
       {modal && (
-        <div className="w-full overflow-x-auto flex flex-row flex-wrap lg:max-h-full lg:overflow-y-auto p-5">
-          <div>
-            <form onSubmit={handleCreate}>
-              <label
-                htmlFor="serviceName"
-                className="block mt-2 text-xs font-semibold text-gray-600 uppercase"
-              >
-                Service Name
-              </label>
-              <input
-                id="serviceName"
-                type="text"
-                name="serviceName"
-                placeholder="Your Bike..."
-                autoComplete="name"
-                className="block w-full p-3 mt-2 text-gray-700 bg-white appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner rounded"
-                required
-                onChange={handleChange}
-              />
-              <select
-                onChange={handleChange}
-                id="type"
-                name="VehicleId"
-                autoComplete="type"
-                required
-              >
-                <option selected>
-                  Coba
-                </option>
-                {/* CHECK LIST VEHICLE */}
-                {vehicles &&
-                  vehicles.map((vehicle: Vehicle, i: number) => (
-                    <option key={i} value={vehicle._id.toString()}>
-                      {vehicle.name}
-                    </option>
-                  ))}
-              </select>
-              <button className="btn" onClick={handleCreate} type="submit">
-                Create Service Book
-              </button>
-            </form>
-          </div>
-          <div>
-            <AddSparepartServiceBook
-              addCart={addCart}
-              persparepart={listspareparts}
-            />
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 z-50">
+          <div className="bg-white w-full mx-4 px-4 rounded-xl md:w-1/2 lg:w-1/2 relative border border-black">
+            {/* Tombol Close */}
+            <div onClick={toggleModal} className="absolute top-0 right-0 m-2 cursor-pointer">
+              <Image src={closeBtn} alt="Close" className="h-8 w-8 btn-ghost" />
+            </div>
+
+            {/* Isi Modal */}
+            <div className="py-14">
+              <div className="flex gap-2">
+                <form onSubmit={handleCreate} className="mx-2">
+                  <label htmlFor="serviceName" className="block" >
+                    Service Name
+                  </label>
+                  <input onChange={handleChange} type="text" name="serviceName" placeholder="service name" className="input input-bordered w-full max-w-xs" />
+                  <label htmlFor="VehicleId" className="block mt-2" >
+                    Vehicle
+                  </label>
+                  <select onChange={handleChange} name="VehicleId" className="select select-bordered w-full max-w-xs">
+                    <option disabled selected>Choose One</option>
+                    {vehicles &&
+                      vehicles.map((vehicle: Vehicle, i: number) => (
+                        <option key={i} value={vehicle._id.toString()}>
+                          {vehicle.name}
+                        </option>
+                      ))}
+                  </select>
+                  <button className="btn btn-outline w-full mt-4" onClick={handleCreate} type="submit">
+                    Create Service Book
+                  </button>
+                </form>
+                <div className="w-full overflow-x-auto flex flex-row flex-wrap lg:max-h-full lg:overflow-y-auto">
+                  <div className="h-96">
+                    <AddSparepartServiceBook
+                      addCart={addCart}
+                      persparepart={listspareparts}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       )}
