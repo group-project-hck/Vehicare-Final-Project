@@ -1,129 +1,157 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import closeBtn from "@/Assets/closeBtn.svg";
-import Image from "next/image";
-import { AddVehicle } from "@/actions/AddVehicle";
-import { Sparepart } from "@/databases/models/types";
 import { GetSpareparts } from "@/actions/Spareparts";
+import { Sparepart, Vehicle } from "@/databases/models/types";
+import bgSparepart from "@/Assets/backgroundSparepart.svg";
+import { Checkbox } from "@nextui-org/react";
+import AddSparepartServiceBook from "../Card/cardAddService";
+import { set } from "zod";
+import LoadingComponent from "../loading";
+import GetServices, { AddServiceBook } from "@/actions/ServiceBooks";
 
 interface InputModalMotorcyleProps {
-    modal: boolean;
-    setModal: React.Dispatch<React.SetStateAction<boolean>>;
+  modal: boolean;
+  setModal: React.Dispatch<React.SetStateAction<boolean>>;
+  getHistory: any;
 }
 
 export default function InputModalServieBook({
-    modal,
-    setModal,
+  modal,
+  setModal,
+  getHistory
 }: InputModalMotorcyleProps) {
-    const toggleModal = () => {
-        setModal(!modal);
-    };
-    const [input, setInput] = useState({
-        name1: "",
-        name: "",
-        type: "",
+  const toggleModal = () => {
+    setModal(!modal);
+  };
+  const [listspareparts, setlistSpareparts] = useState<Sparepart[]>([]);
+  const [items, setItems] = useState<string[]>([]);
+  const [price, setPrice] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [vehicles, setVehicles] = useState<Vehicle[]>([]);
+  const [input, setInput] = useState({
+    serviceName: "",
+    VehicleId : "",
+  });
+  function handleChange(
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) {
+    const { name, value } = event.target;
+    setInput((prevInput) => ({
+      ...prevInput,
+      [name]: value,
+    }));
+  }
+  function addCart(id: string, harga: number) {
+    let newItems = id;
+    let found = false;
+    const newData = items.map((item) => {
+      if (item === newItems) {
+        found = true;
+        return item;
+      }
+      return item;
     });
-    function handleChange(
-        event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-    ) {
-        const { name, value } = event.target;
-        setInput((prevInput) => ({
-            ...prevInput,
-            [name]: value,
-        }));
+    if (!found) {
+      setPrice((prev) => {
+        return harga + prev;
+      });
+      setItems(() => {
+        return [...newData, newItems];
+      });
     }
-    function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-        e.preventDefault()
-        AddVehicle(input);
-        toggleModal();
+  }
+  useEffect(() => {
+    (async () => {
+      const data = await GetSpareparts();
+      setlistSpareparts(data.data);
+    })();
+  }, []);
+  useEffect(() => {
+    const getVehicles = async () => {
+      setLoading(true);
+      const { Vehicles }: { Vehicles: Vehicle[] } = await GetServices();
+      setVehicles(Vehicles);
+      setLoading(false);
+    };
+    getVehicles();
+  }, []);
+  function handleCreate(event: React.FormEvent) {
+    setLoading(true);
+    event.preventDefault();
+    const data = {
+      serviceName : input.serviceName,
+      VehicleId : input.VehicleId,
+      SparepartId : items,
+      servicePrice : price
     }
-    // Fetching dari action spareparts
-    const [listspareparts, setlistSpareparts] = useState<Sparepart[]>([]);
-    useEffect(() => {
-        (async () => {
-            const data = await GetSpareparts()
-            setlistSpareparts(data.data)
-        })()
-    }, []);
-    return (
-
-        <>
-            {/* Modal */}
-            {modal && (
-                <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 z-50">
-                    <div className="bg-white w-full mx-4 px-4 rounded-xl md:w-1/2 lg:w-1/2 relative">
-                        {/* Isi Modal */}
-                        <div className="py-6">
-                            <div className="flex w-full h-96 bg-white shadow-lg rounded-lg overflow-hidden justify-center relative">
-                                <div className="w-full p-4 bg-black rounded-lg shadow-lg">
-                                    <div className="flex flex-row">
-                                        <h1 className="text-xl flex-1 font-semibold text-white">
-                                            Hi Update Your Sevices
-
-                                        </h1>
-                                        <div onClick={toggleModal}>
-                                            <Image
-                                                src={closeBtn}
-                                                alt="Close"
-                                                className="h-8 w-8 btn-ghost"
-                                            />
-                                        </div>
-                                    </div>
-                                    <form className="mt-6" onSubmit={handleSubmit}>
-                                        {/* Form */}
-                                        <label
-                                            htmlFor="name"
-                                            className="block mt-2 text-xs font-semibold text-gray-600 uppercase"
-                                        >
-                                            Name
-                                        </label>
-                                        <input
-                                            id="name"
-                                            type="text"
-                                            name="name"
-                                            placeholder="Your Services..."
-                                            autoComplete="name"
-                                            className="block w-full p-3 mt-2 text-gray-700 bg-white appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner rounded"
-                                            required
-                                            onChange={handleChange}
-                                        />
-                                        {/* select Spareparates */}
-                                        <label
-                                            htmlFor="name"
-                                            className="block mt-2 text-xs font-semibold text-gray-600 uppercase"
-                                        >
-                                            Spareparts
-                                        </label>
-                                        <select
-                                            id="type"
-                                            name="name1"
-                                            autoComplete="type"
-                                            className="block w-full p-3 mt-2 text-gray-700 bg-white appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner rounded"
-                                            required
-                                            onChange={handleChange}
-                                        >
-                                           <option defaultValue="" selected>
-                                                Select Sparepart
-                                            </option>
-                                            {listspareparts && listspareparts.map((sparepart,index) => (
-                                                <option key={index} value={sparepart._id.toString()}>
-                                                    {sparepart.name}{sparepart._id.toString()}
-                                                </option>
-                                            ))}
-                                        </select>
-                                        <button
-                                            type="submit"
-                                            className="w-full py-3 mt-6 font-medium tracking-widest text-white uppercase bg-#EB8D00 shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none rounded"
-                                        >
-                                            Update Your Services
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )}
-        </>
-    );
+    AddServiceBook(data);
+    getHistory()
+    setLoading(false);
+  }
+  if (loading) {
+    return <LoadingComponent />;
+  }
+  return (
+    <>
+      {/* Modal */}
+      {modal && (
+        <div
+          className="w-full h-screen fixed"
+          style={{
+            backgroundImage: `url(${bgSparepart.src})`,
+            backgroundSize: "cover", // Mengatur gambar agar sesuai dengan ukuran layar
+            backgroundPosition: "center", // Mengatur posisi gambar di tengah
+          }}
+        >
+          <div className="flex justify-center w-full h-5/6 shadow-xl rounded-lg mb-2 pt-5">
+            <div className="flex w-[60%] rounded-xl bg-white opacity-90 overflow-auto">
+              <div className="w-full overflow-x-auto flex flex-wrap lg:flex-col lg:max-h-full lg:overflow-y-auto p-5">
+                <AddSparepartServiceBook
+                  addCart={addCart}
+                  persparepart={listspareparts}
+                />
+                <form onSubmit={handleCreate}>
+                  <label
+                    htmlFor="serviceName"
+                    className="block mt-2 text-xs font-semibold text-gray-600 uppercase"
+                  >
+                    Service Name
+                  </label>
+                  <input
+                    id="serviceName"
+                    type="text"
+                    name="serviceName"
+                    placeholder="Your Bike..."
+                    autoComplete="name"
+                    className="block w-full p-3 mt-2 text-gray-700 bg-white appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner rounded"
+                    required
+                    onChange={handleChange}
+                  />
+                  <select
+                    onChange={handleChange}
+                    id="type"
+                    name="VehicleId"
+                    autoComplete="type"
+                    className="h-10 w-80 absolute"
+                    required
+                  >
+                    {/* CHECK LIST VEHICLE */}
+                    {vehicles &&
+                      vehicles.map((vehicle: Vehicle, i: number) => (
+                        <option key={i} value={vehicle._id.toString()}>
+                          {vehicle.name}
+                        </option>
+                      ))}
+                  </select>
+                  <button className="btn" onClick={handleCreate} type="submit">
+                    Create Service Book
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
 }

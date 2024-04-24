@@ -50,7 +50,7 @@ class serviceBooksModel {
 
   static async addServiceBooks(body: NewBooks) {
     body.serviceDate = new Date().toISOString();
-    return await this.dbService().insertOne(body)
+    return await this.dbService().insertOne(body) 
   }
 }
 
