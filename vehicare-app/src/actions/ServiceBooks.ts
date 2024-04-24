@@ -35,7 +35,6 @@ export async function AddServiceBook(rawFormData: {
   SparepartId: string[];
   servicePrice: number;
 }): Promise<Response | void> {
-    console.log(rawFormData, "<<<");
     
   let res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/servicebook`, {
     cache: "no-store",
