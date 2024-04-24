@@ -22,7 +22,7 @@ export interface Vehicle {
   name: string,
   type: string,
   image: string,
-  UserId: ObjectId
+  UserId: ObjectId,
 }
 
 export interface Sparepart {
@@ -48,7 +48,8 @@ export interface Status {
   HP: number,
   dailyHP: number,
   cointReward: number,
-  VehicleId: ObjectId
+  VehicleId: ObjectId,
+  gatcha: boolean,
 }
 export interface Notification {
   _id: ObjectId,
