@@ -17,14 +17,14 @@ export default function CardProfile() {
   const toggleModal = () => {
     setModal(!modal);
   };
+  const getVehicles = async () => {
+    setLoading(true);
+    const data = await GetServices();
+    setUser(data);
+    setVehicle(data.Vehicles);
+    setLoading(false);
+  };
   useEffect(() => {
-    const getVehicles = async () => {
-      setLoading(true);
-      const data = await GetServices();
-      setUser(data);
-      setVehicle(data.Vehicles);
-      setLoading(false);
-    };
     getVehicles();
   }, []);
   if (loading) {
@@ -88,7 +88,7 @@ export default function CardProfile() {
         className="flex flex-1 justify-center items-center pl-5"
         style={{ backgroundColor: "transparent" }}
       ></div>
-      <ProfilePictureModal modal={modal} setModal={setModal} item={user} />
+      <ProfilePictureModal getVehicles={getVehicles} modal={modal} setModal={setModal} item={user} />
     </div>
   );
 }

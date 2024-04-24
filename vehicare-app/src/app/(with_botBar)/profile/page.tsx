@@ -1,8 +1,9 @@
+"use client"
 import bgProfile from "@/Assets/backgroundProfile.svg";
 import CardProfile from "@/components/Card/cardProfile";
+import { useRouter } from "next/navigation";
 
 export default function Profile() {
-
   return (
     <>
       <div
@@ -18,7 +19,7 @@ export default function Profile() {
             className="flex w-full h-full mx-10 shadow-xl rounded-lg border mb-2"
             style={{ borderColor: "transparent" }}
           >
-            <CardProfile />
+            <CardProfile/>
           </div>
         </div>
       </div>

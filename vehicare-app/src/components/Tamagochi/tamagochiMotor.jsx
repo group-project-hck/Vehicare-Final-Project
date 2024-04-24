@@ -52,7 +52,7 @@ export default function TamagochiMotor({ selectedVehicle }) {
 				<div className="flex w-full justify-center items-center">
 					<div className="flex-1 animate-bounce haloo">
 						<div className="flex justify-center">
-							<Pixelify
+							<img
 								src={vehicle?.image}
 								fillTransparencyColor={"transparent"}
 								pixelSize={12}

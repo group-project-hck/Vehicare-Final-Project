@@ -4,6 +4,7 @@ import closeBtn from "../../Assets/closeBtn.svg";
 import Image from "next/image";
 import { Sparepart } from "@/databases/models/types";
 import LoadingComponent from "../loading";
+import { useRouter } from "next/navigation";
 
 interface InputModalChatProps {
   modal: boolean;
@@ -17,12 +18,15 @@ interface InputModalChatProps {
     password: string;
     role: string;
   };
+  getVehicles : any
 }
+
 
 export default function ProfilePictureModal({
   modal,
   setModal,
   item,
+  getVehicles
 }: InputModalChatProps) {
   const toggleModal = () => {
     setModal(!modal);
@@ -46,6 +50,7 @@ export default function ProfilePictureModal({
           body: formData,
         }
       );
+      getVehicles()
     } catch (error) {
       console.log(error);
     }
@@ -99,7 +104,7 @@ export default function ProfilePictureModal({
                       className="block w-full p-3 mt-2 text-gray-700 bg-white appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner rounded"
                       required
                     />
-                    <button type="submit" className="mt-2 btn-primary">
+                    <button type="submit" className="mt-2 btn">
                       Submit
                     </button>
                   </form>
