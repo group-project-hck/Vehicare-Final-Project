@@ -24,42 +24,38 @@ export default function ModalNotifiction({
   }
   useEffect(() => {
     fetchNotification();
-  }, [modal2]);  
+  }, [modal2]);
   return (
     <>
       {/* Modal */}
       {modal2 && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 z-50">
-          <div className="bg-white w-full mx-4 px-4 rounded-xl md:w-1/2 lg:w-1/2 relative">
+          <div className="bg-white w-full mx-4 px-4 rounded-xl md:w-1/2 lg:w-1/2 pb-5 relative">
             {/* Isi Modal */}
-            <div className="py-6">
-              <div className="flex w-full h-96 bg-white shadow-lg rounded-lg overflow-hidden justify-center relative">
-                <div className="w-full p-4 bg-black rounded-lg shadow-lg">
-                  <div className="flex flex-row">
-                    <h1 className="text-xl flex-1 font-semibold text-white">
-                      Hi name/username !{" "}
-                      <span className="font-normal">
-                        Please fill in your bike to continue.
-                      </span>
-                    </h1>
-                    <div onClick={toggleModal}>
-                      <Image
-                        src={closeBtn}
-                        alt="Close"
-                        className="h-8 w-8 btn-ghost"
-                      />
-                    </div>
-                  </div>
-                </div>
-                {notif && 
-                notif?.map((notification: Notification, i:number) => (
-                  <p key={i}>{notification.message}</p>
-                ))}
+            <div className="flex justify-end py-2">
+              <div onClick={toggleModal}>
+                <Image
+                  src={closeBtn}
+                  alt="Close"
+                  className="h-8 w-8 btn-ghost"
+                />
               </div>
+            </div>
+            <div className="flex flex-col w-full h-96 bg-white shadow-lg rounded-lg overflow-hidden relative">
+              {notif &&
+                notif?.map((notification: Notification, i: number) => (
+                  <div className="border bg-slate-300 group flex items-center gap-x-5 rounded-md px-2.5 py-2 transition-all duration-75 hover:bg-red-100 w-full hover:cursor-pointer">
+                    <div className="flex h-12 w-12 items-center rounded-lg bg-gray-200 text-black group-hover:bg-red-200">
+                      <span className="tag w-full text-center text-2xl font-medium text-gray-700 group-hover:text-red-900">i</span>
+                    </div>
+                    <p key={i} className="text-sm">{notification.message}</p>
+                  </div>
+                ))}
             </div>
           </div>
         </div>
-      )}
+      )
+      }
     </>
   );
 }
