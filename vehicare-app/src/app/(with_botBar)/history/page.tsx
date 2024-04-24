@@ -18,7 +18,7 @@ export default async function History() {
                 <div className="flex justify-center w-full h-5/6 shadow-xl rounded-lg pt-5">
                     <div className="flex w-[60%] rounded-xl bg-white opacity-90 overflow-auto">
                         <div className="w-full overflow-x-auto flex flex-wrap lg:flex-col lg:max-h-full lg:overflow-y-auto px-5">
-                            <ServiceBooksBtn/>
+                            <ServiceBooksBtn />
                             {/* MAPING CARD HERE */}
                             {Books && Books.map((book, i) => (
                                 <CardHistory key={i} book={book} />
