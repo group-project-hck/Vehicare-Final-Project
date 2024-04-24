@@ -5,6 +5,8 @@ import { Vehicle } from "@/databases/models/types";
 import GetServices from "@/actions/ServiceBooks";
 import { useEffect, useState } from "react";
 import LoadingComponent from "@/components/loading";
+import logo from "@/Assets/logo.svg"
+import Image from "next/image";
 
 export default function Home() {
   // use State
@@ -46,19 +48,25 @@ export default function Home() {
           backgroundPosition: "center",
         }}
       >
+        {/* CHECK LIST VEHICLE */}
+        <select onChange={handleChange} id="type" name="name1" autoComplete="type" className="select select-warning w-full max-w-xs absolute top-10 left-16" required>
+          {vehicles &&
+            vehicles.map((vehicle: Vehicle, i: number) => (
+              <option key={i} value={vehicle._id.toString()}>
+                {vehicle.name}
+              </option>
+            ))
+          }
+        </select>
+        {/* LOGO */}
+        <Image
+          src={logo}
+          className="h-24 absolute w-full top-6"
+          alt="Logo"
+        />
         {/* SCREEN */}
         <div className="flex w-full h-5/6 justify-center items-center rounded pt-5">
           <div className="flex w-full h-full mx-10 shadow-xl rounded-lg mb-2 bg-black bg-opacity-50">
-            <select onChange={handleChange} id="type" name="name1" autoComplete="type" className="h-10 w-80 absolute" required>
-              {/* CHECK LIST VEHICLE */}
-              {vehicles &&
-                vehicles.map((vehicle: Vehicle, i: number) => (
-                  <option key={i} value={vehicle._id.toString()}>
-                    {vehicle.name}
-                  </option>
-                ))
-              }
-            </select>
             {/* DETAIL VEHICLE */}
             <TamagochiMotor selectedVehicle={selectedVehicle} />
           </div>

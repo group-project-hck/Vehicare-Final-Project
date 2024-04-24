@@ -1,9 +1,14 @@
 "use client"
 import bgProfile from "@/Assets/backgroundProfile.svg";
 import CardProfile from "@/components/Card/cardProfile";
-import { useRouter } from "next/navigation";
+import InputModalMotorcyle from "@/components/Modal/inputMotorcyle";
+import { useState } from "react";
 
 export default function Profile() {
+  const [modal, setModal] = useState(true);
+  const toggleModal = () => {
+    setModal(!modal);
+  };
   return (
     <>
       <div
@@ -24,6 +29,7 @@ export default function Profile() {
           </div>
         </div>
       </div>
+      <InputModalMotorcyle modal={modal} setModal={setModal} />
     </>
   );
 }

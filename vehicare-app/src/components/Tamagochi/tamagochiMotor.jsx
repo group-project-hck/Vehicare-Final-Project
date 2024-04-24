@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Pixelify } from "react-pixelify";
 import LoadingComponent from "../loading";
 import { AddStatus, changeGatcha } from "@/actions/status";
 import { useRouter } from "next/navigation";
@@ -10,7 +9,6 @@ export default function TamagochiMotor({ selectedVehicle }) {
 	const [vehicle, setVehicle] = useState({});
 	const [loading, setLoading] = useState(false);
 	const [status, setStatus] = useState([]);
-	const [coin, setCoin] = useState(0);
 	const router = useRouter();
 	const fetchVehicle = async () => {
 		try {
@@ -44,12 +42,10 @@ export default function TamagochiMotor({ selectedVehicle }) {
 	}
 	const giftFood = async () => {
 		AddStatus(selectedVehicle);
-
 		fetchVehicle();
 	};
 	// Cek Status
 	const handleGatcha = async () => {
-		console.log(status[0].gatcha);
 		if (status[0].gatcha) {
 			const random = Math.floor(Math.random() * (10 - 1 + 1) + 1);
 			const newCoin = status[0].cointReward + random;
@@ -80,7 +76,7 @@ export default function TamagochiMotor({ selectedVehicle }) {
 							/>
 						</div>
 					</div>
-					<div className="w-1/2 h-full flex flex-col justify-center">
+					<div className="w-1/2 h-full flex flex-col justify-end pb-10">
 						<div className="ps-24 pe-48 grid gap-7">
 							<div className="grid gap-1 text-white">
 								<p className="font-bold">Vehicle info :</p>
@@ -90,17 +86,17 @@ export default function TamagochiMotor({ selectedVehicle }) {
 							<div className="grid gap-1 text-white">
 								<p className="font-bold">Status :</p>
 								<p>HP : {status[0]?.HP}%</p>
-								<div
-									className={`w-[${Number(
-										status[0]?.HP
-									)}%] border h-2 rounded-full`}
-								/>
+								<div className="flex">
+									{Array.from({ length: status[0]?.HP }, (_, index) => (
+										<p className="text-sm">|</p>
+									))}
+								</div>
 								<p>Daily HP : {status[0]?.dailyHP}%</p>
-								<div
-									className={`w-[${Number(
-										status[0]?.dailyHP
-									)}%] border h-2 rounded-full`}
-								/>
+								<div className="flex">
+									{Array.from({ length: status[0]?.dailyHP }, (_, index) => (
+										<p className="text-sm">|</p>
+									))}
+								</div>
 							</div>
 							<div className="grid gap-1">
 								<p className="text-white font-bold">Spareparts :</p>

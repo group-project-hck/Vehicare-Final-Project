@@ -43,8 +43,8 @@ export default function CardHistory({ book }: { book: ServiceBooks }) {
                         </div>
                     </div>
                 </div>
-                <DetailHistoryModal serviceId={String(book._id)} modal={modal} setModal={setModal} />
             </button>
+            <DetailHistoryModal serviceId={String(book._id)} modal={modal} setModal={setModal} />
         </>
     );
 }

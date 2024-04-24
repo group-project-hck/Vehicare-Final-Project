@@ -106,12 +106,12 @@ export default function InputModalServieBook({
             {/* Isi Modal */}
             <div className="py-14">
               <div className="flex gap-2">
-                <form onSubmit={handleCreate} className="mx-2">
+                <form onSubmit={handleCreate} className="mx-2 gap-2">
                   <label htmlFor="serviceName" className="block" >
                     Service Name
                   </label>
                   <input onChange={handleChange} type="text" name="serviceName" placeholder="service name" className="input input-bordered w-full max-w-xs" />
-                  <label htmlFor="VehicleId" className="block mt-2" >
+                  <label htmlFor="VehicleId" className="block" >
                     Vehicle
                   </label>
                   <select onChange={handleChange} name="VehicleId" className="select select-bordered w-full max-w-xs">
