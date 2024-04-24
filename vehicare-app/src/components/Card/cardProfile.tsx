@@ -7,6 +7,7 @@ import Image from "next/image";
 import React from "react";
 import { CardBody, CardContainer, CardItem } from "../ui/3d-card";
 import { Vehicle } from "@/databases/models/types";
+import ModalNotifiction from "../Modal/notification";
 
 export default function CardProfile() {
   const [loading, setLoading] = useState<boolean>(false);

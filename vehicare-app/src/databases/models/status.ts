@@ -8,19 +8,19 @@ export default class ModelStatus {
     return db.collection("Status");
   }
 
-  static async addStatus(id: ObjectId) {
+  static async addDailyHP(id: string) {
     const status = await this.dbStatus().findOne({
       VehicleId: new ObjectId(id),
     });
-
+    
     if (status && status.dailyHP <= 98) {
-      status.dailyHP = status.dailyHP + 2;
+        status.dailyHP = status.dailyHP + 2;
     } else if (status && status.dailyHP > 98) {
-      status.dailyHP = 100;
+        status.dailyHP = 100;
     }
     const update = await this.dbStatus().updateOne(
       {
-        VehicleId: new ObjectId(status?._id),
+        _id: new ObjectId(status?._id),
       },
       {
         $set: {
@@ -30,7 +30,7 @@ export default class ModelStatus {
     );
     return update;
   }
-  static async addDailyHp(id: ObjectId): Promise<Status> {
+  static async addStatus(id: ObjectId): Promise<Status> {
     const defStatus: NewStatus = {
       HP: 100,
       dailyHP: 100,
@@ -38,5 +38,16 @@ export default class ModelStatus {
       VehicleId: id,
     };
     return this.dbStatus().insertOne(defStatus).then();
+  }
+  static async ChangeGatcha(id: string) {
+    const result = await this.dbStatus().updateOne({
+      VehicleId: new ObjectId(id)
+    },
+    {
+      $set: {
+        gatcha: false,
+      },
+    });
+    return result
   }
 }

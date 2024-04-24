@@ -12,7 +12,8 @@ export async function middleware(request: NextRequest) {
     request.nextUrl.pathname.startsWith("/api/spareparts") ||
     request.nextUrl.pathname.startsWith("/api/status") ||
     request.nextUrl.pathname.startsWith("/api/user") ||
-    request.nextUrl.pathname.startsWith("/api/upload")
+    request.nextUrl.pathname.startsWith("/api/upload") ||
+    request.nextUrl.pathname.startsWith("/api/notification")
   ) {
     if (!login) {
       return NextResponse.json(
@@ -67,6 +68,7 @@ export const config = {
     "/api/status",
     "/api/user",
     "/api/upload",
+    "/api/notification",
     "/",
     "/login",
     "/history"

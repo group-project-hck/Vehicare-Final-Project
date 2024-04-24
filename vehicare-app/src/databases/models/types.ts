@@ -50,6 +50,11 @@ export interface Status {
   cointReward: number,
   VehicleId: ObjectId
 }
+export interface Notification {
+  _id: ObjectId,
+  UserId: ObjectId,
+  message: string
+}
 
 // --------- ENTRY DATA TYPES ---------
 export type NewUser = Omit<User, "_id">
