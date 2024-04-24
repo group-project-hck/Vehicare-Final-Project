@@ -48,13 +48,21 @@ export default function TamagochiMotor({ selectedVehicle }) {
 		}
 	}
 
+	let spareParts = [];
+	if (vehicle) {
+		const { Spareparts } = vehicle;
+		if (Spareparts) {
+			spareParts = Spareparts;
+		}
+	}
+
 	return (
 		<>
 			<div className="flex justify-center">
 				<div className="flex w-full justify-center items-center">
-					<div className="flex-1 haloo">
-						<div className="flex animate-bounce justify-center">
-							<Pixelify
+					<div className="flex-1 h-full flex justify-center items-end">
+						<div className="flex animate-bounce">
+							<img
 								src={vehicle?.image}
 								fillTransparencyColor={"transparent"}
 								pixelSize={12}
@@ -63,16 +71,21 @@ export default function TamagochiMotor({ selectedVehicle }) {
 						</div>
 					</div>
 					<div className="flex-1 h-full border">
-						<p className="text-white">Status :</p>
-						<p className="text-white">HP : {status[0]?.HP}</p>
-						<p className="text-white">Daily HP : {status[0]?.dailyHP}</p>
-						<br />
-						<p className="text-white">Spareparts :</p>
-						<p className="text-white">Rantai : 100</p>
-						<p className="text-white">Busi : 100</p>
-						<br />
-						<p className="text-white">HIT SERVICE</p>
-						<p className="text-white">HIT GATCHA</p>
+						<div className="">
+							<p className="text-white">Status :</p>
+							<p className="text-white">HP : {status[0]?.HP}</p>
+							<p className="text-white">Daily HP : {status[0]?.dailyHP}</p>
+							<br />
+							<p className="text-white">Spareparts :</p>
+							{spareParts.map((el, i) => (
+								<p className="text-white" key={i}>
+									{el.name} : status health
+								</p>
+							))}
+							<br />
+							<p className="text-white">HIT SERVICE</p>
+							<p className="text-white">HIT GATCHA</p>
+						</div>
 					</div>
 				</div>
 			</div>
