@@ -54,8 +54,10 @@ export default function TamagochiMotor({ selectedVehicle }) {
 			const random = Math.floor(Math.random() * (10 - 1 + 1) + 1);
 			const newCoin = status[0].cointReward + random;
 			changeGatcha(selectedVehicle, newCoin);
-			fetchVehicle();
-			router.refresh();
+			setTimeout(()=>{
+				fetchVehicle();
+				router.refresh();
+			},5000)
 		}
 	};
 	let spareParts = [];

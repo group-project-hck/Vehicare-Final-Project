@@ -35,11 +35,18 @@ export default function CardProfile() {
       <div>
         <div className="pt-10 flex flex-col justify-center items-center">
           <div className="hover:cursor-pointer hover:text-slate-200 text-transparent">
-            <p className="absolute top-[18%] left-[46.3%]">Change Picture</p>
+            {!user?.image && (
+              <>
+                <p className="absolute top-[14%] left-[47.6%]">No Profile</p>
+                <p className="absolute top-[18%] left-[47.4%]">Picture Yet</p>
+              </>
+            )}
+            {user?.image && (
+              <p className="absolute top-[15.5%] left-[46.5%] font-extrabold">Change Picture</p>
+            )}
             <img
               className="w-36 h-36 rounded-full mx-auto border-2 p-1 "
               src={user?.image}
-              alt="Profile picture"
               onClick={toggleModal}
             />
           </div>
@@ -50,7 +57,9 @@ export default function CardProfile() {
             <p className="text-center">{user?.email}</p>
           </div>
         </div>
-        <div className="divider divider-neutral text-slate-300 px-4">Vehicles</div>
+        <div className="divider divider-neutral text-slate-300 px-4">
+          Vehicles
+        </div>
         <div className="grid grid-cols-2">
           {vehicle?.length > 0 &&
             vehicle.map((item, i) => (
@@ -86,7 +95,12 @@ export default function CardProfile() {
             ))}
         </div>
       </div>
-      <ProfilePictureModal getVehicles={getVehicles} modal={modal} setModal={setModal} item={user} />
+      <ProfilePictureModal
+        getVehicles={getVehicles}
+        modal={modal}
+        setModal={setModal}
+        item={user}
+      />
     </>
   );
 }
