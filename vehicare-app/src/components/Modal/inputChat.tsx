@@ -150,12 +150,13 @@ export default function InputModalChat({
       {/* Modal */}
       {modal && (
         <div className="fixed inset-0 h-full flex items-end justify-end bg-gray-800 bg-opacity-75">
-          <div className="bg-white w-full mx-4 p-4 rounded-xl md:w-1/2 lg:w-1/3 mb-20 mr-10">
+          <div className="bg-white w-full mx-4 p-4 rounded-xl md:w-1/2 lg:w-1/3 mb-20 mr-10 border">
             {/* Isi Modal */}
-            <div className="flex justify-between items center border-b border-gray-200 py-3 -mt-2">
+            <div className="flex justify-between items-center border-b border-gray-200 py-3 -mt-2">
               <div className="flex items-center justify-center">
                 <p className="text-xl font-bold text-gray-800">
-                  Customer Service
+                  Customer Service.
+                  <i className="font-extralight text-sm"> AI Generators</i>
                 </p>
               </div>
               <div

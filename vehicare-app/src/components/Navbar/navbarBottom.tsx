@@ -1,49 +1,53 @@
 "use client"
-import Link from "next/link";
-import history from "../../Assets/listGif.gif"
 import Image from "next/image";
-import sparepart from "../../Assets/productGif.gif"
+import history from "../../Assets/listGif.gif"
 import profile from "../../Assets/profileGif.gif"
-import chat from "../../Assets/chatGif.gif"
-import about from "../../Assets/aboutGif.gif"
-import { useState } from "react";
-import InputModalChat from "../Modal/inputChat";
+import home from "@/Assets/home.png"
+import { useRouter } from "next/navigation";
+import BtnGroup from "../Button/BtnGroup";
 
 export default function NavbarBottom() {
-    const [modal, setModal] = useState(false);
-
-    const toggleModal = () => {
-        setModal(!modal);
-    }
-
+    const route = useRouter()
     return (
         <>
-            <div className="fixed bottom-0 flex w-full h-14 mb-2">
-                <div className="flex w-full h-full mx-10 rounded-md shadow-xl">
-                    <div className="flex flex-1 justify-start pl-5 -mt-5" style={{ backgroundColor: "transparent" }}>
-                        <Link href={'/about'} className="-ml-5 mt-1">
-                            <Image src={about} alt="Logo History Service" className="h-14 w-14 btn-ghost rounded-xl border border-black" />
-                        </Link>
-                    </div>
-                    <div className="flex flex-[3.5] justify-between items-center pl-5 rounded-full bg-opacity-10 bg-white">
-                        <Link href={'/history'} className="ml-28 px-1 py-1 rounded-xl" style={{ backgroundColor: "white" }}>
-                            <Image src={history} alt="Logo History Service" className="h-14 w-14 btn-ghost" />
-                        </Link>
-                        <Link href={'/spareparts'} className="px-1 py-1 rounded-xl" style={{ backgroundColor: "white" }}>
-                            <Image src={sparepart} alt="Logo Sparepart" className="h-14 w-14 btn-ghost" />
-                        </Link>
-                        <Link href={'/profile'} className="mr-36 px-1 py-1 rounded-xl" style={{ backgroundColor: "white" }}>
-                            <Image src={profile} alt="Logo Profile" className="h-14 w-14 btn-ghost" />
-                        </Link>
-                    </div>
-                    <div className="flex flex-1 justify-end pl-5 rounded-xl -mt-10">
-                        <button onClick={toggleModal} className="mt-1">
-                            <Image src={chat} alt="Logo Profile" className="h-14 w-14 btn-ghost rounded-xl" />
+            <div className="fixed bottom-0 flex w-full h-14 mb-4">
+                {/* ICON SIDE B */}
+                <div className="flex justify-center w-full h-full mx-10 shadow-xl">
+                    <div className="flex w-[60%] px-5 pb-2 justify-between items-center rounded-br-full rounded-bl-full bg-opacity-10 bg-white border-b-4 border-white">
+                        <button onClick={() => route.push('/history')}
+                            className="p-3 rounded-full bg-black bg-opacity-35 -mt-12
+                            border-t-2 border-white
+                            ">
+                            <div className="hover:scale-125 hover:-mt-3 transition ease-in-out duration-300 hover:text-white text-transparent">
+                                <p className="absolute -mt-5 ms-3 animate-bounce text-sm">Books</p>
+                                <Image src={history} alt="Logo History Service" className="h-16 w-16" />
+                            </div>
+                        </button>
+                        <button onClick={() => route.push('/')}
+                            className="p-3 rounded-full bg-black bg-opacity-35 -mt-12
+                            border-t-2 border-white
+                            ">
+                            <div className="hover:scale-125 hover:-mt-3 transition ease-in-out duration-300 hover:text-white text-transparent">
+                                <p className="absolute -mt-5 ms-3 animate-bounce text-sm">Home</p>
+                                <Image src={home} alt="Logo Sparepart" className="h-16 w-16" />
+                            </div>
+                        </button>
+                        <button onClick={() => route.push('/profile')}
+                            className="p-3 rounded-full bg-black bg-opacity-35 -mt-12
+                            border-t-2 border-white
+                            ">
+                            <div className="hover:scale-125 hover:-mt-3 transition ease-in-out duration-300 hover:text-white text-transparent">
+                                <p className="absolute -mt-5 ms-3 animate-bounce text-sm">Profile</p>
+                                <Image src={profile} alt="Logo Profile" className="h-16 w-16" />
+                            </div>
                         </button>
                     </div>
                 </div>
+                {/* ICON SIDE R */}
+                <div className="flex flex-col -mt-96 absolute right-0 gap-5">
+                    <BtnGroup />
+                </div>
             </div>
-            <InputModalChat modal={modal} setModal={setModal} />
         </>
     )
 }

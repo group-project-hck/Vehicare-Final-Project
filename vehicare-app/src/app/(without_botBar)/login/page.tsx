@@ -1,17 +1,14 @@
 'use client'
 import React from 'react';
-import svg from "../../Assets/LoginImage.svg";
-import machine from "../../Assets/machine.svg"
+import svg from "@/Assets/LoginImage.svg";
+import machine from "@/Assets/machine.svg"
 import Image from "next/image";
-import localFont from 'next/font/local'
-import logo from "../../Assets/logo.svg"
+import logo from "@/Assets/logo.svg"
 import { HandleLogin } from '@/actions/User';
 import { ErrorLogin } from '@/components/errorLogin';
 import { useSearchParams } from 'next/navigation';
 import { GoogleButton } from '@/components/Button/googleBtn';
 
-// Font files can be colocated inside of `pages`
-const myFont = localFont({ src: '../Overpass-VariableFont_wght.ttf' })
 export default function LoginPage() {
     const searchParams = useSearchParams();
     const errorMessage = searchParams.get("error")
@@ -79,8 +76,7 @@ export default function LoginPage() {
                             />
                         </div>
                         <div className="mx-auto" style={{ color: "#444B59", fontSize: 36, fontStyle: "Extrabold" }}>
-                            <h1 className={myFont.className}>WELCOME BACK!</h1>
-
+                            <h1>WELCOME BACK!</h1>
                         </div>
                         <div className="mx-auto" style={{ color: "#525252", fontSize: 16, fontFamily: "Nunito Sans", fontStyle: "normal", marginBottom: 20 }}>
                             <h1>Login to your account!</h1>

@@ -33,6 +33,12 @@ export default function AboutPage() {
                 >
                     <div className="w-full h-screen flex justify-center items-center z-10 px-20" style={{opacity:0.8}}>
                         <Carousel/>
+                    <div className="w-full h-screen flex justify-center items-center z-10" >
+                        <div className="text-white text-center" >
+                            <h1 className="text-4xl font-bold mb-4">About Motor Refurbishment</h1>
+                            <p className="text-lg" onClick={toggleModal}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla pretium tincidunt est, id varius odio. Aliquam erat volutpat. Vivamus vehicula eros vitae convallis eleifend.</p>
+                            <InputModalMotorcyle modal={modal} setModal={setModal} />
+                        </div>
                     </div>
                 </div>
                 <div className="absolute flex flex-col top-full left-0 w-full h-screen" style={{ backgroundImage: `url(${bgAboutTwo.src})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>

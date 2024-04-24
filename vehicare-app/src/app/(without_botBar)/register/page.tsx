@@ -1,9 +1,9 @@
 'use client'
 import React from 'react';
-import svg from "../../Assets/registerImage.svg";
-import machine from "../../Assets/machine.svg"
+import svg from "@/Assets/registerImage.svg";
+import machine from "@/Assets/machine.svg"
 import Image from "next/image";
-import logo from "../../Assets/logo.svg"
+import logo from "@/Assets/logo.svg"
 import { HandleRegister } from '@/actions/User';
 import { useSearchParams } from 'next/navigation';
 import { ErrorLogin } from '@/components/errorLogin';

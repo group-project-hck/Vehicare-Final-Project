@@ -41,12 +41,22 @@ export default class UserModel {
     const user = await this.userCollection().findOne({ email }) as User
     return user;
   }
+  static async changePicture(id : string , url: string) {
+    const user = await this.userCollection().updateOne({
+      _id: new ObjectId(id)
+    },{
+      $set : {
+        image: url
+      }
+    })
+    return user;
+  }
 
   static async myProfile(id: string) {
     const agg = [
       {
         $match: {
-          _id: new ObjectId('6620ce5bcd762073a71e18ac')
+          _id: new ObjectId(id)
         }
       }, {
         $lookup: {

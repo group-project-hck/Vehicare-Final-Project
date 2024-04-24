@@ -9,7 +9,7 @@ interface InputModalMotorcyleProps {
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function InputModalMotorcyle({
+export default function InputModalServieBook({
   modal,
   setModal,
 }: InputModalMotorcyleProps) {
@@ -47,10 +47,8 @@ export default function InputModalMotorcyle({
                 <div className="w-full p-4 bg-black rounded-lg shadow-lg">
                   <div className="flex flex-row">
                     <h1 className="text-xl flex-1 font-semibold text-white">
-                      Hi name/username !{" "}
-                      <span className="font-normal">
-                        Please fill in your bike to continue.
-                      </span>
+                      Hi Update Your Sevices
+                      
                     </h1>
                     <div onClick={toggleModal}>
                       <Image

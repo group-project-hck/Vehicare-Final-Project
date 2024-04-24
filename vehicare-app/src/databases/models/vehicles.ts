@@ -38,6 +38,23 @@ export default class ModelVehicle {
                     foreignField: "_id",
                     as: "User",
                 },
+            },
+            {
+                $lookup: {
+                    from: 'ServiceBooks',
+                    localField: '_id',
+                    foreignField: 'VehicleId',
+                    as: 'Books'
+                }
+            },
+            {
+                $lookup:
+                {
+                    from: "Spareparts",
+                    localField: "Books.SparepartId",
+                    foreignField: "_id",
+                    as: "Spareparts",
+                },
             }
         ]
         const cursor = await this.dbVehicle().aggregate(agg).toArray().then()
