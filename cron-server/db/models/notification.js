@@ -7,7 +7,7 @@ class notificationModel {
   }
   static async createNotification(userId, message) {
     const notif = await this.notificationCollection().insertOne({ 
-      userId : new ObjectId(String(userId)),
+      UserId : new ObjectId(String(userId)),
       message
      });
     return notif;

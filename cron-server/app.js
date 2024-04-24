@@ -28,6 +28,12 @@ cron.schedule("*/30 0-59 0-23 1-31 1-12 0-6", async () => {
 		await statusModel.dailyHP(item);
 	});
 });
+cron.schedule("0 0 * * *", async () => {
+	const status = await statusModel.findStatus();
+	status.map(async (item) => {
+		await statusModel.updateReward(item._id);
+	});
+});
 cron.schedule("0-59 0-23 1-31 1-12 0-6", async () => {
 	const serviceBooks = await serviceBookModel.findAll();
 	serviceBooks.map(async (item) => {

@@ -35,6 +35,17 @@ class statusModel {
     );
     return status;
   }
+  static async updateReward(id) {
+    const status = await this.statusCollection().updateOne(
+      { VehicleId: id },
+      {
+        $set: {
+          gatcha: true,
+        },
+      }
+    );
+    return status;
+  }
 }
 
 module.exports = statusModel;
