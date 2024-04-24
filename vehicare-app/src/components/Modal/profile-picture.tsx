@@ -1,10 +1,11 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import closeBtn from "../../Assets/closeBtn.svg";
 import Image from "next/image";
 import { Sparepart } from "@/databases/models/types";
 import LoadingComponent from "../loading";
 import { useRouter } from "next/navigation";
+import { ErrorLogin } from "../errorLogin";
 
 interface InputModalChatProps {
   modal: boolean;
@@ -18,19 +19,19 @@ interface InputModalChatProps {
     password: string;
     role: string;
   };
-  getVehicles : any
+  getVehicles: any;
 }
-
 
 export default function ProfilePictureModal({
   modal,
   setModal,
   item,
-  getVehicles
+  getVehicles,
 }: InputModalChatProps) {
   const toggleModal = () => {
     setModal(!modal);
   };
+  const router = useRouter();
   const [loading, setLoading] = useState<boolean>(false);
   const [image, setImage] = useState<any>();
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -52,7 +53,10 @@ export default function ProfilePictureModal({
           body: formData,
         }
       );
-      getVehicles()
+      if (!response.ok) {
+        router.push(`/profile?error=Error Please Input File`);
+      }
+      getVehicles();
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -98,13 +102,15 @@ export default function ProfilePictureModal({
                     >
                       Upload Image
                     </label>
+                    <Suspense fallback={<div>Loading...</div>}>
+                      <ErrorLogin />
+                    </Suspense>
                     <input
                       id="image-upload"
                       type="file"
                       name="image"
                       onChange={handleFileChange}
                       className="block w-full p-3 mt-2 text-gray-700 bg-white appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner rounded"
-                      required
                     />
                     <button type="submit" className="mt-2 btn">
                       Submit

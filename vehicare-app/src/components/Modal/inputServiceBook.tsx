@@ -2,13 +2,14 @@
 import React, { useEffect, useState } from "react";
 import { GetSpareparts } from "@/actions/Spareparts";
 import { Sparepart, Vehicle } from "@/databases/models/types";
-import bgSparepart from "@/Assets/backgroundSparepart.svg";
 import closeBtn from "../../Assets/closeBtn.svg";
 import AddSparepartServiceBook from "../Card/cardAddService";
-import { set } from "zod";
 import LoadingComponent from "../loading";
 import GetServices, { AddServiceBook } from "@/actions/ServiceBooks";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { ErrorLogin } from "../errorLogin";
+import Swal from 'sweetalert2'
 
 interface InputModalMotorcyleProps {
   modal: boolean;
@@ -27,12 +28,14 @@ export default function InputModalServieBook({
   const [listspareparts, setlistSpareparts] = useState<Sparepart[]>([]);
   const [items, setItems] = useState<string[]>([]);
   const [price, setPrice] = useState<number>(0);
+  const router = useRouter();
   const [loading, setLoading] = useState<boolean>(false);
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);
   const [input, setInput] = useState({
     serviceName: "",
     VehicleId: "",
   });
+  
   function handleChange(
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) {
@@ -49,6 +52,21 @@ export default function InputModalServieBook({
     const newData = items.map((item) => {
       if (item === newItems) {
         found = true;
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          }
+        });
+        Toast.fire({
+          icon: "error",
+          title: "You Already Add This Sparepart"
+        });
         return item;
       }
       return item;
@@ -59,6 +77,21 @@ export default function InputModalServieBook({
       });
       setItems(() => {
         return [...newData, newItems];
+      });
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        }
+      });
+      Toast.fire({
+        icon: "success",
+        title: "🦄 Success Adding Sparepart!"
       });
     }
   }
@@ -79,6 +112,20 @@ export default function InputModalServieBook({
   }, []);
   function handleCreate(event: React.FormEvent) {
     event.preventDefault();
+    if (!input.serviceName || input.serviceName === "" ) {
+      router.push(`/history?error=Error Please Input Service Name`);
+      return
+    }
+    if (!input.VehicleId || input.VehicleId === "" ) {
+      router.push(`/history?error=Error Please Choose Your Vehicle`);
+      return
+    }
+    console.log(items);
+    
+    if (items.length === 0 ) {
+      router.push(`/history?error=Error Please Choose At Least 1 Sparepart`);
+      return
+    }
     const data = {
       serviceName: input.serviceName,
       VehicleId: input.VehicleId,
@@ -123,9 +170,10 @@ export default function InputModalServieBook({
                         </option>
                       ))}
                   </select>
-                  <button className="btn btn-outline w-full mt-4" onClick={handleCreate} type="submit">
+                  <button className="btn btn-outline w-full mt-4 mb-5" onClick={handleCreate} type="submit">
                     Create Service Book
                   </button>
+                  <ErrorLogin/>
                 </form>
                 <div className="w-full overflow-x-auto flex flex-row flex-wrap lg:max-h-full lg:overflow-y-auto">
                   <div className="h-96">
@@ -138,6 +186,7 @@ export default function InputModalServieBook({
               </div>
             </div>
           </div>
+          
         </div>
       )}
     </>
