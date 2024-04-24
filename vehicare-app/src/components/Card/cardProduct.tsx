@@ -17,11 +17,11 @@ export default function CardProduct({
   };
   return (
     <>
-      <ul className="gap-2 sm:mx-6 lg:mx-0 lg:grid lg:grid-cols-4 lg:gap-x-8 lg:space-x-0">
+      <ul className="gap-4 sm:mx-6 lg:mx-0 lg:grid lg:grid-cols-4 lg:gap-x-8 lg:space-x-0">
         {persparepart &&
           persparepart.map((item, index) => {
             return (
-              <div className="border rounded-lg">
+              <div className="shadow-xl rounded-lg hover:cursor-pointer transform transition-transform duration-300 hover:scale-110 hover:border border-orange-200">
                 <li
                   key={index}
                   className="inline-flex w-64 flex-col text-center lg:w-auto lg:mb-0"

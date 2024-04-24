@@ -51,9 +51,12 @@ export default function DetailProductModal({
             <div className="py-6">
               <div className="flex w-full h-96 bg-white shadow-lg rounded-lg overflow-hidden justify-end relative">
                 <div
-                  className="w-1/3 bg-cover"
+                  className="w-full h-full shadow-xl rounded-sm"
                   style={{
                     backgroundImage: `url(${sparepart?.image})`,
+                    backgroundSize: 'contain', // Menggunakan 'contain' agar gambar tidak dipotong
+                    backgroundRepeat: 'no-repeat', // Menghindari pengulangan gambar jika ukuran kotak lebih besar dari gambar
+                    backgroundPosition: 'center',
                   }}
                 ></div>
                 <div className="w-2/3 p-4">
@@ -86,10 +89,10 @@ export default function DetailProductModal({
                         }).format(sparepart.price)
                         : 0}
                     </h1>
-                    <button className="px-3 py-2 bg-gray-800 text-white text-xs font-bold uppercase rounded">
-                      Add to Card
-                    </button>
                   </div>
+                    <button className="px-3 py-2 bg-gray-800 text-white mt-3 text-xs font-bold uppercase rounded">
+                      Add to Service Book
+                    </button>
                 </div>
               </div>
             </div>
