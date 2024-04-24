@@ -15,7 +15,7 @@ export default function Profile() {
       >
         <div className="flex w-full h-5/6 rounded-lg">
           <div
-            className="flex w-full h-full shadow-xl rounded-lg mb-2 justify-center"
+            className="flex w-full h-full shadow-xl rounded-lg mb-2 justify-center bg-black bg-opacity-50 py-1"
             style={{ borderColor: "transparent" }}
           >
             <CardProfile />

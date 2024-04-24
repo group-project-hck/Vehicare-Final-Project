@@ -31,7 +31,7 @@ export default function CardProfile() {
     return <LoadingComponent />;
   }
   return (
-    <div className="overflow-y-auto w-[60%] rounded-lg bg-black bg-opacity-80">
+    <div className="overflow-y-auto w-[63%] rounded-lg bg-black bg-opacity-50 border-b border-t">
       <div className="pt-10 flex flex-col justify-center items-center">
         <div className="hover:cursor-pointer hover:text-slate-200 text-transparent">
           <p className="absolute top-[15%] left-[46.3%]">Change Picture</p>
@@ -49,7 +49,7 @@ export default function CardProfile() {
           <p className="text-center">{user?.email}</p>
         </div>
       </div>
-      <div className="divider divider-neutral text-slate-300 px-4">Details</div>
+      <div className="divider divider-neutral text-slate-300 px-4">Vehicles</div>
       <div className="grid grid-cols-2">
         {vehicle?.length > 0 &&
           vehicle.map((item, i) => (
@@ -84,6 +84,7 @@ export default function CardProfile() {
             </CardContainer>
           ))}
       </div>
+      <div className="divider divider-neutral text-slate-300 px-4">Service Books</div>
       <div
         className="flex flex-1 justify-center items-center"
         style={{ backgroundColor: "transparent" }}

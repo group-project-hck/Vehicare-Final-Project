@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useEffect, useState } from "react";
 import { Pixelify } from "react-pixelify";
 import LoadingComponent from "../loading";
@@ -75,13 +75,15 @@ export default function TamagochiMotor({ selectedVehicle }) {
 							<p className="text-white">Status :</p>
 							<p className="text-white">HP : {status[0]?.HP}</p>
 							<p className="text-white">Daily HP : {status[0]?.dailyHP}</p>
+							<p className="text-white">Coint : {status[0]?.cointReward}</p>
 							<br />
 							<p className="text-white">Spareparts :</p>
-							{spareParts.map((el, i) => (
-								<p className="text-white" key={i}>
-									{el.name} : status health
-								</p>
-							))}
+							{spareParts &&
+								spareParts.map((el, i) => (
+									<p className="text-white" key={i}>
+										{el.name} : {vehicle.Books[0]?.serviceDate}
+									</p>
+								))}
 							<br />
 							<p className="text-white">HIT SERVICE</p>
 							<p className="text-white">HIT GATCHA</p>

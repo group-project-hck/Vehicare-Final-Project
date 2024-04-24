@@ -2,8 +2,6 @@
 import Link from "next/link";
 import logo from "../../Assets/logo.svg"
 import Image from "next/image";
-import logout from "../../Assets/logoutGif.gif"
-import handleLogOut from "@/actions/User";
 
 export default function Navbar() {
     return (
