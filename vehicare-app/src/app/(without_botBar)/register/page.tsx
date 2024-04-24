@@ -1,17 +1,14 @@
 'use client'
-import React from 'react';
+import React, { Suspense } from 'react';
 import svg from "@/Assets/registerImage.svg";
 import machine from "@/Assets/machine.svg"
 import Image from "next/image";
 import logo from "@/Assets/logo.svg"
 import { HandleRegister } from '@/actions/User';
-import { useSearchParams } from 'next/navigation';
 import { ErrorLogin } from '@/components/errorLogin';
 
 
 export default function RegisterPage() {
-    const searchParams = useSearchParams();
-    const errorMessage = searchParams.get("error")
     return (
         <>
             {/* component */}
@@ -81,7 +78,9 @@ export default function RegisterPage() {
                             <h1>Register Now</h1>
                         </div>
                         {/* DISPLAY ERROR */}
-                        <ErrorLogin />
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <ErrorLogin />
+                        </Suspense>
                         <div className="mt-10">
                             <form action={HandleRegister} id="register-form">
                                 <div>

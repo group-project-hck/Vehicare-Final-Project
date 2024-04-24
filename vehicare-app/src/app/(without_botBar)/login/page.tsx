@@ -1,17 +1,14 @@
 'use client'
-import React from 'react';
+import React, { Suspense } from 'react';
 import svg from "@/Assets/LoginImage.svg";
 import machine from "@/Assets/machine.svg"
 import Image from "next/image";
 import logo from "@/Assets/logo.svg"
 import { HandleLogin } from '@/actions/User';
 import { ErrorLogin } from '@/components/errorLogin';
-import { useSearchParams } from 'next/navigation';
 import { GoogleButton } from '@/components/Button/googleBtn';
 
 export default function LoginPage() {
-    const searchParams = useSearchParams();
-    const errorMessage = searchParams.get("error")
     return (
         <>
             {/* component */}
@@ -82,7 +79,9 @@ export default function LoginPage() {
                             <h1>Login to your account!</h1>
                         </div>
                         {/* DISPLAY ERROR */}
-                        <ErrorLogin />
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <ErrorLogin />
+                        </Suspense>
                         <div>
                             <form id="login-form" action={HandleLogin}>
                                 <div>
