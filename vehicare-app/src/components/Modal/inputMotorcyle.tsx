@@ -3,15 +3,18 @@ import React, { useState } from "react";
 import closeBtn from "@/Assets/closeBtn.svg";
 import Image from "next/image";
 import { AddVehicle } from "@/actions/AddVehicle";
+import { useRouter } from "next/navigation";
 
 interface InputModalMotorcyleProps {
   modal: boolean;
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
+  fetchVehicle : any
 }
 
 export default function InputModalMotorcyle({
   modal,
   setModal,
+  fetchVehicle
 }: InputModalMotorcyleProps) {
   const toggleModal = () => {
     setModal(!modal);
@@ -33,6 +36,7 @@ export default function InputModalMotorcyle({
   function handleSubmit(e : React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     AddVehicle(input);
+    fetchVehicle()
     toggleModal();
   }
   return (
