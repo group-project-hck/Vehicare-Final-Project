@@ -50,7 +50,9 @@ export default function CardProfile() {
               </>
             )}
             {user?.image && (
-              <p className="absolute top-[15.5%] left-[46.5%] font-extrabold">Change Picture</p>
+              <p className="absolute top-[15.5%] left-[46.5%] font-extrabold">
+                Change Picture
+              </p>
             )}
             <img
               className="w-36 h-36 rounded-full mx-auto border-2 p-1 "
@@ -68,8 +70,12 @@ export default function CardProfile() {
         <div className="divider divider-neutral text-slate-300 px-4">
           Vehicles
         </div>
+        <div className="flex items-center justify-center">
+          <button onClick={toggleModal2} className="btn btn-outline">
+            Add Vehicle
+          </button>
+        </div>
         <div className="grid grid-cols-2">
-          <button onClick={toggleModal2} className="btn btn-outline">TAMBAH</button>
           {vehicle?.length > 0 &&
             vehicle.map((item, i) => (
               <CardContainer key={i} className="inter-var">
@@ -104,13 +110,21 @@ export default function CardProfile() {
             ))}
         </div>
       </div>
-      <ProfilePictureModal
-        getVehicles={getVehicles}
-        modal={modal}
-        setModal={setModal}
-        item={user}
-      />
-      <InputModalMotorcyle modal={modal} setModal={setModal2} />
+      {modal && (
+        <ProfilePictureModal
+          getVehicles={getVehicles}
+          modal={modal}
+          setModal={setModal}
+          item={user}
+        />
+      )}
+      {modal2 && (
+        <InputModalMotorcyle
+          modal={modal2}
+          fetchVehicle={getVehicles}
+          setModal={setModal2}
+        />
+      )}
     </>
   );
 }
