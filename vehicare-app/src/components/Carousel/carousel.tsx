@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import CheckHomeButton from "../Button/Check Button/checkHomeBtn";
-import CheckSparepartButton from "../Button/Check Button/checkSparepartBtn";
+import CheckHomeButton from "../Button/Check_Button/checkHomeBtn";
+import CheckSparepartButton from "../Button/Check_Button/checkSparepartBtn";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import image1 from "../../Assets/About/background1.svg"
@@ -38,7 +38,6 @@ const Carousel: React.FC = () => {
                 <div className="carousel-item relative w-full ">
                     {images.map((image, index) => (
                         <div key={index} id={`slide${index + 1}`} className={`carousel-item relative w-full ${activeSlide === index + 1 ? 'block' : 'hidden'}`}>
-                            {index === 0 ? <CheckHomeButton/> : <CheckSparepartButton/>}
                             <img src={image} className="w-full" />
                             <div className="absolute inset-0 flex items-center justify-center mx-4">
                                 <button onClick={handlePrevious} className="absolute left-0 bg-orange-500 text-white px-3 py-1 rounded-full">
@@ -47,6 +46,8 @@ const Carousel: React.FC = () => {
                                 <button onClick={handleNext} className="absolute right-0 bg-orange-500 text-white px-3 py-1 rounded-full">
                                     <FontAwesomeIcon icon={faChevronRight} />
                                 </button>
+                                {activeSlide === 1 && <CheckHomeButton />}
+                                {activeSlide === 2 && <CheckSparepartButton />}
                             </div>
                         </div>
                     ))}
