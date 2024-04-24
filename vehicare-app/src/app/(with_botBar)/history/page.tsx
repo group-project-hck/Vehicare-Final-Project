@@ -37,7 +37,6 @@ export default function History() {
           <div className="flex w-full h-full shadow-xl rounded-lg mb-2 justify-center bg-white bg-opacity-10 py-1">
             <div className="flex w-[70%] rounded-xl bg-black bg-opacity-50 overflow-auto">
               <div className="w-full overflow-x-auto flex flex-wrap lg:flex-col lg:max-h-full lg:overflow-y-auto p-5">
-                {/* <ServiceBooksBtn getHistory={getHistory} /> */}
                 <button className="w-10 h-10" onClick={toggleModal}
                   style={{
                     backgroundSize: "cover", // Mengatur gambar agar sesuai dengan ukuran layar
