@@ -31,6 +31,7 @@ export default function ProfilePictureModal({
   const toggleModal = () => {
     setModal(!modal);
   };
+  const [loading, setLoading] = useState<boolean>(false);
   const [image, setImage] = useState<any>();
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
@@ -41,21 +42,22 @@ export default function ProfilePictureModal({
   const handleSubmit = async (e: React.FormEvent) => {
     try {
       e.preventDefault();
+      setLoading(true);
       const formData = new FormData();
       formData.append("image", image);
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_URL}api/upload`,
         {
-          method: "POST",
+          method: "PATCH",
           body: formData,
         }
       );
       getVehicles()
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
   };
-  const [loading, setLoading] = useState<boolean>(false);
   if (loading) {
     return <LoadingComponent />;
   }
