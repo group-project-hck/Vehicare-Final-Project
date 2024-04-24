@@ -77,7 +77,7 @@ export default function Home() {
         <div className="flex w-full h-5/6 justify-center items-center rounded pt-5">
           <div className="flex w-full h-full mx-10 shadow-xl rounded-lg mb-2 bg-black bg-opacity-50">
             {/* DETAIL VEHICLE */}
-            <TamagochiMotor selectedVehicle={selectedVehicle} />
+            <TamagochiMotor selectedVehicle={String(selectedVehicle)} />
           </div>
         </div>
       </div>
