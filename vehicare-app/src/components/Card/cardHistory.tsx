@@ -5,7 +5,6 @@ import { ServiceBooks } from "@/databases/models/types";
 
 export default function CardHistory({ book }: { book: ServiceBooks }) {
     const [modal, setModal] = useState(false);
-
     const toggleModal = () => {
         setModal(!modal);
     }
