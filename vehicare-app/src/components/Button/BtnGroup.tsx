@@ -4,6 +4,7 @@ import chat from "@/Assets/chatGif.gif"
 import logout from "@/Assets/logoutGif.gif"
 import sparepart from "@/Assets/productGif.gif"
 import option from "@/Assets/optionImage.png"
+import notification from "@/Assets/notification.png"
 import InputModalChat from "../Modal/inputChat";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -43,6 +44,14 @@ export default function BtnGroup() {
                             <div className="hover:scale-125 transition ease-in-out duration-300 hover:text-white text-transparent">
                                 <p className="absolute -ms-14 animate-pulse">Chats</p>
                                 <Image src={chat} alt="Logo Profile" className="bg-orange-600 p-2 bg-opacity-80 rounded-full" />
+                            </div>
+                        </button>
+                    </span>
+                    <span className="float-element">
+                        <button onClick={() => handleLogOut()}>
+                            <div className="hover:scale-125 transition ease-in-out duration-300 hover:text-white text-transparent">
+                                <p className="absolute -ms-24 animate-pulse">Notification</p>
+                                <Image src={notification} alt="Logout" className="bg-orange-600 p-2 bg-opacity-80 rounded-full" />
                             </div>
                         </button>
                     </span>
