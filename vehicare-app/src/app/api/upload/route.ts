@@ -10,7 +10,7 @@ cloudinary.config({
   secure: true,
 });
 
-export async function POST(req: NextRequest) {
+export async function PATCH(req: NextRequest) {
   try {
     const data = await req.formData();
     const file: File | null = data.get("image") as unknown as File; // get file
