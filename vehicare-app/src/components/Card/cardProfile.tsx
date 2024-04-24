@@ -31,61 +31,62 @@ export default function CardProfile() {
     return <LoadingComponent />;
   }
   return (
-    <div className="overflow-y-scroll">
-      <div
-        className="flex flex-1 justify-center items-center pl-5"
-        style={{ backgroundColor: "transparent" }}
-      ></div>
-      <div className="flex flex-[3] justify-center items-center pl-5 pr-5 rounded-xl bg-black ">
-        <div className="p-5">
+    <div className="overflow-y-auto w-[63%] rounded-lg bg-black bg-opacity-50 border-b border-t">
+      <div className="pt-10 flex flex-col justify-center items-center">
+        <div className="hover:cursor-pointer hover:text-slate-200 text-transparent">
+          <p className="absolute top-[15%] left-[46.3%]">Change Picture</p>
           <img
-            className="w-32 h-32 rounded-full mx-auto"
+            className="w-36 h-36 rounded-full mx-auto border-2 p-1 "
             src={user?.image}
             alt="Profile picture"
             onClick={toggleModal}
           />
-          <h2 className="text-center text-2xl font-semibold mt-3">
+        </div>
+        <div className="text-white">
+          <h2 className="text-center text-2xl font-semibold mt-3 tracking-tight">
             {user?.name}
           </h2>
-          <p className="text-center text-gray-600 mt-1">{user?.email}</p>
-          <div className="grid grid-cols-2">
-            {vehicle?.length > 0 &&
-              vehicle.map((item, i) => (
-                <CardContainer key={i} className="inter-var">
-                  <CardBody className="bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[20rem] h-auto rounded-xl p-6 border  ">
-                    <CardItem
-                      translateZ="50"
-                      className="text-xl font-bold text-neutral-600 dark:text-white"
-                    >
-                      {item.name}
-                    </CardItem>
-
-                    <CardItem translateZ="100" className="w-full mt-4">
-                      <Image
-                        src={item.image}
-                        height="1000"
-                        width="1000"
-                        className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
-                        alt="thumbnail"
-                      />
-                    </CardItem>
-                    <div className="flex justify-between items-center mt-20">
-                      <CardItem
-                        translateZ={20}
-                        target="__blank"
-                        className="text-xl font-bold text-neutral-600 dark:text-white"
-                      >
-                        {item.type}
-                      </CardItem>
-                    </div>
-                  </CardBody>
-                </CardContainer>
-              ))}
-          </div>
+          <p className="text-center">{user?.email}</p>
         </div>
       </div>
+      <div className="divider divider-neutral text-slate-300 px-4">Vehicles</div>
+      <div className="grid grid-cols-2">
+        {vehicle?.length > 0 &&
+          vehicle.map((item, i) => (
+            <CardContainer key={i} className="inter-var">
+              <CardBody className="relative group/card hover:shadow-2xl hover:shadow-emerald-500/[0.1] bg-black bg-opacity-50 border-white/[0.2] w-auto sm:w-[20rem] h-auto rounded-xl p-6 border border-white">
+                <CardItem
+                  translateZ="50"
+                  className="text-xl font-bold text-white"
+                >
+                  {item.name}
+                </CardItem>
+
+                <CardItem translateZ="100" className="w-full py-4">
+                  <Image
+                    src={item.image}
+                    height="1000"
+                    width="1000"
+                    className="h-50 border w-full bg-cover rounded-xl group-hover/card:shadow-xl"
+                    alt="thumbnail"
+                  />
+                </CardItem>
+                <div className="flex justify-between items-center">
+                  <CardItem
+                    translateZ={20}
+                    target="__blank"
+                    className="text-xl font-bold text-white"
+                  >
+                    Transmition <p className="font-light">{item.type}</p>
+                  </CardItem>
+                </div>
+              </CardBody>
+            </CardContainer>
+          ))}
+      </div>
+      <div className="divider divider-neutral text-slate-300 px-4">Service Books</div>
       <div
-        className="flex flex-1 justify-center items-center pl-5"
+        className="flex flex-1 justify-center items-center"
         style={{ backgroundColor: "transparent" }}
       ></div>
       <ProfilePictureModal getVehicles={getVehicles} modal={modal} setModal={setModal} item={user} />

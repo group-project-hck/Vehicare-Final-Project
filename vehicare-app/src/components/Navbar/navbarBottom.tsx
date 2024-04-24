@@ -2,7 +2,7 @@
 import Image from "next/image";
 import history from "../../Assets/listGif.gif"
 import profile from "../../Assets/profileGif.gif"
-import home from "@/Assets/home.png"
+import home from "../../Assets/home.png"
 import { useRouter } from "next/navigation";
 import BtnGroup from "../Button/BtnGroup";
 

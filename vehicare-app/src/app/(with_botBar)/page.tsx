@@ -7,15 +7,20 @@ import { useEffect, useState } from "react";
 import LoadingComponent from "@/components/loading";
 
 export default function Home() {
+  // use State
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);
   const [selectedVehicle, setSelectedVehicle] = useState<string>();
   const [loading, setLoading] = useState<boolean>(false);
+
+  // Function handler
   function handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
     const vehicleId = e.target.value;
     setSelectedVehicle(vehicleId.toString())
   }
+
+  // fetching for useState
   useEffect(() => {
-    const getVehicles = async () => {
+    (async () => {
       setLoading(true)
       const { Vehicles }: { Vehicles: Vehicle[] } = await GetServices();
       setVehicles(Vehicles);
@@ -23,12 +28,13 @@ export default function Home() {
         setSelectedVehicle(Vehicles[0]._id.toString());
       }
       setLoading(false);
-    };
-    getVehicles();
+    })()
   }, []);
+
   if (loading) {
     return <LoadingComponent />
   }
+
   return (
     <>
       {/* THEME */}

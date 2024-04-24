@@ -2,8 +2,6 @@
 import Link from "next/link";
 import logo from "../../Assets/logo.svg"
 import Image from "next/image";
-import logout from "../../Assets/logoutGif.gif"
-import handleLogOut from "@/actions/User";
 
 export default function Navbar() {
     return (
@@ -19,13 +17,6 @@ export default function Navbar() {
                         <Link href="/">
                             <Image src={logo} alt="Logo" className="h-12 w-12" />
                         </Link>
-                    </div>
-
-                    {/* Button logout */}
-                    <div className="flex items-center pr-3">
-                        <button className="px-3 py-3 rounded-xl" onClick={() => handleLogOut()}>
-                            <Image src={logout} alt="Logout" className="h-12 w-12 rounded-xl" />
-                        </button>
                     </div>
                 </div>
             </div>

@@ -21,11 +21,11 @@ export default function CardHistory({ book }: { book: ServiceBooks }) {
                         <div className="flex flex-col items-start">
                             <div className="flex items-center text-sm">
                                 <p className="font-bold me-2">Service Name : </p>
-                                <p>{book.serviceName}</p>
+                                <p>{book?.serviceName}</p>
                             </div>
                             <div className="flex items-center text-sm">
                                 <p className="font-bold me-2">Purchased Sparepart :</p>
-                                <p>{book.SparepartId.length} items</p>
+                                <p>{book?.SparepartId.length} items</p>
                             </div>
                             <div className="flex items-center text-sm mt-4">
                                 <p className="font-bold me-2">Total :</p>
@@ -33,7 +33,7 @@ export default function CardHistory({ book }: { book: ServiceBooks }) {
                                     {new Intl.NumberFormat("id-ID", {
                                         style: "currency",
                                         currency: "IDR",
-                                    }).format(book.servicePrice)}
+                                    }).format(book?.servicePrice)}
                                 </span>
                             </div>
                         </div>

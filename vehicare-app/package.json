@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@google/generative-ai": "^0.7.1",
     "@nextui-org/react": "^2.3.5",
     "@types/duckduckgo-images-api": "^1.0.3",
@@ -28,7 +31,10 @@
     "react-dom": "^18",
     "react-number-format": "^5.3.4",
     "react-pixelify": "^0.2.2",
+    "react-router-dom": "^6.23.0",
+    "react-slick": "^0.30.2",
     "showdown": "^2.1.0",
+    "slick-carousel": "^1.8.1",
     "tailwind-merge": "^2.3.0",
     "zod": "^3.22.4"
   },
@@ -38,6 +44,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/react-slick": "^0.23.13",
     "daisyui": "^4.10.2",
     "eslint": "^8",
     "eslint-config-next": "14.2.1",
