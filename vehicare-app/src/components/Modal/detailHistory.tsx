@@ -63,7 +63,7 @@ export default function DetailHistoryModal({ serviceId, modal, setModal }: { ser
                                             </thead>
                                             <tbody className="border">
                                                 {SpareParts && SpareParts?.map((item, i) => (
-                                                    <tr className="border text-sm" >
+                                                    <tr className="border text-sm" key={i}>
                                                         <td className="border">{i + 1}</td>
                                                         <td className="border">{item.name}</td>
                                                         <td className="border">
