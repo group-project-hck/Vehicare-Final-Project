@@ -88,13 +88,13 @@ export default function TamagochiMotor({ selectedVehicle }: { selectedVehicle: s
 								<p>HP : {status[0]?.HP}%</p>
 								<div className="flex">
 									{Array.from({ length: status[0]?.HP }, (_, index) => (
-										<p className="text-sm">|</p>
+										<p className="text-sm" key={index}>|</p>
 									))}
 								</div>
 								<p>Daily HP : {status[0]?.dailyHP}%</p>
 								<div className="flex">
 									{Array.from({ length: status[0]?.dailyHP }, (_, index) => (
-										<p className="text-sm">|</p>
+										<p className="text-sm" key={index}>|</p>
 									))}
 								</div>
 							</div>
