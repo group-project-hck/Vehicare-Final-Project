@@ -2,33 +2,36 @@
 import { useEffect, useState } from "react";
 import { Pixelify } from "react-pixelify";
 import LoadingComponent from "../loading";
-import { Status } from "@/databases/models/types";
 import { AddStatus, changeGatcha } from "@/actions/status";
+import { useRouter } from "next/navigation";
 
 export default function TamagochiMotor({ selectedVehicle }) {
   const id = selectedVehicle;
   const [vehicle, setVehicle] = useState({});
   const [loading, setLoading] = useState(false);
-
+  const [status, setStatus] = useState([]);
+  const [coin, setCoin] = useState(0);
+  const router = useRouter()
   const fetchVehicle = async () => {
-	try {
-	  setLoading(true);
-	  const response = await fetch(
-		`${process.env.NEXT_PUBLIC_BASE_URL}api/vehicle/${id}`,
-		{
-		  cache: "no-store",
-		  method: "GET",
-		  headers: {
-			"Content-Type": "application/json",
-		  },
-		}
-	  );
-	  const { data } = await response.json();
-	  setVehicle(data);
-	  setLoading(false);
-	} catch (error) {
-	  console.log(error);
-	}
+    try {
+      setLoading(true);
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}api/vehicle/${id}`,
+        {
+          cache: "no-store",
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const { data } = await response.json();
+      setVehicle(data);
+      setStatus(data.Status);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
   useEffect(() => {
     if (selectedVehicle) {
@@ -40,19 +43,21 @@ export default function TamagochiMotor({ selectedVehicle }) {
     return <LoadingComponent />;
   }
   const giftFood = async () => {
-	AddStatus(selectedVehicle)
-	
-	fetchVehicle()
-  }
-  // Cek Status
-  let status = {};
-  if (vehicle) {
-    const { Status } = vehicle;
-    if (Status) {
-      status = Status;
-    }
-  }
+    AddStatus(selectedVehicle);
 
+    fetchVehicle();
+  };
+  // Cek Status
+  const handleGatcha = async () => {
+    console.log(status[0].gatcha);
+    if (status[0].gatcha) {
+      const random = Math.floor(Math.random() * (10 - 1 + 1) + 1);
+      const newCoin = status[0].cointReward + random
+      changeGatcha(selectedVehicle, newCoin);
+      fetchVehicle();
+      router.refresh()
+    }
+  };
   let spareParts = [];
   if (vehicle) {
     const { Spareparts } = vehicle;
@@ -78,20 +83,24 @@ export default function TamagochiMotor({ selectedVehicle }) {
           <div className="flex-1 h-full border">
             <div className="">
               <p className="text-white">Status :</p>
-              <p className="text-white">HP : {status[0]?.HP}</p>
-              <p className="text-white">Daily HP : {status[0]?.dailyHP}</p>
-              <p className="text-white">Coint : {status[0]?.cointReward}</p>
+              <p className="text-white">HP : {status?.[0]?.HP}</p>
+              <p className="text-white">Daily HP : {status?.[0]?.dailyHP}</p>
+              <p className="text-white">Coint : {status?.[0]?.cointReward}</p>
               <br />
               <p className="text-white">Spareparts :</p>
               {spareParts &&
                 spareParts.map((el, i) => (
                   <p className="text-white" key={i}>
-                    {el.name} : {vehicle.Books[0]?.serviceDate}
+                    {el.name} : {vehicle.Books?.[0]?.serviceDate}
                   </p>
                 ))}
               <br />
-              <p className="text-white btn" onClick={giftFood}>Gift Food</p>
-              <p className="text-white btn" onClick={()=> changeGatcha(vehicle._id)}>HIT GATCHA</p>
+              <p className="text-white btn" onClick={giftFood}>
+                Gift Food
+              </p>
+              <p className="text-white btn" onClick={handleGatcha}>
+                HIT GATCHA
+              </p>
             </div>
           </div>
         </div>

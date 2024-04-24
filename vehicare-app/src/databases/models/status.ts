@@ -12,11 +12,11 @@ export default class ModelStatus {
     const status = await this.dbStatus().findOne({
       VehicleId: new ObjectId(id),
     });
-    
+
     if (status && status.dailyHP <= 98) {
-        status.dailyHP = status.dailyHP + 2;
+      status.dailyHP = status.dailyHP + 2;
     } else if (status && status.dailyHP > 98) {
-        status.dailyHP = 100;
+      status.dailyHP = 100;
     }
     const update = await this.dbStatus().updateOne(
       {
@@ -36,18 +36,38 @@ export default class ModelStatus {
       dailyHP: 100,
       cointReward: 0,
       VehicleId: id,
+      gatcha: true,
     };
     return this.dbStatus().insertOne(defStatus).then();
   }
-  static async ChangeGatcha(id: string) {
-    const result = await this.dbStatus().updateOne({
-      VehicleId: new ObjectId(id)
-    },
-    {
-      $set: {
-        gatcha: false,
+  static async resetStatus(id: ObjectId) {
+    const reset = await this.dbStatus().updateOne(
+      {
+        VehicleId: new ObjectId(id),
       },
-    });
-    return result
+      {
+        $set: {
+          HP: 100,
+          dailyHP: 100,
+          gatcha: true,
+        },
+      }
+    );
+    return reset;
+  }
+  static async ChangeGatcha(id: string, coin: number) {
+    
+    const result = await this.dbStatus().updateOne(
+      {
+        VehicleId: new ObjectId(id),
+      },
+      {
+        $set: {
+          gatcha: false,
+          cointReward : coin
+        },
+      }
+    );
+    return result;
   }
 }
