@@ -14,7 +14,7 @@ export default function Profile() {
       setlistSpareparts(data.data)
     })()
   }, []);
-
+  
   return (
     <>
       <div className="w-full h-screen fixed" style={{
