@@ -58,7 +58,7 @@ export default function Home() {
         }}
       >
         {/* CHECK LIST VEHICLE */}
-        <select onChange={handleChange} id="type" name="name1" autoComplete="type" className="select select-warning w-full max-w-xs absolute top-10 left-16" required>
+        <select onChange={handleChange} id="type" name="name1" autoComplete="type" className="select select-warning w-full max-w-xs absolute top-10 left-16 z-10" required>
           {vehicles &&
             vehicles.map((vehicle: Vehicle, i: number) => (
               <option key={i} value={vehicle._id.toString()}>
@@ -76,22 +76,6 @@ export default function Home() {
         {/* SCREEN */}
         <div className="flex w-full h-5/6 justify-center items-center rounded pt-5">
           <div className="flex w-full h-full mx-10 shadow-xl rounded-lg mb-2 bg-black bg-opacity-50">
-            <select
-              onChange={handleChange}
-              id="type"
-              name="name1"
-              autoComplete="type"
-              className="h-10 w-80 absolute"
-              required
-            >
-              {/* CHECK LIST VEHICLE */}
-              {vehicles &&
-                vehicles.map((vehicle: Vehicle, i: number) => (
-                  <option key={i} value={vehicle._id.toString()}>
-                    {vehicle.name}
-                  </option>
-                ))}
-            </select>
             {/* DETAIL VEHICLE */}
             <TamagochiMotor selectedVehicle={selectedVehicle} />
           </div>

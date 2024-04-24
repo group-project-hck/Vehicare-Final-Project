@@ -8,15 +8,23 @@ import React from "react";
 import { CardBody, CardContainer, CardItem } from "../ui/3d-card";
 import { Vehicle } from "@/databases/models/types";
 import ModalNotifiction from "../Modal/notification";
+import InputModalMotorcyle from "../Modal/inputMotorcyle";
 
 export default function CardProfile() {
   const [loading, setLoading] = useState<boolean>(false);
-  const [modal, setModal] = useState(false);
   const [user, setUser] = useState<any>();
   const [vehicle, setVehicle] = useState<Vehicle[]>([]);
+
+  const [modal, setModal] = useState(false);
   const toggleModal = () => {
     setModal(!modal);
   };
+
+  const [modal2, setModal2] = useState(false);
+  const toggleModal2 = () => {
+    setModal2(!modal2);
+  };
+
   const getVehicles = async () => {
     setLoading(true);
     const data = await GetServices();
@@ -61,6 +69,7 @@ export default function CardProfile() {
           Vehicles
         </div>
         <div className="grid grid-cols-2">
+          <button onClick={toggleModal2} className="btn btn-outline">TAMBAH</button>
           {vehicle?.length > 0 &&
             vehicle.map((item, i) => (
               <CardContainer key={i} className="inter-var">
@@ -101,6 +110,7 @@ export default function CardProfile() {
         setModal={setModal}
         item={user}
       />
+      <InputModalMotorcyle modal={modal} setModal={setModal2} />
     </>
   );
 }
