@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import closeBtn from "@/Assets/closeBtn.svg";
 import Image from "next/image";
 import { AddVehicle } from "@/actions/AddVehicle";
-import { useRouter } from "next/navigation";
 
 interface InputModalMotorcyleProps {
   modal: boolean;

@@ -1,10 +1,8 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import closeBtn from "../../Assets/closeBtn.svg";
 import Image from "next/image";
-import { Sparepart } from "@/databases/models/types";
 import LoadingComponent from "../loading";
-import { useRouter } from "next/navigation";
 
 interface InputModalChatProps {
   modal: boolean;
@@ -18,7 +16,7 @@ interface InputModalChatProps {
     password: string;
     role: string;
   };
-  getVehicles : any
+  getVehicles: any
 }
 
 

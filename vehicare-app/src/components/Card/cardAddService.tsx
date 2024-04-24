@@ -14,9 +14,8 @@ export default function AddSparepartServiceBook({
         {persparepart &&
           persparepart.map((item, index) => {
             return (
-              <div className="shadow-xl rounded-lg transform transition-transform duration-300 border border-orange-200">
+              <div key={index} className="shadow-xl rounded-lg transform transition-transform duration-300 border border-orange-200">
                 <li
-                  key={index}
                   className="inline-flex w-full flex-col text-center p-1"
                 >
                   <div

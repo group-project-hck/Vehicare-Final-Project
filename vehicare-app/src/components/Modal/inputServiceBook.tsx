@@ -2,10 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { GetSpareparts } from "@/actions/Spareparts";
 import { Sparepart, Vehicle } from "@/databases/models/types";
-import bgSparepart from "@/Assets/backgroundSparepart.svg";
 import closeBtn from "../../Assets/closeBtn.svg";
 import AddSparepartServiceBook from "../Card/cardAddService";
-import { set } from "zod";
 import LoadingComponent from "../loading";
 import GetServices, { AddServiceBook } from "@/actions/ServiceBooks";
 import Image from "next/image";
