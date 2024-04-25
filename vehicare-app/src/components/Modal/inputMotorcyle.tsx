@@ -39,8 +39,6 @@ export default function InputModalMotorcyle({
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
-    console.log(input);
-
     if (!input.name1 || input.name1 === "") {
       router.push(`/profile?error=Error Please Input Motorcycles Brand`);
       return;
@@ -55,6 +53,7 @@ export default function InputModalMotorcyle({
     }
     AddVehicle(input);
     fetchVehicle();
+    toggleModal()
     setLoading(false);
   }
   return (

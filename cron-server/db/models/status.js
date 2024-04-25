@@ -29,7 +29,7 @@ class statusModel {
       { VehicleId: id },
       {
         $set: {
-          HP: HP,
+          HP
         },
       }
     );

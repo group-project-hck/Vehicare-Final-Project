@@ -43,7 +43,9 @@ export default function TamagochiMotor({ selectedVehicle }: { selectedVehicle: s
 	}
 	const giftFood = async () => {
 		AddStatus(selectedVehicle);
-		fetchVehicle();
+    setTimeout(()=> {
+      fetchVehicle();
+    }, 2000)
 	};
 	// Cek Status
 	const handleGatcha = async () => {
