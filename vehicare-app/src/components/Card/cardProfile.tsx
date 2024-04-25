@@ -71,7 +71,7 @@ export default function CardProfile() {
           Vehicles
         </div>
         <div className="flex items-center justify-center">
-          <button onClick={toggleModal2} className="btn btn-outline">
+          <button onClick={toggleModal2} className="btn btn-primary">
             Add Vehicle
           </button>
         </div>

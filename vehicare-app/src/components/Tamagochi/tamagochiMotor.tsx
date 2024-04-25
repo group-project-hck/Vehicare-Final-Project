@@ -3,12 +3,13 @@ import { useEffect, useState } from "react";
 import LoadingComponent from "../loading";
 import { AddStatus, changeGatcha } from "@/actions/status";
 import { useRouter } from "next/navigation";
+import { Sparepart } from "@/databases/models/types";
 
-export default function TamagochiMotor({ selectedVehicle }) {
+export default function TamagochiMotor({ selectedVehicle }: { selectedVehicle: string }) {
 	const id = selectedVehicle;
-	const [vehicle, setVehicle] = useState({});
-	const [loading, setLoading] = useState(false);
-	const [status, setStatus] = useState([]);
+	const [vehicle, setVehicle] = useState<any>({});
+	const [loading, setLoading] = useState<any>(false);
+	const [status, setStatus] = useState<any>([]);
 	const router = useRouter();
 	const fetchVehicle = async () => {
 		try {
@@ -50,15 +51,15 @@ export default function TamagochiMotor({ selectedVehicle }) {
 			const random = Math.floor(Math.random() * (10 - 1 + 1) + 1);
 			const newCoin = status[0].cointReward + random;
 			changeGatcha(selectedVehicle, newCoin);
-			setTimeout(()=>{
+			setTimeout(() => {
 				fetchVehicle();
 				router.refresh();
-			},5000)
+			}, 5000)
 		}
 	};
 	let spareParts = [];
 	if (vehicle) {
-		const { Spareparts } = vehicle;
+		const { Spareparts }: any = vehicle;
 		if (Spareparts) {
 			spareParts = Spareparts;
 		}
@@ -72,9 +73,6 @@ export default function TamagochiMotor({ selectedVehicle }) {
 						<div className="flex animate-shake animate-infinite animate-duration-[1500ms]">
 							<img
 								src={vehicle?.image}
-								fillTransparencyColor={"transparent"}
-								pixelSize={12}
-								centered={true}
 							/>
 						</div>
 					</div>
@@ -90,20 +88,20 @@ export default function TamagochiMotor({ selectedVehicle }) {
 								<p>HP : {status[0]?.HP}%</p>
 								<div className="flex">
 									{Array.from({ length: status[0]?.HP }, (_, index) => (
-										<p className="text-sm">|</p>
+										<p className="text-sm" key={index}>|</p>
 									))}
 								</div>
 								<p>Daily HP : {status[0]?.dailyHP}%</p>
 								<div className="flex">
 									{Array.from({ length: status[0]?.dailyHP }, (_, index) => (
-										<p className="text-sm">|</p>
+										<p className="text-sm" key={index}>|</p>
 									))}
 								</div>
 							</div>
 							<div className="grid gap-1">
 								<p className="text-white font-bold">Spareparts :</p>
 								{spareParts &&
-									spareParts.map((el, i) => (
+									spareParts.map((el: Sparepart, i: string) => (
 										<p className="text-white" key={i}>
 											{el.name} : {vehicle.Books[0]?.serviceDate}
 										</p>
