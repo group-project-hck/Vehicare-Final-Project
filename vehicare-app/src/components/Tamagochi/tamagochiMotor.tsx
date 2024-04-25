@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import LoadingComponent from "../loading";
 import { AddStatus, changeGatcha } from "@/actions/status";
 import { useRouter } from "next/navigation";
-
 import { Sparepart } from "@/databases/models/types";
 
 export default function TamagochiMotor({ selectedVehicle }: { selectedVehicle: string }) {
