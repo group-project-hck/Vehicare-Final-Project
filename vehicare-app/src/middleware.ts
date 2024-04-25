@@ -7,13 +7,17 @@ export async function middleware(request: NextRequest) {
   let login = cookies().get("Authorization");
   if (
     request.nextUrl.pathname.startsWith("/api/servicebook") ||
+    request.nextUrl.pathname.startsWith("/api/servicebook/:path*") ||
     request.nextUrl.pathname.startsWith("/api/vehicle/:path*") ||
     request.nextUrl.pathname.startsWith("/api/vehicle") ||
     request.nextUrl.pathname.startsWith("/api/spareparts") ||
+    request.nextUrl.pathname.startsWith("/api/spareparts/:path*") ||
     request.nextUrl.pathname.startsWith("/api/status") ||
+    request.nextUrl.pathname.startsWith("/api/status/:path*") ||
     request.nextUrl.pathname.startsWith("/api/user") ||
     request.nextUrl.pathname.startsWith("/api/upload") ||
-    request.nextUrl.pathname.startsWith("/api/notification")
+    request.nextUrl.pathname.startsWith("/api/notification") 
+
   ) {
     if (!login) {
       return NextResponse.json(
@@ -50,6 +54,8 @@ export async function middleware(request: NextRequest) {
     }
   } else if (
     request.nextUrl.pathname.startsWith("/") ||
+    request.nextUrl.pathname.startsWith("/profile") ||
+    request.nextUrl.pathname.startsWith("/spareparts") ||
     request.nextUrl.pathname.startsWith("/history")
   ) {
     if (!login) {
@@ -62,15 +68,20 @@ export async function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     "/api/servicebook",
+    "/api/servicebook/:path*",
     "/api/vehicle/:path*",
     "/api/vehicle",
     "/api/spareparts",
+    "/api/spareparts/:path*",
     "/api/status",
+    "/api/status/:path*",
     "/api/user",
     "/api/upload",
     "/api/notification",
     "/",
     "/login",
-    "/history"
+    "/history",
+    "/profile",
+    "/spareparts"
   ],
 };

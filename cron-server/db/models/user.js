@@ -18,7 +18,7 @@ class userModel {
     const user = await this.userCollection().findOne({
       _id: vehicle.UserId,
     });
-    return user;
+    return {vehicle, user}
   }
 }
 
