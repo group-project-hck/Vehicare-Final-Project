@@ -12,7 +12,7 @@ export async function HandleRegister(formData: FormData): Promise<Response | voi
     password: formData.get("password")
   }
 
-  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/user/register`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user/register`, {
     cache: "no-store",
     method: "POST",
     headers: {
@@ -35,7 +35,7 @@ export async function HandleLogin(formData: FormData): Promise<Response | void> 
     username: formData.get("email"),
     password: formData.get("password"),
   };
-  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/user/login`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user/login`, {
     cache: "no-store",
     method: "POST",
     headers: {

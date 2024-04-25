@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 // Get Detail service
 export async function DetailService(id: string) {
   let res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}api/servicebook/${id}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/servicebook/${id}`,
     {
       cache: "no-store",
       headers: {
@@ -19,7 +19,7 @@ export async function DetailService(id: string) {
 
 // Get List Service Books
 export default async function GetServices() {
-  let res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/user`, {
+  let res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user`, {
     cache: "no-store",
     headers: {
       "Content-Type": "application/json",
@@ -35,8 +35,8 @@ export async function AddServiceBook(rawFormData: {
   SparepartId: string[];
   servicePrice: number;
 }): Promise<Response | void> {
-    
-  let res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/servicebook`, {
+
+  let res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/servicebook`, {
     cache: "no-store",
     method: "POST",
     headers: {

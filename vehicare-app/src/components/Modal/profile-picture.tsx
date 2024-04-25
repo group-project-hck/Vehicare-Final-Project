@@ -46,7 +46,7 @@ export default function ProfilePictureModal({
       const formData = new FormData();
       formData.append("image", image);
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}api/upload`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/upload`,
         {
           method: "PATCH",
           body: formData,

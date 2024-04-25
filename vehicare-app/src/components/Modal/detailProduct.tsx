@@ -23,7 +23,7 @@ export default function DetailProductModal({
   async function fetchData() {
     setLoading(true);
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}api/spareparts/${item}`,
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/spareparts/${item}`,
       {
         cache: "no-store",
       }
@@ -90,9 +90,9 @@ export default function DetailProductModal({
                         : 0}
                     </h1>
                   </div>
-                    <button className="px-3 py-2 bg-gray-800 text-white mt-3 text-xs font-bold uppercase rounded">
-                      Add to Service Book
-                    </button>
+                  <button className="px-3 py-2 bg-gray-800 text-white mt-3 text-xs font-bold uppercase rounded">
+                    Add to Service Book
+                  </button>
                 </div>
               </div>
             </div>

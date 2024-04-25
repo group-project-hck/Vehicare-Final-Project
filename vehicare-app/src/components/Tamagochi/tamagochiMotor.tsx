@@ -15,7 +15,7 @@ export default function TamagochiMotor({ selectedVehicle }: { selectedVehicle: s
 		try {
 			setLoading(true);
 			const response = await fetch(
-				`${process.env.NEXT_PUBLIC_BASE_URL}api/vehicle/${id}`,
+				`${process.env.NEXT_PUBLIC_BASE_URL}/api/vehicle/${id}`,
 				{
 					cache: "no-store",
 					method: "GET",
@@ -43,9 +43,9 @@ export default function TamagochiMotor({ selectedVehicle }: { selectedVehicle: s
 	}
 	const giftFood = async () => {
 		AddStatus(selectedVehicle);
-    setTimeout(()=> {
-      fetchVehicle();
-    }, 2000)
+		setTimeout(() => {
+			fetchVehicle();
+		}, 2000)
 	};
 	// Cek Status
 	const handleGatcha = async () => {

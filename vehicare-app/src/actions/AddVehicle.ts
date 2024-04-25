@@ -24,7 +24,7 @@ export async function AddVehicle(formData: {
     iterations: 3,
     retries: 1,
   });
-  const imageFiltered    = imageResult.filter((item) => !item?.image.includes("pngkit"))
+  const imageFiltered = imageResult.filter((item) => !item?.image.includes("pngkit"))
   const image = imageFiltered[0];
   let { secure_url } = await cloudinary.uploader.upload(image.image); // upload to cloudinary
   const rawFormData = {
@@ -32,13 +32,13 @@ export async function AddVehicle(formData: {
     type: formData.type,
     image: secure_url,
   };
-  
-  let res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/vehicle`, {
+
+  let res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/vehicle`, {
     cache: "no-store",
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Cookie : cookies().toString()
+      Cookie: cookies().toString()
     },
     body: JSON.stringify(rawFormData),
   });
