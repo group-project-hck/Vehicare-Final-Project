@@ -35,6 +35,7 @@ cron.schedule("0 0 * * *", async () => {
   });
 });
 cron.schedule("* * * * *", async () => {
+	console.log(":");
   const serviceBooks = await serviceBookModel.findAll();
   serviceBooks.map(async (item) => {
     const currentTime = Date.now();
@@ -43,7 +44,7 @@ cron.schedule("* * * * *", async () => {
     const minutes = Math.floor((diff / 1000 / 60) << 0);
     const user = await userModel.find(item.VehicleId);
     let message = "";
-    let HP = 0;
+    let HP
     if (minutes === 1) {
       message = `Halo, ini sudah 15 hari semenjak kamu terakhir kali service motor ${user.vehicle.name} nih, jangan lupa untuk menjadwalkan service ya untuk tetap menjaga kesehatan motor ${user.vehicle.name} kamu`;
       HP = 100;
