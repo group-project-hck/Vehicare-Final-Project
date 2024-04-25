@@ -5,12 +5,9 @@ import machine from "@/Assets/machine.svg";
 import Image from "next/image";
 import logo from "@/Assets/logo.svg";
 import { HandleRegister } from "@/actions/User";
-import { useSearchParams } from "next/navigation";
 import { ErrorLogin } from "@/components/errorLogin";
 
 export default function RegisterPage() {
-  const searchParams = useSearchParams();
-  const errorMessage = searchParams.get("error");
   return (
     <>
       {/* component */}

@@ -8,12 +8,9 @@ import Image from "next/image";
 import logo from "@/Assets/logo.svg";
 import { HandleLogin } from "@/actions/User";
 import { ErrorLogin } from "@/components/errorLogin";
-import { useSearchParams } from "next/navigation";
 import { GoogleButton } from "@/components/Button/googleBtn";
 
 export default function LoginPage() {
-  const searchParams = useSearchParams();
-  const errorMessage = searchParams.get("error");
   return (
     <>
       {/* component */}
@@ -134,7 +131,7 @@ export default function LoginPage() {
             </div>
             {/* DISPLAY ERROR */}
             <Suspense fallback={<div>Loading...</div>}>
-            <ErrorLogin />
+              <ErrorLogin />
             </Suspense>
             <div>
               <form id="login-form" action={HandleLogin}>
