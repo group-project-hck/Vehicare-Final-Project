@@ -37,7 +37,7 @@ export default function DetailHistoryModal({ serviceId, modal, setModal }: { ser
                         <div className="py-6">
                             <div className="flex w-full bg-white shadow-lg rounded-lg overflow-hidden justify-end relative border">
                                 <div className="w-full p-4">
-                                    <h1 className="text-gray-900 font-bold text-2xl">Service Book</h1>
+                                    <h1 className="text-gray-900 font-bold text-2xl text-center">Service Book</h1>
                                     <div className="divider">Details</div>
                                     {/* Tombol Close */}
                                     <div onClick={toggleModal} className="absolute top-0 right-0 m-2 cursor-pointer">
@@ -63,7 +63,7 @@ export default function DetailHistoryModal({ serviceId, modal, setModal }: { ser
                                             </thead>
                                             <tbody className="border">
                                                 {SpareParts && SpareParts?.map((item, i) => (
-                                                    <tr className="border text-sm" >
+                                                    <tr className="border text-sm" key={i}>
                                                         <td className="border">{i + 1}</td>
                                                         <td className="border">{item.name}</td>
                                                         <td className="border">

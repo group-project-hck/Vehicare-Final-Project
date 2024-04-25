@@ -21,9 +21,8 @@ export default function CardProduct({
         {persparepart &&
           persparepart.map((item, index) => {
             return (
-              <div className="shadow-xl rounded-lg hover:cursor-pointer transform transition-transform duration-300 border border-orange-200">
+              <div key={index} className="shadow-xl rounded-lg hover:cursor-pointer transform transition-transform duration-300 border border-orange-200">
                 <li
-                  key={index}
                   className="inline-flex w-full flex-col text-center"
                 >
                   <div

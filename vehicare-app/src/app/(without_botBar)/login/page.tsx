@@ -1,5 +1,7 @@
+
 "use client";
 import React, { Suspense } from "react";
+
 import svg from "@/Assets/LoginImage.svg";
 import machine from "@/Assets/machine.svg";
 import Image from "next/image";
@@ -207,7 +209,6 @@ export default function LoginPage() {
               <div className="mt-7">
                 <GoogleButton />
               </div>
-
               <div className="mt-2 flex w-full justify-center sm:flex-row">
                 {/* Register*/}
                 <div

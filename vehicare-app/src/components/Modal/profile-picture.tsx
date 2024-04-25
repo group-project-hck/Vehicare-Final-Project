@@ -2,7 +2,6 @@
 import React, { Suspense, useEffect, useState } from "react";
 import closeBtn from "../../Assets/closeBtn.svg";
 import Image from "next/image";
-import { Sparepart } from "@/databases/models/types";
 import LoadingComponent from "../loading";
 import { useRouter } from "next/navigation";
 import { ErrorLogin } from "../errorLogin";
