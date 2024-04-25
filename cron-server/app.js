@@ -65,14 +65,16 @@ cron.schedule("0-59 0-23 1-31 1-12 0-6", async () => {
 				"Halo, ini sudah lebih dari 60 hari semenjak kamu terakhir kali service motor nih, apakah kamu memiliki kendala untuk melakukan service? segera lakukan service ya agar kesehatan motor kamu tetap terjaga";
 			HP = 0;
 		}
-		await statusModel.updateStatus(item.VehicleId, HP);
-		await notificationModel.createNotification(item.VehicleId, message);
-		transporter.sendMail({
-			from: "vehicarejkt@gmail.com",
-			to: user.email,
-			subject: `Update Jadwal Service Motor untuk ${user.name}`,
-			text: message,
-		});
+		if(user){
+			await statusModel.updateStatus(item.VehicleId, HP);
+			await notificationModel.createNotification(item.VehicleId, message);
+			transporter.sendMail({
+				from: "vehicarejkt@gmail.com",
+				to: user.email,
+				subject: `Update Jadwal Service Motor untuk ${user.name}`,
+				text: message,
+			});
+		}
 	});
 });
 
