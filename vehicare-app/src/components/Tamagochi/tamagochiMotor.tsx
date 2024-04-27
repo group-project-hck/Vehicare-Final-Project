@@ -20,7 +20,7 @@ export default function TamagochiMotor({
     try {
       setLoading(true);
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}api/vehicle/${id}`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/vehicle/${id}`,
         {
           cache: "no-store",
           method: "GET",
@@ -30,6 +30,8 @@ export default function TamagochiMotor({
         }
       );
       const { data } = await response.json();
+      console.log(data);
+
       setVehicle(data);
       setStatus(data.Status);
       setLoading(false);
@@ -49,16 +51,16 @@ export default function TamagochiMotor({
   const giftFood = async () => {
     setLoading(true);
     AddStatus(selectedVehicle);
-	Swal.fire({
-	  title: "Giving your vehicle some foods...",
-	  imageUrl:
-		"https://cdn.dribbble.com/users/2330950/screenshots/15536297/media/20e3f3aa250511ba991cd537c6e239b8.jpg?resize=1000x750&vertical=center",
-	  imageWidth: 400,
-	  imageHeight: 200,
-	  imageAlt: "Custom image",
-	  timer: 4000,
-	  showConfirmButton: false,
-	});
+    Swal.fire({
+      title: "Giving your vehicle some foods...",
+      imageUrl:
+        "https://cdn.dribbble.com/users/2330950/screenshots/15536297/media/20e3f3aa250511ba991cd537c6e239b8.jpg?resize=1000x750&vertical=center",
+      imageWidth: 400,
+      imageHeight: 200,
+      imageAlt: "Custom image",
+      timer: 4000,
+      showConfirmButton: false,
+    });
     setTimeout(() => {
       fetchVehicle();
     }, 3500);
@@ -157,7 +159,7 @@ export default function TamagochiMotor({
                 {spareParts &&
                   spareParts.map((el: Sparepart, i: string) => (
                     <p className="text-white" key={i}>
-                      {el.name} : {new Date(vehicle.Books[0]?.serviceDate).toLocaleString("en-CA", {year : "numeric", month : "numeric", day : "numeric"})}
+                      {el.name} : {new Date(vehicle.Books[0]?.serviceDate).toLocaleString("en-CA", { year: "numeric", month: "numeric", day: "numeric" })}
                     </p>
                   ))}
                 <br />
