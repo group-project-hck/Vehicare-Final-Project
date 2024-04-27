@@ -35,8 +35,8 @@ export default function History() {
       >
         <div className="flex justify-center w-full h-5/6 shadow-xl rounded-lg mb-2 pt-5 px-10">
           <div className="flex w-full h-full shadow-xl rounded-lg mb-2 justify-center bg-white bg-opacity-10 py-1">
-            <div className="flex w-[70%] rounded-xl bg-black bg-opacity-50 overflow-auto">
-              <div className="w-full overflow-x-auto flex flex-wrap lg:flex-col lg:max-h-full lg:overflow-y-auto p-5">
+            <div className="flex w-[70%] rounded-xl bg-black bg-opacity-50">
+              <div className="w-full flex overflow-y-auto lg:flex-col lg:max-h-full p-5 mb-4 mt-4">
                 <button className="w-10 h-10" onClick={toggleModal}
                   style={{
                     backgroundSize: "cover", // Mengatur gambar agar sesuai dengan ukuran layar

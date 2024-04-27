@@ -157,7 +157,7 @@ export default function TamagochiMotor({
                 {spareParts &&
                   spareParts.map((el: Sparepart, i: string) => (
                     <p className="text-white" key={i}>
-                      {el.name} : {vehicle.Books[0]?.serviceDate}
+                      {el.name} : {new Date(vehicle.Books[0]?.serviceDate).toLocaleString("en-CA", {year : "numeric", month : "numeric", day : "numeric"})}
                     </p>
                   ))}
                 <br />
