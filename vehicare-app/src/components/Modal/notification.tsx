@@ -41,10 +41,10 @@ export default function ModalNotifiction({
                 />
               </div>
             </div>
-            <div className="flex flex-col w-full h-96 bg-white shadow-lg rounded-lg overflow-hidden relative">
+            <div className="flex flex-col w-full h-96 overflow-y-scroll bg-white shadow-lg rounded-lg overflow-hidden relative">
               {notif &&
                 notif?.map((notification: Notification, i: number) => (
-                  <div key={i} className="border bg-slate-300 group flex items-center gap-x-5 rounded-md px-2.5 py-2 transition-all duration-75 hover:bg-red-100 w-full hover:cursor-pointer">
+                  <div key={i} className="border bg-slate-300 group dark:text-black flex items-center gap-x-5 rounded-md px-2.5 py-2 transition-all duration-75 hover:bg-red-100 w-full hover:cursor-pointer">
                     <div className="flex h-12 w-12 items-center rounded-lg bg-gray-200 text-black group-hover:bg-red-200">
                       <span className="tag w-full text-center text-2xl font-medium text-gray-700 group-hover:text-red-900">i</span>
                     </div>

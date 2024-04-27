@@ -23,7 +23,7 @@ export async function changeGatcha(
 ): Promise<Response | void> {
   let res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/status/${id}`, {
     cache: "no-store",
-    method: "POST",
+    method: "PATCH",
     headers: {
       "Content-Type": "application/json",
       Cookie: cookies().toString(),

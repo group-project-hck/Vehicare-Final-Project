@@ -37,6 +37,7 @@ export default class ModelStatus {
       cointReward: 0,
       VehicleId: id,
       gatcha: true,
+      updatedAt : new Date(),
     };
     return this.dbStatus().insertOne(defStatus).then();
   }
@@ -50,13 +51,19 @@ export default class ModelStatus {
           HP: 100,
           dailyHP: 100,
           gatcha: true,
+          updatedAt : new Date()
         },
       }
     );
     return reset;
   }
   static async ChangeGatcha(id: string, coin: number) {
-    
+    const check = await this.dbStatus().findOne({
+      VehicleId: new ObjectId(id),
+    });
+    if (check?.gatcha == false) {
+      throw new Error("Gatcha is already used");
+    }
     const result = await this.dbStatus().updateOne(
       {
         VehicleId: new ObjectId(id),
