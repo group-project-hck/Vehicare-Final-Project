@@ -18,13 +18,16 @@ const authOption: NextAuthOptions = {
     secret: process.env.SECRET,
     callbacks: {
         async signIn({ account, profile }) {
+            const { picture }: any = profile
+
             if (account?.provider === 'google') {
                 const data = {
                     name: profile?.name,
                     username: (profile?.name?.split(" ")[1]) ? profile?.name?.split(" ")[1] : profile?.name,
                     email: profile?.email,
                     password: Math.random().toString(),
-                    role: 'member'
+                    role: 'member',
+                    image: picture
                 }
                 const user = await UserModel.googleLogin(data)
                 const token = Tokenjwt.genToken({
