@@ -40,7 +40,7 @@ export interface ServiceBooks {
   servicePrice: number,
   SparepartId: ObjectId[],
   VehicleId: ObjectId,
-  serviceDate: string
+  serviceDate: Date
 }
 
 export interface Status {
@@ -50,6 +50,7 @@ export interface Status {
   cointReward: number,
   VehicleId: ObjectId,
   gatcha: boolean,
+  updatedAt : Date
 }
 export interface Notification {
   _id: ObjectId,
